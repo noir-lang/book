@@ -4,3 +4,4 @@
 
 - [Getting Started](getting_started.md)
     - [Installing Noir](getting_started/install.md)
+    - [Hello, World](getting_started/hello_world.md)
