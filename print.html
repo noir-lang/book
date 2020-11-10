@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Noir Programming Language</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -179,6 +179,37 @@
 <p>As a protocol developer, you may not want to use the Aztec backend due to it not being a fit for your stack or maybe you simply want to use a different proving system. Since Noir does not compile to a specific proof system, it is possible for protocol developers to replace the PLONK based proving system with a different proving system altogether.</p>
 <h3><a class="header" href="#blockchain-developers" id="blockchain-developers">Blockchain developers</a></h3>
 <p>As a blockchain developer, you will be constrained by parameters set by your blockchain, ie the proving system and smart contract language has been pre-defined. In order for you to use Noir in your blockchain, a proving system backend must be implemented for it and a smart contract interface must be implemented for it. </p>
+<h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
+<p>In this section we will discuss, installing Noir and running your first program.</p>
+<h1><a class="header" href="#installing-noir" id="installing-noir">Installing Noir</a></h1>
+<p>There are two ways to install Noir; from source or from the compiled binary.</p>
+<h2><a class="header" href="#installing-noir-from-source" id="installing-noir-from-source">Installing Noir from Source</a></h2>
+<ul>
+<li>
+<p>Download <a href="https://www.rust-lang.org/tools/install">Rust</a></p>
+</li>
+<li>
+<p>Now download Noir from Github using Git.</p>
+</li>
+<li>
+<p><code>cd</code> into the Noir directory and use <code>cargo install --path=.</code> to compile the binary and store it in your path. </p>
+</li>
+</ul>
+<h2><a class="header" href="#installing-noir-from-the-compiled-binary" id="installing-noir-from-the-compiled-binary">Installing Noir from the Compiled Binary</a></h2>
+<ul>
+<li>
+<p>First navigate to the Github repo for Noir.</p>
+</li>
+<li>
+<p>Click on the <code>Releases</code> tab.</p>
+</li>
+<li>
+<p>Three compiled binaries will be listed named; Linux, MacOS and Windows. Download the binary for your operating system.</p>
+</li>
+<li>
+<p>Add the downloaded binary to your path.</p>
+</li>
+</ul>
 
                     </main>
 
