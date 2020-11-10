@@ -2,8 +2,7 @@ name: github pages
 
 on:
   push:
-    tags:
-      - 'v*'
+    branch: master
 
 jobs:
   deploy:
