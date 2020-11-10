@@ -1,0 +1,6 @@
+[book]
+authors = ["Kevaundray Wedderburn"]
+language = "en"
+multilingual = false
+src = "src"
+title = "The Noir Programming Language"
