@@ -4,3 +4,6 @@ language = "en"
 multilingual = false
 src = "src"
 title = "The Noir Programming Language"
+
+[output.html]
+default-theme = "ayu"
