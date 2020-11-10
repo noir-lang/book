@@ -42,10 +42,28 @@ x = "5"
 y = "10"
 ```
 
-When the command `noir prove my_proof` is executed, two processes happen. 
+When the command `noir prove my_proof` is executed, two processes happen:
 
 - First, Noir creates a proof that `x` which holds the value of `5` and `y` which holds the value of `10` is not equal.This not equal constraint is due to the line `constrain x != y`.
 
 > **Note:** We have not expanded on the meaning of the syntax `constrain x != y` as it is not the focus of this chapter.
 
 - Second, Noir stores this proof in the directory `proofs` and names the proof `my_proof`.
+
+## Verifying a Proof
+
+When the command `noir verify my_proof` is executed, two processes happen:
+
+- Noir checks in the `proofs` directory for a file called `my_proof`
+
+- If that file is found, the proofs validity is checked.
+
+> **Note:** The validity of the proof is linked to the current Noir program; if the program is changed and the verifier verifies the proof, it will fail because the proof is not valid for the _modified_ Noir program. 
+
+## Contract
+
+This directory holds the compiled _Ethereum_ contract for the current Noir program. The contract is not automatically compiled when the `prove` or `verify` command is ran. To compile execute the following:
+
+```sh
+$ noir contract
+```
