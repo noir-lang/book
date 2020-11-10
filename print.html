@@ -251,20 +251,25 @@ true
 <h4><a class="header" href="#mainnoir" id="mainnoir">main.noir</a></h4>
 <p>Noir currently does not support libraries. The main.noir file contains a <code>main</code> method, this method is the entry point into your Noir program. </p>
 <p>In our sample program, main.noir looks like this:</p>
-<pre><code>   fn main(x : Witness, y : Witness) {
-        constrain x != y;
-    }
+<pre><code>fn main(x : Witness, y : Witness) {
+    constrain x != y;
+}
 </code></pre>
 <p>The parameters <code>x</code> and <code>y</code> can be seen as the API for the program and must be supplied by the prover. These are supplied in the <code>input.toml</code> file.</p>
-<h3><a class="header" href="#inputtoml" id="inputtoml">input.toml</a></h3>
+<h4><a class="header" href="#inputtoml" id="inputtoml">input.toml</a></h4>
 <p>The input.toml file is a file which the prover uses to input his witness values. In the hello world program the toml file looks like this:</p>
-<pre><code class="language-toml">        x = &quot;5&quot;
-        y = &quot;10&quot;
+<pre><code class="language-toml">x = &quot;5&quot;
+y = &quot;10&quot;
 </code></pre>
 <p>When the command <code>noir prove my_proof</code> is executed, two processes happen. </p>
 <ul>
-<li>First Noir creates a proof that <code>x</code> which holds the value of <code>5</code> and <code>y</code> which holds the value of <code>10</code> is not equal.This not equal constraint is due to the line <code>constrain x != y</code>.</li>
-<li>Then noir stores this proof in the directory <code>proofs</code> and names the proof <code>my_proof</code>.</li>
+<li>First, Noir creates a proof that <code>x</code> which holds the value of <code>5</code> and <code>y</code> which holds the value of <code>10</code> is not equal.This not equal constraint is due to the line <code>constrain x != y</code>.</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> We have not expanded on the meaning of the syntax <code>constrain x != y</code> as it is not the focus of this chapter.</p>
+</blockquote>
+<ul>
+<li>Second, Noir stores this proof in the directory <code>proofs</code> and names the proof <code>my_proof</code>.</li>
 </ul>
 
                     </main>
