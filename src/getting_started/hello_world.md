@@ -20,7 +20,7 @@ For Windwows CMD, enter this:
 > cd /d "%USERPROFILE%\projects"
 ```
 
-## Creating a Noir Sample Program
+## Compiling Our First Project
 
 Now that we are in the projects directory, enter the following command:
 
@@ -38,4 +38,6 @@ $ noir verify my_proof
 true
 ```
 
-Congratulations, you have now created and verified your very first Noir program! In the next section, we will go into more detail on exactly what just happened.
+Congratulations, you have now created and verified a proof for your very first Noir program! 
+
+In the next section, we will go into more detail on exactly what just happened.
