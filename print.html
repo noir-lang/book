@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -192,7 +192,7 @@
 <p>Now download Noir from Github using Git.</p>
 </li>
 <li>
-<p><code>cd</code> into the Noir directory and use <code>cargo install --path=.</code> to compile the binary and store it in your path. </p>
+<p><code>cd</code> into the Noir Github directory and use <code>cargo install --path=.</code> to compile the binary and store it in your path. </p>
 </li>
 </ul>
 <h2><a class="header" href="#installing-noir-from-the-compiled-binary" id="installing-noir-from-the-compiled-binary">Installing Noir from the Compiled Binary</a></h2>
@@ -210,6 +210,29 @@
 <p>Add the downloaded binary to your path.</p>
 </li>
 </ul>
+<h1><a class="header" href="#hello-world" id="hello-world">Hello, World</a></h1>
+<p>Now that we have installed Noir, it's time to make our first hello world program!</p>
+<h2><a class="header" href="#creating-a-project-directory" id="creating-a-project-directory">Creating a Project Directory</a></h2>
+<p>Noir code can live anywhere on your computer. Lets create a Projects folder in the <code>Home</code> to house our Noir programs.</p>
+<p>For Linux, macOS, and PowerShell on Windows, enter this in your terminal:</p>
+<pre><code class="language-sh">$ mkdir ~/projects
+$ cd ~/projects
+</code></pre>
+<p>For Windwows CMD, enter this:</p>
+<pre><code class="language-sh">&gt; mkdir &quot;%USERPROFILE%\projects&quot;
+&gt; cd /d &quot;%USERPROFILE%\projects&quot;
+</code></pre>
+<h2><a class="header" href="#creating-a-noir-sample-program" id="creating-a-noir-sample-program">Creating a Noir Sample Program</a></h2>
+<p>Now that we are in the projects directory, enter the following command:</p>
+<pre><code class="language-sh">noir new hello_world
+</code></pre>
+<p>We use the <code>new</code> command to create a new Noir project. This project will be located in the <code>hello_world</code> folder.</p>
+<p>Now <code>cd</code> into the <code>hello_world</code> folder and enter this:</p>
+<pre><code>$ noir prove my_proof
+$ noir verify my_proof
+true
+</code></pre>
+<p>Congratulations, you have now created and verified your very first Noir program! In the next section, we will go into more detail on exactly what just happened.</p>
 
                     </main>
 
