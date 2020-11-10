@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -222,7 +222,7 @@ $ cd ~/projects
 <pre><code class="language-sh">&gt; mkdir &quot;%USERPROFILE%\projects&quot;
 &gt; cd /d &quot;%USERPROFILE%\projects&quot;
 </code></pre>
-<h2><a class="header" href="#creating-a-noir-sample-program" id="creating-a-noir-sample-program">Creating a Noir Sample Program</a></h2>
+<h2><a class="header" href="#compiling-our-first-project" id="compiling-our-first-project">Compiling Our First Project</a></h2>
 <p>Now that we are in the projects directory, enter the following command:</p>
 <pre><code class="language-sh">noir new hello_world
 </code></pre>
@@ -232,7 +232,40 @@ $ cd ~/projects
 $ noir verify my_proof
 true
 </code></pre>
-<p>Congratulations, you have now created and verified your very first Noir program! In the next section, we will go into more detail on exactly what just happened.</p>
+<p>Congratulations, you have now created and verified a proof for your very first Noir program! </p>
+<p>In the next section, we will go into more detail on exactly what just happened.</p>
+<h1><a class="header" href="#breakdown" id="breakdown">Breakdown</a></h1>
+<h2><a class="header" href="#anatomy-of-a-noir-project" id="anatomy-of-a-noir-project">Anatomy of a Noir Project</a></h2>
+<p>Upon using the <code>new</code> command, Noir will create a Noir project. </p>
+<p>Noir Projects have the following structure:</p>
+<pre><code>- bin
+- contract 
+- proofs
+</code></pre>
+<h3><a class="header" href="#bin-directory" id="bin-directory">Bin directory</a></h3>
+<p>This directory holds the source code for your Noir program. In future releases, this will be renamed to <code>src</code>.</p>
+<p>Inside of the bin directory will be two files:</p>
+<pre><code>- main.noir 
+- input.toml
+</code></pre>
+<h4><a class="header" href="#mainnoir" id="mainnoir">main.noir</a></h4>
+<p>Noir currently does not support libraries. The main.noir file contains a <code>main</code> method, this method is the entry point into your Noir program. </p>
+<p>In our sample program, main.noir looks like this:</p>
+<pre><code>   fn main(x : Witness, y : Witness) {
+        constrain x != y;
+    }
+</code></pre>
+<p>The parameters <code>x</code> and <code>y</code> can be seen as the API for the program and must be supplied by the prover. These are supplied in the <code>input.toml</code> file.</p>
+<h3><a class="header" href="#inputtoml" id="inputtoml">input.toml</a></h3>
+<p>The input.toml file is a file which the prover uses to input his witness values. In the hello world program the toml file looks like this:</p>
+<pre><code class="language-toml">        x = &quot;5&quot;
+        y = &quot;10&quot;
+</code></pre>
+<p>When the command <code>noir prove my_proof</code> is executed, two processes happen. </p>
+<ul>
+<li>First Noir creates a proof that <code>x</code> which holds the value of <code>5</code> and <code>y</code> which holds the value of <code>10</code> is not equal.This not equal constraint is due to the line <code>constrain x != y</code>.</li>
+<li>Then noir stores this proof in the directory <code>proofs</code> and names the proof <code>my_proof</code>.</li>
+</ul>
 
                     </main>
 
