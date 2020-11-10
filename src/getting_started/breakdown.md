@@ -1,5 +1,7 @@
 # Breakdown
 
+This section breaks down our hello world program in section _1.2_. We elaborate on the project structure and what the `prove` and `verify` commands did in the previous section, and usage of the `contract` command.
+
 ## Anatomy of a Noir Project
 
 Upon using the `new` command, Noir will create a Noir project. 
