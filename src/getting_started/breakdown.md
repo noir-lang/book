@@ -26,23 +26,26 @@ Noir currently does not support libraries. The main.noir file contains a `main` 
 In our sample program, main.noir looks like this:
 
 ```
-   fn main(x : Witness, y : Witness) {
-        constrain x != y;
-    }
+fn main(x : Witness, y : Witness) {
+    constrain x != y;
+}
 ```
 
 The parameters `x` and `y` can be seen as the API for the program and must be supplied by the prover. These are supplied in the `input.toml` file.
 
-### input.toml
+#### input.toml
 
 The input.toml file is a file which the prover uses to input his witness values. In the hello world program the toml file looks like this:
 
 ```toml
-        x = "5"
-        y = "10"
+x = "5"
+y = "10"
 ```
 
 When the command `noir prove my_proof` is executed, two processes happen. 
 
-- First Noir creates a proof that `x` which holds the value of `5` and `y` which holds the value of `10` is not equal.This not equal constraint is due to the line `constrain x != y`.
-- Then noir stores this proof in the directory `proofs` and names the proof `my_proof`.
+- First, Noir creates a proof that `x` which holds the value of `5` and `y` which holds the value of `10` is not equal.This not equal constraint is due to the line `constrain x != y`.
+
+> **Note:** We have not expanded on the meaning of the syntax `constrain x != y` as it is not the focus of this chapter.
+
+- Second, Noir stores this proof in the directory `proofs` and names the proof `my_proof`.
