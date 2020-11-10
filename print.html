@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="language_concepts.html"><strong aria-hidden="true">2.</strong> Language Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="language_concepts/mutability.html"><strong aria-hidden="true">2.1.</strong> Mutability</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -261,7 +261,7 @@ true
 <pre><code class="language-toml">x = &quot;5&quot;
 y = &quot;10&quot;
 </code></pre>
-<p>When the command <code>noir prove my_proof</code> is executed, two processes happen. </p>
+<p>When the command <code>noir prove my_proof</code> is executed, two processes happen:</p>
 <ul>
 <li>First, Noir creates a proof that <code>x</code> which holds the value of <code>5</code> and <code>y</code> which holds the value of <code>10</code> is not equal.This not equal constraint is due to the line <code>constrain x != y</code>.</li>
 </ul>
@@ -271,6 +271,33 @@ y = &quot;10&quot;
 <ul>
 <li>Second, Noir stores this proof in the directory <code>proofs</code> and names the proof <code>my_proof</code>.</li>
 </ul>
+<h2><a class="header" href="#verifying-a-proof" id="verifying-a-proof">Verifying a Proof</a></h2>
+<p>When the command <code>noir verify my_proof</code> is executed, two processes happen:</p>
+<ul>
+<li>
+<p>Noir checks in the <code>proofs</code> directory for a file called <code>my_proof</code></p>
+</li>
+<li>
+<p>If that file is found, the proofs validity is checked.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> The validity of the proof is linked to the current Noir program; if the program is changed and the verifier verifies the proof, it will fail because the proof is not valid for the <em>modified</em> Noir program. </p>
+</blockquote>
+<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
+<p>This directory holds the compiled <em>Ethereum</em> contract for the current Noir program. The contract is not automatically compiled when the <code>prove</code> or <code>verify</code> command is ran. To compile execute the following:</p>
+<pre><code class="language-sh">$ noir contract
+</code></pre>
+<h1><a class="header" href="#language-concepts" id="language-concepts">Language Concepts</a></h1>
+<p>In this chapter, we will go over the concepts that are being used in Noir. Specifically, we will learn about types, control flow, comments, functions and declarations.
+For some concepts, we also explain the rationale as to why they were designed in this particular way. Recurring themes you will encounter in this section are simplicity and safety. </p>
+<h1><a class="header" href="#mutability" id="mutability">Mutability</a></h1>
+<p>All variables in Noir are immutable and cannot be made mutable. Due to this, Noir will at some stages borrow functional programming concepts.</p>
+<h2><a class="header" href="#why-immutability" id="why-immutability">Why immutability?</a></h2>
+<p>Witnesses in a proving system are immutable in nature. Noir aims to <em>closely</em> mirror this setting without applying additional overhead to the user. If a developer encounters a variable <em>a</em> he can lookup its definition to deduce its value.</p>
+<blockquote>
+<p>The last section may be somewhat invalidated, if temporary scopes and shadowing is introduced.</p>
+</blockquote>
 
                     </main>
 
