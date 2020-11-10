@@ -6,3 +6,5 @@
     - [Installing Noir](getting_started/install.md)
     - [Hello, World](getting_started/hello_world.md)
         - [Breakdown](getting_started/breakdown.md)
+- [Language Concepts](language_concepts.md)
+    - [Mutability](language_concepts/mutability.md)
