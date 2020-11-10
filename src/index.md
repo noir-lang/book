@@ -1,6 +1,5 @@
 # The Noir Programming Language
 
-
 This version of the book is being released with the public alpha. There will be a lot of features that are missing in this version, however the syntax and the feel of the language will mostly be completed. 
 
 ## What is Noir?
@@ -17,9 +16,7 @@ Noir can be used for a variety of purposes.
 
 ### Ethereum Developers
 
-
 Noir currently includes a command to publish a contract which verifies your Noir program. This will be modularised in the future, however as of the alpha you can use the `contract` command to create it.
-
 
 ### Protocol Developers
 
