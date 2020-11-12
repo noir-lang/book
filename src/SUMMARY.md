@@ -8,3 +8,4 @@
         - [Breakdown](getting_started/breakdown.md)
 - [Language Concepts](language_concepts.md)
     - [Mutability](language_concepts/mutability.md)
+    - [Data types](language_concepts/data_types.md)
