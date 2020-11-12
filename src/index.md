@@ -4,7 +4,7 @@ This version of the book is being released with the public alpha. There will be 
 
 ## What is Noir?
 
-Noir is a domain specific language for creating and verifying proofs.
+Noir is a domain specific language for creating and verifying proofs. Design choices are influenced heavily by Rust. 
 
 ## What's new about Noir?
 
