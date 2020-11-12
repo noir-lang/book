@@ -383,6 +383,17 @@ For some concepts, we also explain the rationale as to why they were designed in
 }
 <span class="boring">}
 </span></code></pre></pre>
+<h2><a class="header" href="#call-expressions" id="call-expressions">Call Expressions</a></h2>
+<p>Calling a function in Rust is executed by using the function name and passing the necessary arguments the function header.</p>
+<p>Below we show how to call the <code>foo</code> function from the main function using a call expression:</p>
+<pre><pre class="playground"><code class="language-rust">fn main(x : Witness, y : Witness) {
+    priv z = foo(x);
+}
+
+fn foo(x : Witness) -&gt; Witness {
+    x + x
+}
+</code></pre></pre>
 <h1><a class="header" href="#comments" id="comments">Comments</a></h1>
 <p>A comment is a line in your codebase which the compiler ignores, however it can be seen read by programmers.</p>
 <p>Here is a single line comment:</p>
