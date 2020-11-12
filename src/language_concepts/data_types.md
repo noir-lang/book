@@ -10,26 +10,36 @@ Although each value in a constraint system is fundamentally a field element, we 
 
 A **concealed value** is known only to the Prover, while, a **revealed value** is known by the Prover and Verifier. All concealed and revealed data types are _fundamental_ types.
 
-## Concealed Types
+## Fundamental Types
+
+### Concealed Types
 
 Concealed types are usually referred to as witness values.
 
-### Witness Type
+#### Witness Type
 
 A Witness type is the default concealed type.
 
-### Integer Type
+#### Integer Type
 
 An integer type is a witness type which has been constrained using a range constraint. The Noir front-end currently supports arbitrary sized integer types.
 
 > **Note:** The Aztec backend only supports even sized integer types currently, so while using the Aztec backend, only even sized integer types such as u32, u48 will produce proofs.
 
-## Revealed Types
+### Revealed Types
 
-### Constants
+#### Constants
 
 A constant type is a value that does not change per circuit instance. This is different to a concealed type which changes per proof. If a constant type that is being used in your program in changed, then your circuit will also change.
 
-### Public Types
+#### Public Types
 
-A public type is a value that may change per circuit instance. Unlike Constants, changing a public value will not change the circuit 
+A public type is a value that may change per circuit instance. Unlike Constants, changing a public value will not change the circuit.
+
+## Compound Types
+
+#### Arrays 
+
+An array is a data structure which allows you to group together data types. All values in an array must be of the same type. 
+
+> **Example:** An array of Witness types cannot be grouped together with an array of Integer types.
