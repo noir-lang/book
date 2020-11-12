@@ -1,16 +1,14 @@
 # Data types
 
-### Fundamental Types
+There are two subsets of data types that each datatype will fall into; fundamental and compound.
 
-A fundamental type is a data type which is defined in the core language. This is not specific to Noir. Examples in modern programming languages such as Rust are u32, usize and char. 
+A **fundamental type** is a data type which is defined in the core language. This is not specific to Noir. Examples in modern programming languages such as Rust are u32, usize and char. 
 
-### Compound Types
+A **compound type** is a type in the core language which must be defined using another type. Examples in modern programming languages are arrays, tuples and functions.
 
-A compound type is a type in the core language which must be defined using another type. Examples in modern programming languages are arrays, tuples and functions.
+Although each value in a constraint system is fundamentally a field element, we add a layer of abstraction over this; each value can be _concealed_ or _revealed_. 
 
-### Noir Abstraction
-
-Although each value is fundamentally a field element, Noir adds a layer of abstraction over this. Each value in Noir can be _concealed_ or _revealed_ type. A concealed value is known only to the Prover, while a revealed value is known by the Prover and Verifier. All concealed and revealed data types are _fundamental_ types.
+A **concealed value** is known only to the Prover, while, a **revealed value** is known by the Prover and Verifier. All concealed and revealed data types are _fundamental_ types.
 
 ## Concealed Types
 
