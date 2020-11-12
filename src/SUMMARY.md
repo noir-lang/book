@@ -10,3 +10,4 @@
     - [Mutability](language_concepts/mutability.md)
     - [Data types](language_concepts/data_types.md)
     - [Functions](language_concepts/functions.md)
+    - [Comments](language_concepts/comments.md)
