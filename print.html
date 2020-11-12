@@ -100,7 +100,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="language_concepts.html"><strong aria-hidden="true">2.</strong> Language Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="language_concepts/mutability.html"><strong aria-hidden="true">2.1.</strong> Mutability</a></li><li class="chapter-item expanded "><a href="language_concepts/data_types.html"><strong aria-hidden="true">2.2.</strong> Data types</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="language_concepts.html"><strong aria-hidden="true">2.</strong> Language Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="language_concepts/mutability.html"><strong aria-hidden="true">2.1.</strong> Mutability</a></li><li class="chapter-item expanded "><a href="language_concepts/data_types.html"><strong aria-hidden="true">2.2.</strong> Data types</a></li><li class="chapter-item expanded "><a href="language_concepts/functions.html"><strong aria-hidden="true">2.3.</strong> Functions</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -358,6 +358,31 @@ For some concepts, we also explain the rationale as to why they were designed in
 <blockquote>
 <p><strong>Example:</strong> An array of Witness types cannot be grouped together with an array of Integer types.</p>
 </blockquote>
+<h1><a class="header" href="#functions" id="functions">Functions</a></h1>
+<p>Functions in Noir follow the same semantics of Rust, Noir does not support early returns.</p>
+<p>To declare a function the <code>fn</code> keyword is used.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn foo() {}
+<span class="boring">}
+</span></code></pre></pre>
+<p>All parameters in a function must have a type and all types are known at compile time. The parameter is pre-pended with a colon and the parameter type. Multiple parameters are separated using a comma. </p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn foo(x : Witness, y : Public){}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The return type of a function can be stated by using the <code>-&gt;</code> arrow notation. The function below states that the foo function must return a Witness. If the function returns no value, then the arrow is omitted.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn foo(x : Witness, y : Public) -&gt; Witness{
+    x + y
+}
+<span class="boring">}
+</span></code></pre></pre>
 
                     </main>
 
