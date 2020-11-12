@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="language_concepts.html"><strong aria-hidden="true">2.</strong> Language Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="language_concepts/mutability.html"><strong aria-hidden="true">2.1.</strong> Mutability</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="language_concepts.html"><strong aria-hidden="true">2.</strong> Language Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="language_concepts/mutability.html"><strong aria-hidden="true">2.1.</strong> Mutability</a></li><li class="chapter-item expanded "><a href="language_concepts/data_types.html"><strong aria-hidden="true">2.2.</strong> Data types</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -168,7 +168,7 @@
                         <h1><a class="header" href="#the-noir-programming-language" id="the-noir-programming-language">The Noir Programming Language</a></h1>
 <p>This version of the book is being released with the public alpha. There will be a lot of features that are missing in this version, however the syntax and the feel of the language will mostly be completed. </p>
 <h2><a class="header" href="#what-is-noir" id="what-is-noir">What is Noir?</a></h2>
-<p>Noir is a domain specific language for creating and verifying proofs.</p>
+<p>Noir is a domain specific language for creating and verifying proofs. Design choices are influenced heavily by Rust. </p>
 <h2><a class="header" href="#whats-new-about-noir" id="whats-new-about-noir">What's new about Noir?</a></h2>
 <p>Noir is much simpler and more flexible in design than previous languages as it does not compile immediately to a fixed NP-complete language. Instead Noir compiles to an intermediate language which itself can be compiled to an arithmetic circuit or a rank-1 constraint system. This in itself brings up a few challenges within the design process, but allows one to decouple the programming language completely from the backend. This is similar in theory to LLVM.</p>
 <h2><a class="header" href="#who-is-noir-for" id="who-is-noir-for">Who is Noir for?</a></h2>
@@ -299,6 +299,26 @@ For some concepts, we also explain the rationale as to why they were designed in
 <blockquote>
 <p>The last section may be somewhat invalidated, if temporary scopes and shadowing is introduced.</p>
 </blockquote>
+<h1><a class="header" href="#data-types" id="data-types">Data types</a></h1>
+<p>There are two subsets of data types that each datatype will fall into; fundamental and compound.</p>
+<p>A <strong>fundamental type</strong> is a data type which is defined in the core language. This is not specific to Noir. Examples in modern programming languages such as Rust are u32, usize and char. </p>
+<p>A <strong>compound type</strong> is a type in the core language which must be defined using another type. Examples in modern programming languages are arrays, tuples and functions.</p>
+<p>Although each value in a constraint system is fundamentally a field element, we add a layer of abstraction over this; each value can be <em>concealed</em> or <em>revealed</em>. </p>
+<p>A <strong>concealed value</strong> is known only to the Prover, while, a <strong>revealed value</strong> is known by the Prover and Verifier. All concealed and revealed data types are <em>fundamental</em> types.</p>
+<h2><a class="header" href="#concealed-types" id="concealed-types">Concealed Types</a></h2>
+<p>Concealed types are usually referred to as witness values.</p>
+<h3><a class="header" href="#witness-type" id="witness-type">Witness Type</a></h3>
+<p>A Witness type is the default concealed type.</p>
+<h3><a class="header" href="#integer-type" id="integer-type">Integer Type</a></h3>
+<p>An integer type is a witness type which has been constrained using a range constraint. The Noir front-end currently supports arbitrary sized integer types.</p>
+<blockquote>
+<p><strong>Note:</strong> The Aztec backend only supports even sized integer types currently, so while using the Aztec backend, only even sized integer types such as u32, u48 will produce proofs.</p>
+</blockquote>
+<h2><a class="header" href="#revealed-types" id="revealed-types">Revealed Types</a></h2>
+<h3><a class="header" href="#constants" id="constants">Constants</a></h3>
+<p>A constant type is a value that does not change per circuit instance. This is different to a concealed type which changes per proof. If a constant type that is being used in your program in changed, then your circuit will also change.</p>
+<h3><a class="header" href="#public-types" id="public-types">Public Types</a></h3>
+<p>A public type is a value that may change per circuit instance. Unlike Constants, changing a public value will not change the circuit </p>
 
                     </main>
 
