@@ -22,3 +22,19 @@ fn foo(x : Witness, y : Public) -> Witness{
     x + y
 }
 ```
+
+## Call Expressions
+
+Calling a function in Rust is executed by using the function name and passing the necessary arguments the function header.
+
+Below we show how to call the `foo` function from the main function using a call expression:
+
+```rust
+fn main(x : Witness, y : Witness) {
+    priv z = foo(x);
+}
+
+fn foo(x : Witness) -> Witness {
+    x + x
+}
+```
