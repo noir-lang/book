@@ -7,3 +7,4 @@ title = "The Noir Programming Language"
 
 [output.html]
 default-theme = "ayu"
+mathjax-support = true
