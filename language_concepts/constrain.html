@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Operations - The Noir Programming Language</title>
+        <title>Constrain Statement - The Noir Programming Language</title>
         
         
 
@@ -98,7 +98,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="../getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="../getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../language_concepts.html"><strong aria-hidden="true">2.</strong> Language Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../language_concepts/mutability.html"><strong aria-hidden="true">2.1.</strong> Mutability</a></li><li class="chapter-item expanded "><a href="../language_concepts/data_types.html"><strong aria-hidden="true">2.2.</strong> Data types</a></li><li class="chapter-item expanded "><a href="../language_concepts/functions.html"><strong aria-hidden="true">2.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../language_concepts/comments.html"><strong aria-hidden="true">2.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../language_concepts/control_flow.html"><strong aria-hidden="true">2.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../language_concepts/ops.html" class="active"><strong aria-hidden="true">2.6.</strong> Operations</a></li><li class="chapter-item expanded "><a href="../language_concepts/constrain.html"><strong aria-hidden="true">2.7.</strong> Constrain Statement</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="../getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="../getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../language_concepts.html"><strong aria-hidden="true">2.</strong> Language Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../language_concepts/mutability.html"><strong aria-hidden="true">2.1.</strong> Mutability</a></li><li class="chapter-item expanded "><a href="../language_concepts/data_types.html"><strong aria-hidden="true">2.2.</strong> Data types</a></li><li class="chapter-item expanded "><a href="../language_concepts/functions.html"><strong aria-hidden="true">2.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../language_concepts/comments.html"><strong aria-hidden="true">2.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../language_concepts/control_flow.html"><strong aria-hidden="true">2.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../language_concepts/ops.html"><strong aria-hidden="true">2.6.</strong> Operations</a></li><li class="chapter-item expanded "><a href="../language_concepts/constrain.html" class="active"><strong aria-hidden="true">2.7.</strong> Constrain Statement</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -166,33 +166,20 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#operations" id="operations">Operations</a></h1>
-<h2><a class="header" href="#table-of-supported-operations" id="table-of-supported-operations">Table of Supported Operations</a></h2>
-<table><thead><tr><th align="left">Operation</th><th align="center">Description</th><th align="right">Requirements</th></tr></thead><tbody>
-<tr><td align="left">+</td><td align="center">Adds two concealed types together</td><td align="right">Types must be concealed</td></tr>
-<tr><td align="left">-</td><td align="center">Subtracts two concealed types together</td><td align="right">Types must be concealed</td></tr>
-<tr><td align="left">*</td><td align="center">Multiplies two concealed types together</td><td align="right">Types must be concealed</td></tr>
-<tr><td align="left">/</td><td align="center">Divides two concealed types together</td><td align="right">Types must be concealed</td></tr>
-<tr><td align="left">^</td><td align="center">XOR two concealed types together</td><td align="right">Types must be integer</td></tr>
-<tr><td align="left">&amp;</td><td align="center">AND two concealed types together</td><td align="right">Types must be integer</td></tr>
-<tr><td align="left">&lt;</td><td align="center">constrains one value to be less than the other</td><td align="right">Upper bound must have a known bit size</td></tr>
-<tr><td align="left">&lt;=</td><td align="center">constrains one value to be less than or equal to the other</td><td align="right">Upper bound must have a known bit size</td></tr>
-<tr><td align="left">&gt;</td><td align="center">constrains one value to be more than the other</td><td align="right">Upper bound must have a known bit size</td></tr>
-<tr><td align="left">&gt;=</td><td align="center">constrains one value to be more than or equal to the other</td><td align="right">Upper bound must have a known bit size</td></tr>
-<tr><td align="left">==</td><td align="center">constrains one value to be equal to the other</td><td align="right">Both types must not be constants</td></tr>
-<tr><td align="left">!=</td><td align="center">constrains one value to not be equal to the other</td><td align="right">Both types must not be constants</td></tr>
-</tbody></table>
-<h3><a class="header" href="#predicate-operators" id="predicate-operators">Predicate Operators</a></h3>
-<p><code>&lt;,&lt;=, !=, == , &gt;, &gt;=</code> are known are predicate/comparison operations because they compare two values. This differs from the operations such as <code>+</code> where the operands are used in <em>computation</em>.</p>
-<h3><a class="header" href="#bitwise-operations-example" id="bitwise-operations-example">Bitwise Operations Example</a></h3>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness) {
-    priv y = x as u32;
-    priv z = y &amp; y;
+                        <h1><a class="header" href="#constrain-statement" id="constrain-statement">Constrain Statement</a></h1>
+<p>Noir includes a special keyword <code>constrain</code> which will explicitly constrain the expression that follows, as long as the operation is a predicate/comparison.</p>
+<h3><a class="header" href="#constrain-statement-example" id="constrain-statement-example">Constrain statement example</a></h3>
+<pre><pre class="playground"><code class="language-rust">fn main(x : Witness, y : Witness) {
+    constrain x == y
 }
 </code></pre></pre>
-<p><code>z</code> is implicitly constrained to be the result of <code>y &amp; y</code>. The <code>&amp;</code> operand is used to denote bitwise <code>&amp;</code>. </p>
+<p>The above snippet compiles because <code>==</code> is a predicate operation. Conversely, the following will not compile:</p>
+<pre><pre class="playground"><code class="language-rust">fn main(x : Witness, y : Witness) {
+    constrain x + y
+}
+</code></pre></pre>
 <blockquote>
-<p><code>x &amp; x</code> would not compile as <code>x</code> is a Witness and not an integer type.</p>
+<p>The rationale behind this not compiling is due to ambiguity. It is not clear if the above should equate to <code>x + y == 0</code> or if it should check the truthiness of the result.</p>
 </blockquote>
 
                     </main>
@@ -200,15 +187,11 @@
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../language_concepts/control_flow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../language_concepts/ops.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="../language_concepts/constrain.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -218,15 +201,11 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../language_concepts/control_flow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../language_concepts/ops.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a rel="next" href="../language_concepts/constrain.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
