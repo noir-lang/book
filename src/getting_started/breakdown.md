@@ -58,7 +58,7 @@ When the command `noir verify my_proof` is executed, two processes happen:
 
 - Noir checks in the `proofs` directory for a file called `my_proof`
 
-- If that file is found, the proofs validity is checked.
+- If that file is found, the proof's validity is checked.
 
 > **Note:** The validity of the proof is linked to the current Noir program; if the program is changed and the verifier verifies the proof, it will fail because the proof is not valid for the _modified_ Noir program. 
 
