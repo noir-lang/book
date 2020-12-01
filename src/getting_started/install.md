@@ -14,7 +14,7 @@ There are two ways to install Noir; from source or from the compiled binary.
 
 ## Installing Noir from the Compiled Binary
 
-- First navigate to the Github repo for Noir.
+- First navigate to the Github repo for [Noir](https://github.com/AztecProtocol/rasa).
 
 - Click on the `Releases` tab.
 
