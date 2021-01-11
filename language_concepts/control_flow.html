@@ -170,24 +170,16 @@
 <h2><a class="header" href="#loops" id="loops">Loops</a></h2>
 <p>Noir has one kind of loop, the <code>for-loop</code>. For loops allow you to repeat a block of code multiple times.</p>
 <p>The following block of code between the braces is ran 10 times.</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>for i in 0..10 {
+<pre><code class="language-rust noplaypen">for i in 0..10 {
     // do something
 }
-<span class="boring">}
-</span></code></pre></pre>
+</code></pre>
 <p>For loops are expressions, so each iteration of the loop produces a value which is collected into an array.</p>
 <p>The following code produces an array of 10 values, each element contains the same values from 0 to 9.</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let my_arr = for i in 0..10 {
+<pre><code class="language-rust noplaypen">let my_arr = for i in 0..10 {
     i
 };
-<span class="boring">}
-</span></code></pre></pre>
+</code></pre>
 <h2><a class="header" href="#if-expressions" id="if-expressions">If Expressions</a></h2>
 <blockquote>
 <p>Currently, these are not supported in the language.</p>

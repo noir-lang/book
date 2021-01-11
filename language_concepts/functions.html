@@ -169,39 +169,27 @@
                         <h1><a class="header" href="#functions" id="functions">Functions</a></h1>
 <p>Functions in Noir follow the same semantics of Rust, Noir does not support early returns.</p>
 <p>To declare a function the <code>fn</code> keyword is used.</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn foo() {}
-<span class="boring">}
-</span></code></pre></pre>
+<pre><code class="language-rust noplaypen">fn foo() {}
+</code></pre>
 <p>All parameters in a function must have a type and all types are known at compile time. The parameter is pre-pended with a colon and the parameter type. Multiple parameters are separated using a comma. </p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn foo(x : Witness, y : Public){}
-<span class="boring">}
-</span></code></pre></pre>
+<pre><code class="language-rust noplaypen">fn foo(x : Witness, y : Public){}
+</code></pre>
 <p>The return type of a function can be stated by using the <code>-&gt;</code> arrow notation. The function below states that the foo function must return a Witness. If the function returns no value, then the arrow is omitted.</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn foo(x : Witness, y : Public) -&gt; Witness{
+<pre><code class="language-rust noplaypen">fn foo(x : Witness, y : Public) -&gt; Witness{
     x + y
 }
-<span class="boring">}
-</span></code></pre></pre>
+</code></pre>
 <h2><a class="header" href="#call-expressions" id="call-expressions">Call Expressions</a></h2>
 <p>Calling a function in Rust is executed by using the function name and passing the necessary arguments the function header.</p>
 <p>Below we show how to call the <code>foo</code> function from the main function using a call expression:</p>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
     priv z = foo(x);
 }
 
 fn foo(x : Witness) -&gt; Witness {
     x + x
 }
-</code></pre></pre>
+</code></pre>
 
                     </main>
 

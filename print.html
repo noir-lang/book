@@ -181,7 +181,7 @@
 <h3><a class="header" href="#protocol-developers" id="protocol-developers">Protocol Developers</a></h3>
 <p>As a protocol developer, you may not want to use the Aztec backend due to it not being a fit for your stack or maybe you simply want to use a different proving system. Since Noir does not compile to a specific proof system, it is possible for protocol developers to replace the PLONK based proving system with a different proving system altogether.</p>
 <h3><a class="header" href="#blockchain-developers" id="blockchain-developers">Blockchain developers</a></h3>
-<p>As a blockchain developer, you will be constrained by parameters set by your blockchain, ie the proving system and smart contract language has been pre-defined. In order for you to use Noir in your blockchain, a proving system backend must be implemented for it and a smart contract interface must be implemented for it. </p>
+<p>As a blockchain developer, you will be constrained by parameters set by your blockchain, ie the proving system and smart contract language has been pre-defined. In order for you to use Noir in your blockchain, a proving system backend must be implemented for it and a smart contract interface must be implemented for it.</p>
 <h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
 <p>In this section we will discuss, installing Noir and running your first program.</p>
 <h1><a class="header" href="#installing-noir" id="installing-noir">Installing Noir</a></h1>
@@ -316,18 +316,18 @@ For some concepts, we also explain the rationale as to why they were designed in
 <p>Concealed types are generally referred to as witnesses.</p>
 <h4><a class="header" href="#witness-type" id="witness-type">Witness Type</a></h4>
 <p>A Witness type is the default concealed type. Here's an example that shows declaration and usage of the Witness type.</p>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
     priv z = x + y;
 }
-</code></pre></pre>
+</code></pre>
 <p><code>x</code>, <code>y</code> and <code>z</code> are Witness types. Using the <code>priv</code> keyword we derived new Witness type <code>z</code> which is constrained to be equal to <code>x + y</code>.</p>
 <h4><a class="header" href="#integer-type" id="integer-type">Integer Type</a></h4>
 <p>An integer type is a witness type which has been constrained using a range constraint. The Noir front-end currently supports arbitrary sized integer types.</p>
 <p>Below we show the integer type in action:</p>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Witness) {
     priv y = x as u24;
 }
-</code></pre></pre>
+</code></pre>
 <p><code>x</code> and <code>y</code> are both concealed types, however <code>y</code> is an integer type. If <code>y</code> exceeds the range \([0,2^{24}-1]\) then any proof created will output false by the verifier.</p>
 <blockquote>
 <p><strong>Note:</strong> The Aztec backend only supports even sized integer types currently, so while using the Aztec backend, only even sized integer types such as u32, u48 will produce proofs.</p>
@@ -336,16 +336,16 @@ For some concepts, we also explain the rationale as to why they were designed in
 <h4><a class="header" href="#constants" id="constants">Constants</a></h4>
 <p>A constant type is a value that does not change per circuit instance. This is different to a concealed type which changes per proof. If a constant type that is being used in your program in changed, then your circuit will also change.</p>
 <p>Below we show how to declare a constant value:</p>
-<pre><pre class="playground"><code class="language-rust">fn main() {
+<pre><code class="language-rust noplaypen">fn main() {
     const a = 5;
 }
-</code></pre></pre>
+</code></pre>
 <h4><a class="header" href="#public-types" id="public-types">Public Types</a></h4>
 <p>A public type is a value that may change per circuit instance. Unlike Constants, changing a public value will not change the circuit.</p>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Public) {
+<pre><code class="language-rust noplaypen">fn main(x : Public) {
 
 }
-</code></pre></pre>
+</code></pre>
 <p>As of the beta release, public types can only be declared through type parameters. In the code, they are treated no differently to witness types. </p>
 <blockquote>
 <p><strong>Note:</strong> This behaviour and type will change in future releases, to catch a linearity bug in user code.</p>
@@ -354,90 +354,62 @@ For some concepts, we also explain the rationale as to why they were designed in
 <p>Compound types are declared using the <code>let</code> keyword. Currently arrays are the only supported compound type.</p>
 <h4><a class="header" href="#arrays" id="arrays">Arrays</a></h4>
 <p>An array is a data structure which allows you to group together data types. All values in an array must be of the same type; homogeneous. </p>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
     let my_arr = [x, y];
 }
-</code></pre></pre>
+</code></pre>
 <blockquote>
 <p><strong>Example:</strong> An array of Witness types cannot be grouped together with an array of Integer types.</p>
 </blockquote>
 <h1><a class="header" href="#functions" id="functions">Functions</a></h1>
 <p>Functions in Noir follow the same semantics of Rust, Noir does not support early returns.</p>
 <p>To declare a function the <code>fn</code> keyword is used.</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn foo() {}
-<span class="boring">}
-</span></code></pre></pre>
+<pre><code class="language-rust noplaypen">fn foo() {}
+</code></pre>
 <p>All parameters in a function must have a type and all types are known at compile time. The parameter is pre-pended with a colon and the parameter type. Multiple parameters are separated using a comma. </p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn foo(x : Witness, y : Public){}
-<span class="boring">}
-</span></code></pre></pre>
+<pre><code class="language-rust noplaypen">fn foo(x : Witness, y : Public){}
+</code></pre>
 <p>The return type of a function can be stated by using the <code>-&gt;</code> arrow notation. The function below states that the foo function must return a Witness. If the function returns no value, then the arrow is omitted.</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn foo(x : Witness, y : Public) -&gt; Witness{
+<pre><code class="language-rust noplaypen">fn foo(x : Witness, y : Public) -&gt; Witness{
     x + y
 }
-<span class="boring">}
-</span></code></pre></pre>
+</code></pre>
 <h2><a class="header" href="#call-expressions" id="call-expressions">Call Expressions</a></h2>
 <p>Calling a function in Rust is executed by using the function name and passing the necessary arguments the function header.</p>
 <p>Below we show how to call the <code>foo</code> function from the main function using a call expression:</p>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
     priv z = foo(x);
 }
 
 fn foo(x : Witness) -&gt; Witness {
     x + x
 }
-</code></pre></pre>
+</code></pre>
 <h1><a class="header" href="#comments" id="comments">Comments</a></h1>
 <p>A comment is a line in your codebase which the compiler ignores, however it can be seen read by programmers.</p>
 <p>Here is a single line comment:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>// This is a comment and is ignored
-<span class="boring">}
-</span></code></pre></pre>
+<pre><code class="language-rust noplaypen">// This is a comment and is ignored
+</code></pre>
 <p><code>//</code> is used to tell the compiler to ignore the whole line.</p>
 <p>A multi-line comment can be made by including <code>//</code> on each line</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>// This is a multi line
+<pre><code class="language-rust noplaypen">// This is a multi line
 // comment, that is ignored by 
 // the compiler
-<span class="boring">}
-</span></code></pre></pre>
+</code></pre>
 <h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
 <h2><a class="header" href="#loops" id="loops">Loops</a></h2>
 <p>Noir has one kind of loop, the <code>for-loop</code>. For loops allow you to repeat a block of code multiple times.</p>
 <p>The following block of code between the braces is ran 10 times.</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>for i in 0..10 {
+<pre><code class="language-rust noplaypen">for i in 0..10 {
     // do something
 }
-<span class="boring">}
-</span></code></pre></pre>
+</code></pre>
 <p>For loops are expressions, so each iteration of the loop produces a value which is collected into an array.</p>
 <p>The following code produces an array of 10 values, each element contains the same values from 0 to 9.</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let my_arr = for i in 0..10 {
+<pre><code class="language-rust noplaypen">let my_arr = for i in 0..10 {
     i
 };
-<span class="boring">}
-</span></code></pre></pre>
+</code></pre>
 <h2><a class="header" href="#if-expressions" id="if-expressions">If Expressions</a></h2>
 <blockquote>
 <p>Currently, these are not supported in the language.</p>
@@ -461,11 +433,11 @@ fn foo(x : Witness) -&gt; Witness {
 <h3><a class="header" href="#predicate-operators" id="predicate-operators">Predicate Operators</a></h3>
 <p><code>&lt;,&lt;=, !=, == , &gt;, &gt;=</code> are known are predicate/comparison operations because they compare two values. This differs from the operations such as <code>+</code> where the operands are used in <em>computation</em>.</p>
 <h3><a class="header" href="#bitwise-operations-example" id="bitwise-operations-example">Bitwise Operations Example</a></h3>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Witness) {
     priv y = x as u32;
     priv z = y &amp; y;
 }
-</code></pre></pre>
+</code></pre>
 <p><code>z</code> is implicitly constrained to be the result of <code>y &amp; y</code>. The <code>&amp;</code> operand is used to denote bitwise <code>&amp;</code>. </p>
 <blockquote>
 <p><code>x &amp; x</code> would not compile as <code>x</code> is a Witness and not an integer type.</p>
@@ -473,15 +445,15 @@ fn foo(x : Witness) -&gt; Witness {
 <h1><a class="header" href="#constrain-statement" id="constrain-statement">Constrain Statement</a></h1>
 <p>Noir includes a special keyword <code>constrain</code> which will explicitly constrain the expression that follows, as long as the operation is a predicate/comparison.</p>
 <h3><a class="header" href="#constrain-statement-example" id="constrain-statement-example">Constrain statement example</a></h3>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
     constrain x == y
 }
-</code></pre></pre>
+</code></pre>
 <p>The above snippet compiles because <code>==</code> is a predicate operation. Conversely, the following will not compile:</p>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
     constrain x + y
 }
-</code></pre></pre>
+</code></pre>
 <blockquote>
 <p>The rationale behind this not compiling is due to ambiguity. It is not clear if the above should equate to <code>x + y == 0</code> or if it should check the truthiness of the result.</p>
 </blockquote>

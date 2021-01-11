@@ -169,15 +169,15 @@
                         <h1><a class="header" href="#constrain-statement" id="constrain-statement">Constrain Statement</a></h1>
 <p>Noir includes a special keyword <code>constrain</code> which will explicitly constrain the expression that follows, as long as the operation is a predicate/comparison.</p>
 <h3><a class="header" href="#constrain-statement-example" id="constrain-statement-example">Constrain statement example</a></h3>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
     constrain x == y
 }
-</code></pre></pre>
+</code></pre>
 <p>The above snippet compiles because <code>==</code> is a predicate operation. Conversely, the following will not compile:</p>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
     constrain x + y
 }
-</code></pre></pre>
+</code></pre>
 <blockquote>
 <p>The rationale behind this not compiling is due to ambiguity. It is not clear if the above should equate to <code>x + y == 0</code> or if it should check the truthiness of the result.</p>
 </blockquote>

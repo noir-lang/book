@@ -177,18 +177,18 @@
 <p>Concealed types are generally referred to as witnesses.</p>
 <h4><a class="header" href="#witness-type" id="witness-type">Witness Type</a></h4>
 <p>A Witness type is the default concealed type. Here's an example that shows declaration and usage of the Witness type.</p>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
     priv z = x + y;
 }
-</code></pre></pre>
+</code></pre>
 <p><code>x</code>, <code>y</code> and <code>z</code> are Witness types. Using the <code>priv</code> keyword we derived new Witness type <code>z</code> which is constrained to be equal to <code>x + y</code>.</p>
 <h4><a class="header" href="#integer-type" id="integer-type">Integer Type</a></h4>
 <p>An integer type is a witness type which has been constrained using a range constraint. The Noir front-end currently supports arbitrary sized integer types.</p>
 <p>Below we show the integer type in action:</p>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Witness) {
     priv y = x as u24;
 }
-</code></pre></pre>
+</code></pre>
 <p><code>x</code> and <code>y</code> are both concealed types, however <code>y</code> is an integer type. If <code>y</code> exceeds the range \([0,2^{24}-1]\) then any proof created will output false by the verifier.</p>
 <blockquote>
 <p><strong>Note:</strong> The Aztec backend only supports even sized integer types currently, so while using the Aztec backend, only even sized integer types such as u32, u48 will produce proofs.</p>
@@ -197,16 +197,16 @@
 <h4><a class="header" href="#constants" id="constants">Constants</a></h4>
 <p>A constant type is a value that does not change per circuit instance. This is different to a concealed type which changes per proof. If a constant type that is being used in your program in changed, then your circuit will also change.</p>
 <p>Below we show how to declare a constant value:</p>
-<pre><pre class="playground"><code class="language-rust">fn main() {
+<pre><code class="language-rust noplaypen">fn main() {
     const a = 5;
 }
-</code></pre></pre>
+</code></pre>
 <h4><a class="header" href="#public-types" id="public-types">Public Types</a></h4>
 <p>A public type is a value that may change per circuit instance. Unlike Constants, changing a public value will not change the circuit.</p>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Public) {
+<pre><code class="language-rust noplaypen">fn main(x : Public) {
 
 }
-</code></pre></pre>
+</code></pre>
 <p>As of the beta release, public types can only be declared through type parameters. In the code, they are treated no differently to witness types. </p>
 <blockquote>
 <p><strong>Note:</strong> This behaviour and type will change in future releases, to catch a linearity bug in user code.</p>
@@ -215,10 +215,10 @@
 <p>Compound types are declared using the <code>let</code> keyword. Currently arrays are the only supported compound type.</p>
 <h4><a class="header" href="#arrays" id="arrays">Arrays</a></h4>
 <p>An array is a data structure which allows you to group together data types. All values in an array must be of the same type; homogeneous. </p>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
     let my_arr = [x, y];
 }
-</code></pre></pre>
+</code></pre>
 <blockquote>
 <p><strong>Example:</strong> An array of Witness types cannot be grouped together with an array of Integer types.</p>
 </blockquote>

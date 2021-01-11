@@ -185,11 +185,11 @@
 <h3><a class="header" href="#predicate-operators" id="predicate-operators">Predicate Operators</a></h3>
 <p><code>&lt;,&lt;=, !=, == , &gt;, &gt;=</code> are known are predicate/comparison operations because they compare two values. This differs from the operations such as <code>+</code> where the operands are used in <em>computation</em>.</p>
 <h3><a class="header" href="#bitwise-operations-example" id="bitwise-operations-example">Bitwise Operations Example</a></h3>
-<pre><pre class="playground"><code class="language-rust">fn main(x : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Witness) {
     priv y = x as u32;
     priv z = y &amp; y;
 }
-</code></pre></pre>
+</code></pre>
 <p><code>z</code> is implicitly constrained to be the result of <code>y &amp; y</code>. The <code>&amp;</code> operand is used to denote bitwise <code>&amp;</code>. </p>
 <blockquote>
 <p><code>x &amp; x</code> would not compile as <code>x</code> is a Witness and not an integer type.</p>
