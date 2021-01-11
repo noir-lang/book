@@ -23,7 +23,7 @@
 
 ### Bitwise Operations Example
 
-```rust 
+```rust,noplaypen 
 fn main(x : Witness) {
     priv y = x as u32;
     priv z = y & y;

@@ -20,7 +20,7 @@ Concealed types are generally referred to as witnesses.
 
 A Witness type is the default concealed type. Here's an example that shows declaration and usage of the Witness type.
 
-```rust
+```rust,noplaypen
 fn main(x : Witness, y : Witness) {
     priv z = x + y;
 }
@@ -34,7 +34,7 @@ An integer type is a witness type which has been constrained using a range const
 
 Below we show the integer type in action:
 
-```rust
+```rust,noplaypen
 fn main(x : Witness) {
     priv y = x as u24;
 }
@@ -52,7 +52,7 @@ A constant type is a value that does not change per circuit instance. This is di
 
 Below we show how to declare a constant value:
 
-```rust
+```rust,noplaypen
 fn main() {
     const a = 5;
 }
@@ -63,7 +63,7 @@ fn main() {
 
 A public type is a value that may change per circuit instance. Unlike Constants, changing a public value will not change the circuit.
 
-```rust
+```rust,noplaypen
 fn main(x : Public) {
 
 }
@@ -80,7 +80,7 @@ Compound types are declared using the `let` keyword. Currently arrays are the on
 
 An array is a data structure which allows you to group together data types. All values in an array must be of the same type; homogeneous. 
 
-```rust
+```rust,noplaypen
 fn main(x : Witness, y : Witness) {
     let my_arr = [x, y];
 }
