@@ -15,3 +15,4 @@
     - [Operations](language_concepts/ops.md)
     - [Constrain Statement](language_concepts/constrain.md)
 - [Coming!](coming_soon.md)
+- [LICENSE](license.md)
