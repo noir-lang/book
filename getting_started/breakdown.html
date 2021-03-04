@@ -166,30 +166,30 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#breakdown" id="breakdown">Breakdown</a></h1>
+                        <h1 id="breakdown"><a class="header" href="#breakdown">Breakdown</a></h1>
 <p>This section breaks down our hello world program in section <em>1.2</em>. We elaborate on the project structure and what the <code>prove</code> and <code>verify</code> commands did in the previous section, and usage of the <code>contract</code> command.</p>
-<h2><a class="header" href="#anatomy-of-a-noir-project" id="anatomy-of-a-noir-project">Anatomy of a Noir Project</a></h2>
+<h2 id="anatomy-of-a-noir-project"><a class="header" href="#anatomy-of-a-noir-project">Anatomy of a Noir Project</a></h2>
 <p>Upon using the <code>new</code> command, Noir will create a Noir project. </p>
 <p>Noir Projects have the following structure:</p>
 <pre><code>- bin
 - contract 
 - proofs
 </code></pre>
-<h3><a class="header" href="#bin-directory" id="bin-directory">Bin directory</a></h3>
+<h3 id="bin-directory"><a class="header" href="#bin-directory">Bin directory</a></h3>
 <p>This directory holds the source code for your Noir program. In future releases, this will be renamed to <code>src</code>.</p>
 <p>Inside of the bin directory will be two files:</p>
 <pre><code>- main.noir 
 - input.toml
 </code></pre>
-<h4><a class="header" href="#mainnoir" id="mainnoir">main.noir</a></h4>
+<h4 id="mainnoir"><a class="header" href="#mainnoir">main.noir</a></h4>
 <p>Noir currently does not support libraries. The main.noir file contains a <code>main</code> method, this method is the entry point into your Noir program. </p>
 <p>In our sample program, main.noir looks like this:</p>
-<pre><code>fn main(x : Witness, y : Witness) {
+<pre><code>fn main(x : Field, y : Field) {
     constrain x != y;
 }
 </code></pre>
 <p>The parameters <code>x</code> and <code>y</code> can be seen as the API for the program and must be supplied by the prover. These are supplied in the <code>input.toml</code> file.</p>
-<h4><a class="header" href="#inputtoml" id="inputtoml">input.toml</a></h4>
+<h4 id="inputtoml"><a class="header" href="#inputtoml">input.toml</a></h4>
 <p>The input.toml file is a file which the prover uses to input his witness values. In the hello world program the toml file looks like this:</p>
 <pre><code class="language-toml">x = &quot;5&quot;
 y = &quot;10&quot;
@@ -204,7 +204,7 @@ y = &quot;10&quot;
 <ul>
 <li>Second, Noir stores this proof in the directory <code>proofs</code> and names the proof <code>my_proof</code>.</li>
 </ul>
-<h2><a class="header" href="#verifying-a-proof" id="verifying-a-proof">Verifying a Proof</a></h2>
+<h2 id="verifying-a-proof"><a class="header" href="#verifying-a-proof">Verifying a Proof</a></h2>
 <p>When the command <code>noir verify my_proof</code> is executed, two processes happen:</p>
 <ul>
 <li>
@@ -217,7 +217,7 @@ y = &quot;10&quot;
 <blockquote>
 <p><strong>Note:</strong> The validity of the proof is linked to the current Noir program; if the program is changed and the verifier verifies the proof, it will fail because the proof is not valid for the <em>modified</em> Noir program. </p>
 </blockquote>
-<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
+<h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p>This directory holds the compiled <em>Ethereum</em> contract for the current Noir program. The contract is not automatically compiled when the <code>prove</code> or <code>verify</code> command is ran. To compile execute the following:</p>
 <pre><code class="language-sh">$ noir contract
 </code></pre>

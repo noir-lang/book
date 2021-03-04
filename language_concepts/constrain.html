@@ -166,15 +166,15 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#constrain-statement" id="constrain-statement">Constrain Statement</a></h1>
+                        <h1 id="constrain-statement"><a class="header" href="#constrain-statement">Constrain Statement</a></h1>
 <p>Noir includes a special keyword <code>constrain</code> which will explicitly constrain the expression that follows, as long as the operation is a predicate/comparison.</p>
-<h3><a class="header" href="#constrain-statement-example" id="constrain-statement-example">Constrain statement example</a></h3>
-<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
+<h3 id="constrain-statement-example"><a class="header" href="#constrain-statement-example">Constrain statement example</a></h3>
+<pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
     constrain x == y
 }
 </code></pre>
 <p>The above snippet compiles because <code>==</code> is a predicate operation. Conversely, the following will not compile:</p>
-<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
     constrain x + y
 }
 </code></pre>

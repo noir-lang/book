@@ -166,20 +166,20 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#functions" id="functions">Functions</a></h1>
+                        <h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
 <p>Functions in Noir follow the same semantics of Rust, Noir does not support early returns.</p>
 <p>To declare a function the <code>fn</code> keyword is used.</p>
 <pre><code class="language-rust noplaypen">fn foo() {}
 </code></pre>
 <p>All parameters in a function must have a type and all types are known at compile time. The parameter is pre-pended with a colon and the parameter type. Multiple parameters are separated using a comma. </p>
-<pre><code class="language-rust noplaypen">fn foo(x : Witness, y : Public){}
+<pre><code class="language-rust noplaypen">fn foo(x : Field, y : pub Field){}
 </code></pre>
 <p>The return type of a function can be stated by using the <code>-&gt;</code> arrow notation. The function below states that the foo function must return a Witness. If the function returns no value, then the arrow is omitted.</p>
-<pre><code class="language-rust noplaypen">fn foo(x : Witness, y : Public) -&gt; Witness{
+<pre><code class="language-rust noplaypen">fn foo(x : Field, y : pub Field) -&gt; Field {
     x + y
 }
 </code></pre>
-<h2><a class="header" href="#call-expressions" id="call-expressions">Call Expressions</a></h2>
+<h2 id="call-expressions"><a class="header" href="#call-expressions">Call Expressions</a></h2>
 <p>Calling a function in Rust is executed by using the function name and passing the necessary arguments the function header.</p>
 <p>Below we show how to call the <code>foo</code> function from the main function using a call expression:</p>
 <pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {

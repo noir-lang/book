@@ -168,25 +168,25 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#the-noir-programming-language" id="the-noir-programming-language">The Noir Programming Language</a></h1>
+                        <h1 id="the-noir-programming-language"><a class="header" href="#the-noir-programming-language">The Noir Programming Language</a></h1>
 <p>This version of the book is being released with the public alpha. There will be a lot of features that are missing in this version, however the syntax and the feel of the language will mostly be completed. </p>
-<h2><a class="header" href="#what-is-noir" id="what-is-noir">What is Noir?</a></h2>
+<h2 id="what-is-noir"><a class="header" href="#what-is-noir">What is Noir?</a></h2>
 <p>Noir is a domain specific language for creating and verifying proofs. Design choices are influenced heavily by Rust. </p>
-<h2><a class="header" href="#whats-new-about-noir" id="whats-new-about-noir">What's new about Noir?</a></h2>
+<h2 id="whats-new-about-noir"><a class="header" href="#whats-new-about-noir">What's new about Noir?</a></h2>
 <p>Noir is much simple and flexible in design as it does not compile immediately to a fixed NP-complete language. Instead Noir compiles to an intermediate language which itself can be compiled to an arithmetic circuit or a rank-1 constraint system. This in itself brings up a few challenges within the design process, but allows one to decouple the programming language completely from the backend. This is similar in theory to LLVM.</p>
-<h2><a class="header" href="#who-is-noir-for" id="who-is-noir-for">Who is Noir for?</a></h2>
+<h2 id="who-is-noir-for"><a class="header" href="#who-is-noir-for">Who is Noir for?</a></h2>
 <p>Noir can be used for a variety of purposes.</p>
-<h3><a class="header" href="#ethereum-developers" id="ethereum-developers">Ethereum Developers</a></h3>
+<h3 id="ethereum-developers"><a class="header" href="#ethereum-developers">Ethereum Developers</a></h3>
 <p>Noir currently includes a command to publish a contract which verifies your Noir program. This will be modularised in the future, however as of the alpha you can use the <code>contract</code> command to create it.</p>
-<h3><a class="header" href="#protocol-developers" id="protocol-developers">Protocol Developers</a></h3>
+<h3 id="protocol-developers"><a class="header" href="#protocol-developers">Protocol Developers</a></h3>
 <p>As a protocol developer, you may not want to use the Aztec backend due to it not being a fit for your stack or maybe you simply want to use a different proving system. Since Noir does not compile to a specific proof system, it is possible for protocol developers to replace the PLONK based proving system with a different proving system altogether.</p>
-<h3><a class="header" href="#blockchain-developers" id="blockchain-developers">Blockchain developers</a></h3>
+<h3 id="blockchain-developers"><a class="header" href="#blockchain-developers">Blockchain developers</a></h3>
 <p>As a blockchain developer, you will be constrained by parameters set by your blockchain, ie the proving system and smart contract language has been pre-defined. In order for you to use Noir in your blockchain, a proving system backend must be implemented for it and a smart contract interface must be implemented for it.</p>
-<h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
+<h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
 <p>In this section we will discuss, installing Noir and running your first program.</p>
-<h1><a class="header" href="#installing-noir" id="installing-noir">Installing Noir</a></h1>
+<h1 id="installing-noir"><a class="header" href="#installing-noir">Installing Noir</a></h1>
 <p>There are two ways to install Noir; from source or from the compiled binary.</p>
-<h2><a class="header" href="#installing-noir-from-source" id="installing-noir-from-source">Installing Noir from Source</a></h2>
+<h2 id="installing-noir-from-source"><a class="header" href="#installing-noir-from-source">Installing Noir from Source</a></h2>
 <ul>
 <li>
 <p>Download <a href="https://www.rust-lang.org/tools/install">Rust</a></p>
@@ -201,7 +201,7 @@
 <blockquote>
 <p>Before using the <code>cargo install</code> command, you should see a <code>Cargo.toml</code> file. </p>
 </blockquote>
-<h2><a class="header" href="#installing-noir-from-the-compiled-binary" id="installing-noir-from-the-compiled-binary">Installing Noir from the Compiled Binary</a></h2>
+<h2 id="installing-noir-from-the-compiled-binary"><a class="header" href="#installing-noir-from-the-compiled-binary">Installing Noir from the Compiled Binary</a></h2>
 <ul>
 <li>
 <p><del>First navigate to the Github repo for Noir.</del> <em>(Link will be posted once Noir is publicly released.)</em></p>
@@ -216,9 +216,9 @@
 <p>Add the downloaded binary to your path.</p>
 </li>
 </ul>
-<h1><a class="header" href="#hello-world" id="hello-world">Hello, World</a></h1>
+<h1 id="hello-world"><a class="header" href="#hello-world">Hello, World</a></h1>
 <p>Now that we have installed Noir, it's time to make our first hello world program!</p>
-<h2><a class="header" href="#creating-a-project-directory" id="creating-a-project-directory">Creating a Project Directory</a></h2>
+<h2 id="creating-a-project-directory"><a class="header" href="#creating-a-project-directory">Creating a Project Directory</a></h2>
 <p>Noir code can live anywhere on your computer. Lets create a Projects folder in the <code>Home</code> to house our Noir programs.</p>
 <p>For Linux, macOS, and PowerShell on Windows, enter this in your terminal:</p>
 <pre><code class="language-sh">$ mkdir ~/projects
@@ -228,7 +228,7 @@ $ cd ~/projects
 <pre><code class="language-sh">&gt; mkdir &quot;%USERPROFILE%\projects&quot;
 &gt; cd /d &quot;%USERPROFILE%\projects&quot;
 </code></pre>
-<h2><a class="header" href="#compiling-our-first-project" id="compiling-our-first-project">Compiling Our First Project</a></h2>
+<h2 id="compiling-our-first-project"><a class="header" href="#compiling-our-first-project">Compiling Our First Project</a></h2>
 <p>Now that we are in the projects directory, enter the following command:</p>
 <pre><code class="language-sh">noir new hello_world
 </code></pre>
@@ -240,30 +240,30 @@ true
 </code></pre>
 <p>Congratulations, you have now created and verified a proof for your very first Noir program! </p>
 <p>In the next section, we will go into more detail on exactly what just happened.</p>
-<h1><a class="header" href="#breakdown" id="breakdown">Breakdown</a></h1>
+<h1 id="breakdown"><a class="header" href="#breakdown">Breakdown</a></h1>
 <p>This section breaks down our hello world program in section <em>1.2</em>. We elaborate on the project structure and what the <code>prove</code> and <code>verify</code> commands did in the previous section, and usage of the <code>contract</code> command.</p>
-<h2><a class="header" href="#anatomy-of-a-noir-project" id="anatomy-of-a-noir-project">Anatomy of a Noir Project</a></h2>
+<h2 id="anatomy-of-a-noir-project"><a class="header" href="#anatomy-of-a-noir-project">Anatomy of a Noir Project</a></h2>
 <p>Upon using the <code>new</code> command, Noir will create a Noir project. </p>
 <p>Noir Projects have the following structure:</p>
 <pre><code>- bin
 - contract 
 - proofs
 </code></pre>
-<h3><a class="header" href="#bin-directory" id="bin-directory">Bin directory</a></h3>
+<h3 id="bin-directory"><a class="header" href="#bin-directory">Bin directory</a></h3>
 <p>This directory holds the source code for your Noir program. In future releases, this will be renamed to <code>src</code>.</p>
 <p>Inside of the bin directory will be two files:</p>
 <pre><code>- main.noir 
 - input.toml
 </code></pre>
-<h4><a class="header" href="#mainnoir" id="mainnoir">main.noir</a></h4>
+<h4 id="mainnoir"><a class="header" href="#mainnoir">main.noir</a></h4>
 <p>Noir currently does not support libraries. The main.noir file contains a <code>main</code> method, this method is the entry point into your Noir program. </p>
 <p>In our sample program, main.noir looks like this:</p>
-<pre><code>fn main(x : Witness, y : Witness) {
+<pre><code>fn main(x : Field, y : Field) {
     constrain x != y;
 }
 </code></pre>
 <p>The parameters <code>x</code> and <code>y</code> can be seen as the API for the program and must be supplied by the prover. These are supplied in the <code>input.toml</code> file.</p>
-<h4><a class="header" href="#inputtoml" id="inputtoml">input.toml</a></h4>
+<h4 id="inputtoml"><a class="header" href="#inputtoml">input.toml</a></h4>
 <p>The input.toml file is a file which the prover uses to input his witness values. In the hello world program the toml file looks like this:</p>
 <pre><code class="language-toml">x = &quot;5&quot;
 y = &quot;10&quot;
@@ -278,7 +278,7 @@ y = &quot;10&quot;
 <ul>
 <li>Second, Noir stores this proof in the directory <code>proofs</code> and names the proof <code>my_proof</code>.</li>
 </ul>
-<h2><a class="header" href="#verifying-a-proof" id="verifying-a-proof">Verifying a Proof</a></h2>
+<h2 id="verifying-a-proof"><a class="header" href="#verifying-a-proof">Verifying a Proof</a></h2>
 <p>When the command <code>noir verify my_proof</code> is executed, two processes happen:</p>
 <ul>
 <li>
@@ -291,40 +291,40 @@ y = &quot;10&quot;
 <blockquote>
 <p><strong>Note:</strong> The validity of the proof is linked to the current Noir program; if the program is changed and the verifier verifies the proof, it will fail because the proof is not valid for the <em>modified</em> Noir program. </p>
 </blockquote>
-<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
+<h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p>This directory holds the compiled <em>Ethereum</em> contract for the current Noir program. The contract is not automatically compiled when the <code>prove</code> or <code>verify</code> command is ran. To compile execute the following:</p>
 <pre><code class="language-sh">$ noir contract
 </code></pre>
-<h1><a class="header" href="#language-concepts" id="language-concepts">Language Concepts</a></h1>
+<h1 id="language-concepts"><a class="header" href="#language-concepts">Language Concepts</a></h1>
 <p>In this chapter, we will go over the concepts that are being used in Noir. Specifically, we will learn about types, control flow, comments, functions and declarations.
 For some concepts, we also explain the rationale as to why they were designed in this particular way. Recurring themes you will encounter in this section are <em>simplicity</em> and <em>safety</em>. </p>
-<h1><a class="header" href="#mutability" id="mutability">Mutability</a></h1>
+<h1 id="mutability"><a class="header" href="#mutability">Mutability</a></h1>
 <p>All variables in Noir are immutable and cannot be made mutable. Due to this, Noir will at some stages borrow functional programming concepts.</p>
-<h3><a class="header" href="#why-immutability" id="why-immutability">Why immutability?</a></h3>
+<h3 id="why-immutability"><a class="header" href="#why-immutability">Why immutability?</a></h3>
 <p>Witnesses in a proving system are immutable in nature. Noir aims to <em>closely</em> mirror this setting without applying additional overhead to the user. If a developer encounters a variable <em>a</em> he can lookup its definition to deduce its value.</p>
 <blockquote>
 <p>The last section may be somewhat invalidated, if temporary scopes and shadowing is introduced.</p>
 </blockquote>
-<h1><a class="header" href="#data-types" id="data-types">Data types</a></h1>
+<h1 id="data-types"><a class="header" href="#data-types">Data types</a></h1>
 <p>There are two subsets of data types that each datatype will fall into; fundamental and compound.</p>
 <p>A <strong>fundamental type</strong> is a data type which is defined in the core language. This is not specific to Noir. Examples in modern programming languages such as Rust are u32, usize and char. </p>
 <p>A <strong>compound type</strong> is a type in the core language which must be defined using another type. Examples in modern programming languages are arrays, tuples and functions.</p>
 <p>Although each value in a constraint system is fundamentally a field element, we add a layer of abstraction over this; each value can be <em>concealed</em> or <em>revealed</em>. </p>
 <p>A <strong>concealed value</strong> is known only to the Prover, while, a <strong>revealed value</strong> is known by the Prover and Verifier. All concealed and revealed values are <em>fundamental</em> types.</p>
-<h2><a class="header" href="#fundamental-types" id="fundamental-types">Fundamental Types</a></h2>
-<h3><a class="header" href="#concealed-types" id="concealed-types">Concealed Types</a></h3>
+<h2 id="fundamental-types"><a class="header" href="#fundamental-types">Fundamental Types</a></h2>
+<h3 id="concealed-types"><a class="header" href="#concealed-types">Concealed Types</a></h3>
 <p>Concealed types are generally referred to as witnesses.</p>
-<h4><a class="header" href="#witness-type" id="witness-type">Witness Type</a></h4>
+<h4 id="witness-type"><a class="header" href="#witness-type">Witness Type</a></h4>
 <p>A Witness type is the default concealed type. Here's an example that shows declaration and usage of the Witness type.</p>
-<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
     priv z = x + y;
 }
 </code></pre>
-<p><code>x</code>, <code>y</code> and <code>z</code> are Witness types. Using the <code>priv</code> keyword we derived new Witness type <code>z</code> which is constrained to be equal to <code>x + y</code>.</p>
-<h4><a class="header" href="#integer-type" id="integer-type">Integer Type</a></h4>
+<p><code>x</code>, <code>y</code> and <code>z</code> are Witness types. Using the <code>priv</code> keyword we derived a new Witness type <code>z</code> which is constrained to be equal to <code>x + y</code>.</p>
+<h4 id="integer-type"><a class="header" href="#integer-type">Integer Type</a></h4>
 <p>An integer type is a witness type which has been constrained using a range constraint. The Noir front-end currently supports arbitrary sized integer types.</p>
 <p>Below we show the integer type in action:</p>
-<pre><code class="language-rust noplaypen">fn main(x : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Field) {
     priv y = x as u24;
 }
 </code></pre>
@@ -332,17 +332,17 @@ For some concepts, we also explain the rationale as to why they were designed in
 <blockquote>
 <p><strong>Note:</strong> The Aztec backend only supports even sized integer types currently, so while using the Aztec backend, only even sized integer types such as u32, u48 will produce proofs.</p>
 </blockquote>
-<h3><a class="header" href="#revealed-types" id="revealed-types">Revealed Types</a></h3>
-<h4><a class="header" href="#constants" id="constants">Constants</a></h4>
+<h3 id="revealed-types"><a class="header" href="#revealed-types">Revealed Types</a></h3>
+<h4 id="constants"><a class="header" href="#constants">Constants</a></h4>
 <p>A constant type is a value that does not change per circuit instance. This is different to a concealed type which changes per proof. If a constant type that is being used in your program in changed, then your circuit will also change.</p>
 <p>Below we show how to declare a constant value:</p>
 <pre><code class="language-rust noplaypen">fn main() {
     const a = 5;
 }
 </code></pre>
-<h4><a class="header" href="#public-types" id="public-types">Public Types</a></h4>
+<h4 id="public-types"><a class="header" href="#public-types">Public Types</a></h4>
 <p>A public type is a value that may change per circuit instance. Unlike Constants, changing a public value will not change the circuit.</p>
-<pre><code class="language-rust noplaypen">fn main(x : Public) {
+<pre><code class="language-rust noplaypen">fn main(x : pub Field) {
 
 }
 </code></pre>
@@ -350,31 +350,31 @@ For some concepts, we also explain the rationale as to why they were designed in
 <blockquote>
 <p><strong>Note:</strong> This behaviour and type will change in future releases, to catch a linearity bug in user code.</p>
 </blockquote>
-<h2><a class="header" href="#compound-types" id="compound-types">Compound Types</a></h2>
+<h2 id="compound-types"><a class="header" href="#compound-types">Compound Types</a></h2>
 <p>Compound types are declared using the <code>let</code> keyword. Currently arrays are the only supported compound type.</p>
-<h4><a class="header" href="#arrays" id="arrays">Arrays</a></h4>
+<h4 id="arrays"><a class="header" href="#arrays">Arrays</a></h4>
 <p>An array is a data structure which allows you to group together data types. All values in an array must be of the same type; homogeneous. </p>
-<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
     let my_arr = [x, y];
 }
 </code></pre>
 <blockquote>
 <p><strong>Example:</strong> An array of Witness types cannot be grouped together with an array of Integer types.</p>
 </blockquote>
-<h1><a class="header" href="#functions" id="functions">Functions</a></h1>
+<h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
 <p>Functions in Noir follow the same semantics of Rust, Noir does not support early returns.</p>
 <p>To declare a function the <code>fn</code> keyword is used.</p>
 <pre><code class="language-rust noplaypen">fn foo() {}
 </code></pre>
 <p>All parameters in a function must have a type and all types are known at compile time. The parameter is pre-pended with a colon and the parameter type. Multiple parameters are separated using a comma. </p>
-<pre><code class="language-rust noplaypen">fn foo(x : Witness, y : Public){}
+<pre><code class="language-rust noplaypen">fn foo(x : Field, y : pub Field){}
 </code></pre>
 <p>The return type of a function can be stated by using the <code>-&gt;</code> arrow notation. The function below states that the foo function must return a Witness. If the function returns no value, then the arrow is omitted.</p>
-<pre><code class="language-rust noplaypen">fn foo(x : Witness, y : Public) -&gt; Witness{
+<pre><code class="language-rust noplaypen">fn foo(x : Field, y : pub Field) -&gt; Field {
     x + y
 }
 </code></pre>
-<h2><a class="header" href="#call-expressions" id="call-expressions">Call Expressions</a></h2>
+<h2 id="call-expressions"><a class="header" href="#call-expressions">Call Expressions</a></h2>
 <p>Calling a function in Rust is executed by using the function name and passing the necessary arguments the function header.</p>
 <p>Below we show how to call the <code>foo</code> function from the main function using a call expression:</p>
 <pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
@@ -385,7 +385,7 @@ fn foo(x : Witness) -&gt; Witness {
     x + x
 }
 </code></pre>
-<h1><a class="header" href="#comments" id="comments">Comments</a></h1>
+<h1 id="comments"><a class="header" href="#comments">Comments</a></h1>
 <p>A comment is a line in your codebase which the compiler ignores, however it can be seen read by programmers.</p>
 <p>Here is a single line comment:</p>
 <pre><code class="language-rust noplaypen">// This is a comment and is ignored
@@ -396,8 +396,8 @@ fn foo(x : Witness) -&gt; Witness {
 // comment, that is ignored by 
 // the compiler
 </code></pre>
-<h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
-<h2><a class="header" href="#loops" id="loops">Loops</a></h2>
+<h1 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h1>
+<h2 id="loops"><a class="header" href="#loops">Loops</a></h2>
 <p>Noir has one kind of loop, the <code>for-loop</code>. For loops allow you to repeat a block of code multiple times.</p>
 <p>The following block of code between the braces is ran 10 times.</p>
 <pre><code class="language-rust noplaypen">for i in 0..10 {
@@ -410,12 +410,12 @@ fn foo(x : Witness) -&gt; Witness {
     i
 };
 </code></pre>
-<h2><a class="header" href="#if-expressions" id="if-expressions">If Expressions</a></h2>
+<h2 id="if-expressions"><a class="header" href="#if-expressions">If Expressions</a></h2>
 <blockquote>
 <p>Currently, these are not supported in the language.</p>
 </blockquote>
-<h1><a class="header" href="#operations" id="operations">Operations</a></h1>
-<h2><a class="header" href="#table-of-supported-operations" id="table-of-supported-operations">Table of Supported Operations</a></h2>
+<h1 id="operations"><a class="header" href="#operations">Operations</a></h1>
+<h2 id="table-of-supported-operations"><a class="header" href="#table-of-supported-operations">Table of Supported Operations</a></h2>
 <table><thead><tr><th align="left">Operation</th><th align="center">Description</th><th align="right">Requirements</th></tr></thead><tbody>
 <tr><td align="left">+</td><td align="center">Adds two concealed types together</td><td align="right">Types must be concealed</td></tr>
 <tr><td align="left">-</td><td align="center">Subtracts two concealed types together</td><td align="right">Types must be concealed</td></tr>
@@ -430,10 +430,10 @@ fn foo(x : Witness) -&gt; Witness {
 <tr><td align="left">==</td><td align="center">constrains one value to be equal to the other</td><td align="right">Both types must not be constants</td></tr>
 <tr><td align="left">!=</td><td align="center">constrains one value to not be equal to the other</td><td align="right">Both types must not be constants</td></tr>
 </tbody></table>
-<h3><a class="header" href="#predicate-operators" id="predicate-operators">Predicate Operators</a></h3>
+<h3 id="predicate-operators"><a class="header" href="#predicate-operators">Predicate Operators</a></h3>
 <p><code>&lt;,&lt;=, !=, == , &gt;, &gt;=</code> are known are predicate/comparison operations because they compare two values. This differs from the operations such as <code>+</code> where the operands are used in <em>computation</em>.</p>
-<h3><a class="header" href="#bitwise-operations-example" id="bitwise-operations-example">Bitwise Operations Example</a></h3>
-<pre><code class="language-rust noplaypen">fn main(x : Witness) {
+<h3 id="bitwise-operations-example"><a class="header" href="#bitwise-operations-example">Bitwise Operations Example</a></h3>
+<pre><code class="language-rust noplaypen">fn main(x : Field) {
     priv y = x as u32;
     priv z = y &amp; y;
 }
@@ -442,33 +442,33 @@ fn foo(x : Witness) -&gt; Witness {
 <blockquote>
 <p><code>x &amp; x</code> would not compile as <code>x</code> is a Witness and not an integer type.</p>
 </blockquote>
-<h1><a class="header" href="#constrain-statement" id="constrain-statement">Constrain Statement</a></h1>
+<h1 id="constrain-statement"><a class="header" href="#constrain-statement">Constrain Statement</a></h1>
 <p>Noir includes a special keyword <code>constrain</code> which will explicitly constrain the expression that follows, as long as the operation is a predicate/comparison.</p>
-<h3><a class="header" href="#constrain-statement-example" id="constrain-statement-example">Constrain statement example</a></h3>
-<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
+<h3 id="constrain-statement-example"><a class="header" href="#constrain-statement-example">Constrain statement example</a></h3>
+<pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
     constrain x == y
 }
 </code></pre>
 <p>The above snippet compiles because <code>==</code> is a predicate operation. Conversely, the following will not compile:</p>
-<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
     constrain x + y
 }
 </code></pre>
 <blockquote>
 <p>The rationale behind this not compiling is due to ambiguity. It is not clear if the above should equate to <code>x + y == 0</code> or if it should check the truthiness of the result.</p>
 </blockquote>
-<h1><a class="header" href="#features-coming-soon" id="features-coming-soon">Features Coming Soon</a></h1>
-<h3><a class="header" href="#if-statement--ternary-expression" id="if-statement--ternary-expression">If Statement / Ternary Expression</a></h3>
+<h1 id="features-coming-soon"><a class="header" href="#features-coming-soon">Features Coming Soon</a></h1>
+<h3 id="if-statement--ternary-expression"><a class="header" href="#if-statement--ternary-expression">If Statement / Ternary Expression</a></h3>
 <p>It is possible to emulate conditional branching with a multiplexer in Noir as of writing. However, this may not be intuitive for most. This can be sugared with an if statement or a ternary expression.</p>
-<h3><a class="header" href="#structures" id="structures">Structures</a></h3>
+<h3 id="structures"><a class="header" href="#structures">Structures</a></h3>
 <p>Currently only primitives types are available. This does not hinder expressiveness, however for large circuits, readability will be harmed without structs. </p>
-<h3><a class="header" href="#grammar-refactor" id="grammar-refactor">Grammar Refactor</a></h3>
+<h3 id="grammar-refactor"><a class="header" href="#grammar-refactor">Grammar Refactor</a></h3>
 <p>The current grammar will remove the &quot;Witness/Public/Const&quot; types in place for a &quot;Field&quot; type</p>
-<h3><a class="header" href="#isize" id="isize">Isize</a></h3>
+<h3 id="isize"><a class="header" href="#isize">Isize</a></h3>
 <p>Signed integers such as i32 and i64 allow one to express more circuits.</p>
-<h3><a class="header" href="#recursion" id="recursion">Recursion</a></h3>
+<h3 id="recursion"><a class="header" href="#recursion">Recursion</a></h3>
 <p>Recursion is becoming feasible in circuits, hence Noir will have native support for it. Currently, only composition is supported. </p>
-<h1><a class="header" href="#license" id="license">LICENSE</a></h1>
+<h1 id="license"><a class="header" href="#license">LICENSE</a></h1>
 <p>Noir will be dual licensed under MIT/Apache (Version 2.0).</p>
 
                     </main>
