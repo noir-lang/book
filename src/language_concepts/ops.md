@@ -24,7 +24,7 @@
 ### Bitwise Operations Example
 
 ```rust,noplaypen 
-fn main(x : Witness) {
+fn main(x : Field) {
     priv y = x as u32;
     priv z = y & y;
 }

@@ -28,7 +28,7 @@ Noir currently does not support libraries. The main.noir file contains a `main` 
 In our sample program, main.noir looks like this:
 
 ```
-fn main(x : Witness, y : Witness) {
+fn main(x : Field, y : Field) {
     constrain x != y;
 }
 ```

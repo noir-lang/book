@@ -21,12 +21,12 @@ Concealed types are generally referred to as witnesses.
 A Witness type is the default concealed type. Here's an example that shows declaration and usage of the Witness type.
 
 ```rust,noplaypen
-fn main(x : Witness, y : Witness) {
+fn main(x : Field, y : Field) {
     priv z = x + y;
 }
 ```
 
-`x`, `y` and `z` are Witness types. Using the `priv` keyword we derived new Witness type `z` which is constrained to be equal to `x + y`.
+`x`, `y` and `z` are Witness types. Using the `priv` keyword we derived a new Witness type `z` which is constrained to be equal to `x + y`.
 
 #### Integer Type
 
@@ -35,7 +35,7 @@ An integer type is a witness type which has been constrained using a range const
 Below we show the integer type in action:
 
 ```rust,noplaypen
-fn main(x : Witness) {
+fn main(x : Field) {
     priv y = x as u24;
 }
 ```
@@ -64,7 +64,7 @@ fn main() {
 A public type is a value that may change per circuit instance. Unlike Constants, changing a public value will not change the circuit.
 
 ```rust,noplaypen
-fn main(x : Public) {
+fn main(x : pub Field) {
 
 }
 ```
@@ -81,7 +81,7 @@ Compound types are declared using the `let` keyword. Currently arrays are the on
 An array is a data structure which allows you to group together data types. All values in an array must be of the same type; homogeneous. 
 
 ```rust,noplaypen
-fn main(x : Witness, y : Witness) {
+fn main(x : Field, y : Field) {
     let my_arr = [x, y];
 }
 ```

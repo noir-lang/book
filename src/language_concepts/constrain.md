@@ -5,7 +5,7 @@ Noir includes a special keyword `constrain` which will explicitly constrain the 
 ### Constrain statement example
 
 ```rust,noplaypen 
-fn main(x : Witness, y : Witness) {
+fn main(x : Field, y : Field) {
     constrain x == y
 }
 ```
@@ -13,7 +13,7 @@ fn main(x : Witness, y : Witness) {
 The above snippet compiles because `==` is a predicate operation. Conversely, the following will not compile:
 
 ```rust,noplaypen 
-fn main(x : Witness, y : Witness) {
+fn main(x : Field, y : Field) {
     constrain x + y
 }
 ```
