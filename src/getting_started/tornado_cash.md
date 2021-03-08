@@ -1,6 +1,6 @@
 # TornadoCash
 
-Let's show an example of TornadoCash circuit in Noir.
+Let's show an example of the TornadoCash circuit in Noir.
 
 ```rust,noplaypen
 fn main(message : [62]u8, index : Field, hashpath : [40]Field, root : Field) {
