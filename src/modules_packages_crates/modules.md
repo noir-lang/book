@@ -11,7 +11,7 @@ Modules are used to organise files. Without modules all of your code would need 
 ### Importing a module in the crate root
 
 Filename : src/main.nr
-```
+```rust,noplaypen
 mod foo;
 
 fn main() {
@@ -20,7 +20,7 @@ fn main() {
 ```
 
 Filename : src/foo.nr
-```
+```rust,noplaypen
 fn from_foo() {}
 ```
 
@@ -40,7 +40,7 @@ crate
 ### Sub-modules
 
 Filename : src/main.nr
-```
+```rust,noplaypen
 mod foo;
 
 fn main() {
@@ -49,13 +49,13 @@ fn main() {
 ```
 
 Filename : src/foo.nr
-```
+```rust,noplaypen
 mod bar;
 fn from_foo() {}
 ```
 
 Filename : src/foo/bar.nr
-```
+```rust,noplaypen
 fn from_bar() {}
 ```
 
