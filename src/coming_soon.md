@@ -8,10 +8,6 @@ It is possible to emulate conditional branching with a multiplexer in Noir as of
 
 Currently only primitives types are available. This does not hinder expressiveness, however for large circuits, readability will be harmed without structs. 
 
-### Grammar Refactor
-
-The current grammar will remove the "Witness/Public/Const" types in place for a "Field" type
-
 ### Isize
 
 Signed integers such as i32 and i64 allow one to express more circuits.
