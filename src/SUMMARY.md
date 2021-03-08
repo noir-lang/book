@@ -17,5 +17,6 @@
 - [Modules, Packages, Crates](modules_packages_crates.md)
     - [Crate](modules_packages_crates/crate.md)
     - [Packages](modules_packages_crates/packages.md)
+    - [Modules](modules_packages_crates/modules.md)
 - [Coming!](coming_soon.md)
 - [LICENSE](license.md)
