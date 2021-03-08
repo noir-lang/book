@@ -327,7 +327,7 @@ y = &quot;10&quot;
 <p>An example, the merkle membership proof, only requires a hash function that has collision resistance, hence a hash function like Pedersen is allowed, which in most cases is more efficient than the even more conservative sha256. </p>
 <pre><code class="language-rust noplaypen">    constrain is_member == 1;
 </code></pre>
-<p>This last line, constrains the variable to be equal to 1. If 1 was changed to 0, this would create a proof that the leaf was not present at that specific index. <em>Importantly, it would not prove that this leaf was not in the merkle tree.</em> </p>
+<p>This last line, constrains the variable to be equal to 1. If 1 was changed to 0, this would create a proof that the leaf was not present at that specific index for that specific root. <em>Importantly, it would not prove that this leaf was not in the merkle tree.</em> </p>
 <h1 id="language-concepts"><a class="header" href="#language-concepts">Language Concepts</a></h1>
 <p>In this chapter, we will go over the concepts that are being used in Noir. Specifically, we will learn about types, control flow, comments, functions and declarations.
 For some concepts, we also explain the rationale as to why they were designed in this particular way. Recurring themes you will encounter in this section are <em>simplicity</em> and <em>safety</em>. </p>
