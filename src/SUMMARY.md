@@ -6,6 +6,7 @@
     - [Installing Noir](getting_started/install.md)
     - [Hello, World](getting_started/hello_world.md)
         - [Breakdown](getting_started/breakdown.md)
+    - [TornadoCash](getting_started/tornado_cash.md)
 - [Language Concepts](language_concepts.md)
     - [Mutability](language_concepts/mutability.md)
     - [Data types](language_concepts/data_types.md)
