@@ -30,11 +30,11 @@ Calling a function in Rust is executed by using the function name and passing th
 Below we show how to call the `foo` function from the main function using a call expression:
 
 ```rust,noplaypen
-fn main(x : Witness, y : Witness) {
+fn main(x : Field, y : Field) {
     priv z = foo(x);
 }
 
-fn foo(x : Witness) -> Witness {
+fn foo(x : Field) -> Field {
     x + x
 }
 ```
