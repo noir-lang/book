@@ -21,7 +21,7 @@ The above code uses the noir standard library to call both of the aforementioned
    priv leaf = std::hash::hash_to_field(message);
 ```
 
-The message is hashed using `hash_to_field`. The specific hash function that is being used is implemented by the backend chosen. The only requirement is that this hash function can heuristically be used as a random oracle. If only collision resistance is needed, then one can call `std::hash::pedersen` instead.
+The message is hashed using `hash_to_field`. The specific hash function that is being used is chosen by the backend. The only requirement is that this hash function can heuristically be used as a random oracle. If only collision resistance is needed, then one can call `std::hash::pedersen` instead.
 
 ```rust,noplaypen
     priv is_member = std::merkle::check_membership(root, leaf, index, hashpath);
