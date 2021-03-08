@@ -410,11 +410,11 @@ For some concepts, we also explain the rationale as to why they were designed in
 <h2 id="call-expressions"><a class="header" href="#call-expressions">Call Expressions</a></h2>
 <p>Calling a function in Rust is executed by using the function name and passing the necessary arguments the function header.</p>
 <p>Below we show how to call the <code>foo</code> function from the main function using a call expression:</p>
-<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
     priv z = foo(x);
 }
 
-fn foo(x : Witness) -&gt; Witness {
+fn foo(x : Field) -&gt; Field {
     x + x
 }
 </code></pre>
@@ -571,8 +571,6 @@ This separation between proof system and programming language, allows those who 
 <p>It is possible to emulate conditional branching with a multiplexer in Noir as of writing. However, this may not be intuitive for most. This can be sugared with an if statement or a ternary expression.</p>
 <h3 id="structures"><a class="header" href="#structures">Structures</a></h3>
 <p>Currently only primitives types are available. This does not hinder expressiveness, however for large circuits, readability will be harmed without structs. </p>
-<h3 id="grammar-refactor"><a class="header" href="#grammar-refactor">Grammar Refactor</a></h3>
-<p>The current grammar will remove the &quot;Witness/Public/Const&quot; types in place for a &quot;Field&quot; type</p>
 <h3 id="isize"><a class="header" href="#isize">Isize</a></h3>
 <p>Signed integers such as i32 and i64 allow one to express more circuits.</p>
 <h3 id="recursion"><a class="header" href="#recursion">Recursion</a></h3>

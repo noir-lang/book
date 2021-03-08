@@ -182,11 +182,11 @@
 <h2 id="call-expressions"><a class="header" href="#call-expressions">Call Expressions</a></h2>
 <p>Calling a function in Rust is executed by using the function name and passing the necessary arguments the function header.</p>
 <p>Below we show how to call the <code>foo</code> function from the main function using a call expression:</p>
-<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
+<pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
     priv z = foo(x);
 }
 
-fn foo(x : Witness) -&gt; Witness {
+fn foo(x : Field) -&gt; Field {
     x + x
 }
 </code></pre>
