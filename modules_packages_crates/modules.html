@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Functions - The Noir Programming Language</title>
+        <title>Modules - The Noir Programming Language</title>
         
         
 
@@ -98,7 +98,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="../getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="../getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../language_concepts.html"><strong aria-hidden="true">2.</strong> Language Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../language_concepts/mutability.html"><strong aria-hidden="true">2.1.</strong> Mutability</a></li><li class="chapter-item expanded "><a href="../language_concepts/data_types.html"><strong aria-hidden="true">2.2.</strong> Data types</a></li><li class="chapter-item expanded "><a href="../language_concepts/functions.html" class="active"><strong aria-hidden="true">2.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../language_concepts/comments.html"><strong aria-hidden="true">2.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../language_concepts/control_flow.html"><strong aria-hidden="true">2.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../language_concepts/ops.html"><strong aria-hidden="true">2.6.</strong> Operations</a></li><li class="chapter-item expanded "><a href="../language_concepts/constrain.html"><strong aria-hidden="true">2.7.</strong> Constrain Statement</a></li></ol></li><li class="chapter-item expanded "><a href="../modules_packages_crates.html"><strong aria-hidden="true">3.</strong> Modules, Packages, Crates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../modules_packages_crates/crate.html"><strong aria-hidden="true">3.1.</strong> Crate</a></li><li class="chapter-item expanded "><a href="../modules_packages_crates/packages.html"><strong aria-hidden="true">3.2.</strong> Packages</a></li><li class="chapter-item expanded "><a href="../modules_packages_crates/modules.html"><strong aria-hidden="true">3.3.</strong> Modules</a></li></ol></li><li class="chapter-item expanded "><a href="../coming_soon.html"><strong aria-hidden="true">4.</strong> Coming!</a></li><li class="chapter-item expanded "><a href="../license.html"><strong aria-hidden="true">5.</strong> LICENSE</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="../getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="../getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../language_concepts.html"><strong aria-hidden="true">2.</strong> Language Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../language_concepts/mutability.html"><strong aria-hidden="true">2.1.</strong> Mutability</a></li><li class="chapter-item expanded "><a href="../language_concepts/data_types.html"><strong aria-hidden="true">2.2.</strong> Data types</a></li><li class="chapter-item expanded "><a href="../language_concepts/functions.html"><strong aria-hidden="true">2.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../language_concepts/comments.html"><strong aria-hidden="true">2.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../language_concepts/control_flow.html"><strong aria-hidden="true">2.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../language_concepts/ops.html"><strong aria-hidden="true">2.6.</strong> Operations</a></li><li class="chapter-item expanded "><a href="../language_concepts/constrain.html"><strong aria-hidden="true">2.7.</strong> Constrain Statement</a></li></ol></li><li class="chapter-item expanded "><a href="../modules_packages_crates.html"><strong aria-hidden="true">3.</strong> Modules, Packages, Crates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../modules_packages_crates/crate.html"><strong aria-hidden="true">3.1.</strong> Crate</a></li><li class="chapter-item expanded "><a href="../modules_packages_crates/packages.html"><strong aria-hidden="true">3.2.</strong> Packages</a></li><li class="chapter-item expanded "><a href="../modules_packages_crates/modules.html" class="active"><strong aria-hidden="true">3.3.</strong> Modules</a></li></ol></li><li class="chapter-item expanded "><a href="../coming_soon.html"><strong aria-hidden="true">4.</strong> Coming!</a></li><li class="chapter-item expanded "><a href="../license.html"><strong aria-hidden="true">5.</strong> LICENSE</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -166,29 +166,55 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
-<p>Functions in Noir follow the same semantics of Rust, Noir does not support early returns.</p>
-<p>To declare a function the <code>fn</code> keyword is used.</p>
-<pre><code class="language-rust noplaypen">fn foo() {}
-</code></pre>
-<p>All parameters in a function must have a type and all types are known at compile time. The parameter is pre-pended with a colon and the parameter type. Multiple parameters are separated using a comma. </p>
-<pre><code class="language-rust noplaypen">fn foo(x : Field, y : pub Field){}
-</code></pre>
-<p>The return type of a function can be stated by using the <code>-&gt;</code> arrow notation. The function below states that the foo function must return a Witness. If the function returns no value, then the arrow is omitted.</p>
-<pre><code class="language-rust noplaypen">fn foo(x : Field, y : pub Field) -&gt; Field {
-    x + y
-}
-</code></pre>
-<h2 id="call-expressions"><a class="header" href="#call-expressions">Call Expressions</a></h2>
-<p>Calling a function in Rust is executed by using the function name and passing the necessary arguments the function header.</p>
-<p>Below we show how to call the <code>foo</code> function from the main function using a call expression:</p>
-<pre><code class="language-rust noplaypen">fn main(x : Witness, y : Witness) {
-    priv z = foo(x);
-}
+                        <h1 id="modules"><a class="header" href="#modules">Modules</a></h1>
+<p>Noir's module system follows the same convention as the <em>newer</em> version of Rust's module system.</p>
+<h2 id="purpose-of-modules"><a class="header" href="#purpose-of-modules">Purpose of Modules</a></h2>
+<p>Modules are used to organise files. Without modules all of your code would need to live in a single file. In Noir, the compiler foes not automatically scan all of your files to detect modules. This must be done explicitly by the developer.</p>
+<h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
+<h3 id="importing-a-module-in-the-crate-root"><a class="header" href="#importing-a-module-in-the-crate-root">Importing a module in the crate root</a></h3>
+<p>Filename : src/main.nr</p>
+<pre><code>mod foo;
 
-fn foo(x : Witness) -&gt; Witness {
-    x + x
+fn main() {
+    foo::hello_world();
 }
+</code></pre>
+<p>Filename : src/foo.nr</p>
+<pre><code>fn from_foo() {}
+</code></pre>
+<p>In the above snippet, the crate root is the <code>src/main.nr</code> file. The compiler sees the module declaration <code>mod foo</code> which prompts it to look for a foo.nr file.</p>
+<p>Visually this module hierarchy looks like the following :</p>
+<pre><code>crate
+ ├── main
+ │
+ └── foo
+      └── from_foo
+      
+</code></pre>
+<h3 id="sub-modules"><a class="header" href="#sub-modules">Sub-modules</a></h3>
+<p>Filename : src/main.nr</p>
+<pre><code>mod foo;
+
+fn main() {
+    foo::from_foo();
+}
+</code></pre>
+<p>Filename : src/foo.nr</p>
+<pre><code>mod bar;
+fn from_foo() {}
+</code></pre>
+<p>Filename : src/foo/bar.nr</p>
+<pre><code>fn from_bar() {}
+</code></pre>
+<p>In the above snippet, we have added an extra module to the module tree; <code>bar</code>. <code>bar</code> is a submodule of <code>foo</code> hence we declare bar in <code>foo.nr</code> with <code>mod bar</code>. Since <code>foo</code> is not the crate root, the compiler looks for the file associated with the <code>bar</code> module in <code>src/foo/bar.nr</code></p>
+<p>Visually the module hierarchy looks as follows: </p>
+<pre><code>crate
+ ├── main
+ │
+ └── foo
+      ├── from_foo
+      └── bar
+           └── from_bar
 </code></pre>
 
                     </main>
@@ -196,13 +222,13 @@ fn foo(x : Witness) -&gt; Witness {
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../language_concepts/data_types.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../modules_packages_crates/packages.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../language_concepts/comments.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../coming_soon.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -214,13 +240,13 @@ fn foo(x : Witness) -&gt; Witness {
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../language_concepts/data_types.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../modules_packages_crates/packages.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../language_concepts/comments.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../coming_soon.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
