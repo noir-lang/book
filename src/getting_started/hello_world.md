@@ -25,7 +25,7 @@ For Windwows CMD, enter this:
 Now that we are in the projects directory, enter the following command:
 
 ```sh
-noir new hello_world
+nargo new hello_world
 ```
 
 We use the `new` command to create a new Noir project. This project will be located in the `hello_world` folder.
@@ -33,8 +33,9 @@ We use the `new` command to create a new Noir project. This project will be loca
 Now `cd` into the `hello_world` folder and enter this:
 
 ```
-$ noir prove my_proof
-$ noir verify my_proof
+$ nargo build
+$ nargo prove my_proof
+$ nargo verify my_proof
 true
 ```
 
