@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Data types - The Noir Programming Language</title>
+        <title>TornadoCash - The Noir Programming Language</title>
         
         
 
@@ -98,7 +98,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="../getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="../getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li><li class="chapter-item expanded "><a href="../getting_started/tornado_cash.html"><strong aria-hidden="true">1.3.</strong> TornadoCash</a></li></ol></li><li class="chapter-item expanded "><a href="../language_concepts.html"><strong aria-hidden="true">2.</strong> Language Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../language_concepts/mutability.html"><strong aria-hidden="true">2.1.</strong> Mutability</a></li><li class="chapter-item expanded "><a href="../language_concepts/data_types.html" class="active"><strong aria-hidden="true">2.2.</strong> Data types</a></li><li class="chapter-item expanded "><a href="../language_concepts/functions.html"><strong aria-hidden="true">2.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../language_concepts/comments.html"><strong aria-hidden="true">2.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../language_concepts/control_flow.html"><strong aria-hidden="true">2.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../language_concepts/ops.html"><strong aria-hidden="true">2.6.</strong> Operations</a></li><li class="chapter-item expanded "><a href="../language_concepts/constrain.html"><strong aria-hidden="true">2.7.</strong> Constrain Statement</a></li></ol></li><li class="chapter-item expanded "><a href="../modules_packages_crates.html"><strong aria-hidden="true">3.</strong> Modules, Packages, Crates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../modules_packages_crates/crate.html"><strong aria-hidden="true">3.1.</strong> Crate</a></li><li class="chapter-item expanded "><a href="../modules_packages_crates/packages.html"><strong aria-hidden="true">3.2.</strong> Packages</a></li><li class="chapter-item expanded "><a href="../modules_packages_crates/modules.html"><strong aria-hidden="true">3.3.</strong> Modules</a></li></ol></li><li class="chapter-item expanded "><a href="../coming_soon.html"><strong aria-hidden="true">4.</strong> Coming!</a></li><li class="chapter-item expanded "><a href="../license.html"><strong aria-hidden="true">5.</strong> LICENSE</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="../getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="../getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li><li class="chapter-item expanded "><a href="../getting_started/tornado_cash.html" class="active"><strong aria-hidden="true">1.3.</strong> TornadoCash</a></li></ol></li><li class="chapter-item expanded "><a href="../language_concepts.html"><strong aria-hidden="true">2.</strong> Language Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../language_concepts/mutability.html"><strong aria-hidden="true">2.1.</strong> Mutability</a></li><li class="chapter-item expanded "><a href="../language_concepts/data_types.html"><strong aria-hidden="true">2.2.</strong> Data types</a></li><li class="chapter-item expanded "><a href="../language_concepts/functions.html"><strong aria-hidden="true">2.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../language_concepts/comments.html"><strong aria-hidden="true">2.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../language_concepts/control_flow.html"><strong aria-hidden="true">2.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../language_concepts/ops.html"><strong aria-hidden="true">2.6.</strong> Operations</a></li><li class="chapter-item expanded "><a href="../language_concepts/constrain.html"><strong aria-hidden="true">2.7.</strong> Constrain Statement</a></li></ol></li><li class="chapter-item expanded "><a href="../modules_packages_crates.html"><strong aria-hidden="true">3.</strong> Modules, Packages, Crates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../modules_packages_crates/crate.html"><strong aria-hidden="true">3.1.</strong> Crate</a></li><li class="chapter-item expanded "><a href="../modules_packages_crates/packages.html"><strong aria-hidden="true">3.2.</strong> Packages</a></li><li class="chapter-item expanded "><a href="../modules_packages_crates/modules.html"><strong aria-hidden="true">3.3.</strong> Modules</a></li></ol></li><li class="chapter-item expanded "><a href="../coming_soon.html"><strong aria-hidden="true">4.</strong> Coming!</a></li><li class="chapter-item expanded "><a href="../license.html"><strong aria-hidden="true">5.</strong> LICENSE</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -166,75 +166,45 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="data-types"><a class="header" href="#data-types">Data types</a></h1>
-<p>There are two subsets of data types that each datatype will fall into; fundamental and compound.</p>
-<p>A <strong>fundamental type</strong> is a data type which is defined in the core language. This is not specific to Noir. Examples in modern programming languages such as Rust are u32, usize and char. </p>
-<p>A <strong>compound type</strong> is a type in the core language which must be defined using another type. Examples in modern programming languages are arrays, tuples and functions.</p>
-<p>Although each value in a constraint system is fundamentally a field element, we add a layer of abstraction over this; each value can be <em>concealed</em> or <em>revealed</em>. </p>
-<p>A <strong>concealed value</strong> is known only to the Prover, while, a <strong>revealed value</strong> is known by the Prover and Verifier. All concealed and revealed values are <em>fundamental</em> types.</p>
-<h2 id="fundamental-types"><a class="header" href="#fundamental-types">Fundamental Types</a></h2>
-<h3 id="concealed-types"><a class="header" href="#concealed-types">Concealed Types</a></h3>
-<p>Concealed types are generally referred to as witnesses.</p>
-<h4 id="witness-type"><a class="header" href="#witness-type">Witness Type</a></h4>
-<p>A Witness type is the default concealed type. Here's an example that shows declaration and usage of the Witness type.</p>
-<pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
-    priv z = x + y;
-}
-</code></pre>
-<p><code>x</code>, <code>y</code> and <code>z</code> are Witness types. Using the <code>priv</code> keyword we derived a new Witness type <code>z</code> which is constrained to be equal to <code>x + y</code>.</p>
-<h4 id="integer-type"><a class="header" href="#integer-type">Integer Type</a></h4>
-<p>An integer type is a witness type which has been constrained using a range constraint. The Noir front-end currently supports arbitrary sized integer types.</p>
-<p>Below we show the integer type in action:</p>
-<pre><code class="language-rust noplaypen">fn main(x : Field) {
-    priv y = x as u24;
-}
-</code></pre>
-<p><code>x</code> and <code>y</code> are both concealed types, however <code>y</code> is an integer type. If <code>y</code> exceeds the range \([0,2^{24}-1]\) then any proof created will output false by the verifier.</p>
-<blockquote>
-<p><strong>Note:</strong> The Aztec backend only supports even sized integer types currently, so while using the Aztec backend, only even sized integer types such as u32, u48 will produce proofs.</p>
-</blockquote>
-<h3 id="revealed-types"><a class="header" href="#revealed-types">Revealed Types</a></h3>
-<h4 id="constants"><a class="header" href="#constants">Constants</a></h4>
-<p>A constant type is a value that does not change per circuit instance. This is different to a concealed type which changes per proof. If a constant type that is being used in your program in changed, then your circuit will also change.</p>
-<p>Below we show how to declare a constant value:</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    const a = 5;
-}
-</code></pre>
-<h4 id="public-types"><a class="header" href="#public-types">Public Types</a></h4>
-<p>A public type is a value that may change per circuit instance. Unlike Constants, changing a public value will not change the circuit.</p>
-<pre><code class="language-rust noplaypen">fn main(x : pub Field) {
+                        <h1 id="tornadocash"><a class="header" href="#tornadocash">TornadoCash</a></h1>
+<p>Let's show an example of TornadoCash circuit in Noir.</p>
+<pre><code class="language-rust noplaypen">fn main(message : [62]u8, index : Field, hashpath : [40]Field, root : Field) {
 
+    priv leaf = std::hash::hash_to_field(message);
+
+    priv is_member = std::merkle::check_membership(root, leaf, index, hashpath);
+
+    constrain is_member == 1;
 }
 </code></pre>
-<p>As of the beta release, public types can only be declared through type parameters. In the code, they are treated no differently to witness types. </p>
-<blockquote>
-<p><strong>Note:</strong> This behaviour and type will change in future releases, to catch a linearity bug in user code.</p>
-</blockquote>
-<h2 id="compound-types"><a class="header" href="#compound-types">Compound Types</a></h2>
-<p>Compound types are declared using the <code>let</code> keyword. Currently arrays are the only supported compound type.</p>
-<h4 id="arrays"><a class="header" href="#arrays">Arrays</a></h4>
-<p>An array is a data structure which allows you to group together data types. All values in an array must be of the same type; homogeneous. </p>
-<pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
-    let my_arr = [x, y];
-}
+<p>The TornadoCash circuit involves a merkle membership proof that a leaf is in a merkle tree.</p>
+<p>The above code uses the noir standard library to call both of the aforementioned components.</p>
+<pre><code class="language-rust noplaypen">   priv leaf = std::hash::hash_to_field(message);
 </code></pre>
+<p>The message is hashed using <code>hash_to_field</code>. The specific hash function that is being used is implemented by the backend chosen. The only requirement is that this hash function can heuristically be used as a random oracle. If only collision resistance is needed, then one can call <code>std::hash::pedersen</code> instead.</p>
+<pre><code class="language-rust noplaypen">    priv is_member = std::merkle::check_membership(root, leaf, index, hashpath);
+</code></pre>
+<p>The leaf is then passed to a check_membership proof with the root, index and hashpath. <code>is_member</code> returns 1 if the leaf is a member of the merkle tree with the specified root, at the given index.</p>
 <blockquote>
-<p><strong>Example:</strong> An array of Witness types cannot be grouped together with an array of Integer types.</p>
+<p>Note: It is possible to re-implement the merkle tree implementation without standard library. However, for most usecases, it is enough. In general, the standard library will always opt to be as conservative as possible, while striking a balance between efficiency.</p>
 </blockquote>
+<p>An example, the merkle membership proof, only requires a hash function that has collision resistance, hence a hash function like Pedersen is allowed, which in most cases is more efficient than the even more conservative sha256. </p>
+<pre><code class="language-rust noplaypen">    constrain is_member == 1;
+</code></pre>
+<p>This last line, constrains the variable to be equal to 1. If 1 was changed to 0, this would create a proof that the leaf was not present at that specific index. <em>Importantly, it would not prove that this leaf was not in the merkle tree.</em> </p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../language_concepts/mutability.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../getting_started/breakdown.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../language_concepts/functions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../language_concepts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -246,13 +216,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../language_concepts/mutability.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../getting_started/breakdown.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../language_concepts/functions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../language_concepts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
