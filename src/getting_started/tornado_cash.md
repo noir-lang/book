@@ -37,5 +37,5 @@ An example, the merkle membership proof, only requires a hash function that has 
     constrain is_member == 1;
 ```
 
-This last line, constrains the variable to be equal to 1. If 1 was changed to 0, this would create a proof that the leaf was not present at that specific index. _Importantly, it would not prove that this leaf was not in the merkle tree._ 
+This last line, constrains the variable to be equal to 1. If 1 was changed to 0, this would create a proof that the leaf was not present at that specific index for that specific root. _Importantly, it would not prove that this leaf was not in the merkle tree._ 
 
