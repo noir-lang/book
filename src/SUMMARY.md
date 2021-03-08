@@ -19,5 +19,7 @@
     - [Crate](modules_packages_crates/crate.md)
     - [Packages](modules_packages_crates/packages.md)
     - [Modules](modules_packages_crates/modules.md)
+- [ACIR](acir.md)
+- [Compilation Overview](c_overview.md)
 - [Coming!](coming_soon.md)
 - [LICENSE](license.md)
