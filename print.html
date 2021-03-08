@@ -100,7 +100,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="language_concepts.html"><strong aria-hidden="true">2.</strong> Language Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="language_concepts/mutability.html"><strong aria-hidden="true">2.1.</strong> Mutability</a></li><li class="chapter-item expanded "><a href="language_concepts/data_types.html"><strong aria-hidden="true">2.2.</strong> Data types</a></li><li class="chapter-item expanded "><a href="language_concepts/functions.html"><strong aria-hidden="true">2.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="language_concepts/comments.html"><strong aria-hidden="true">2.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="language_concepts/control_flow.html"><strong aria-hidden="true">2.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="language_concepts/ops.html"><strong aria-hidden="true">2.6.</strong> Operations</a></li><li class="chapter-item expanded "><a href="language_concepts/constrain.html"><strong aria-hidden="true">2.7.</strong> Constrain Statement</a></li></ol></li><li class="chapter-item expanded "><a href="coming_soon.html"><strong aria-hidden="true">3.</strong> Coming!</a></li><li class="chapter-item expanded "><a href="license.html"><strong aria-hidden="true">4.</strong> LICENSE</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/install.html"><strong aria-hidden="true">1.1.</strong> Installing Noir</a></li><li class="chapter-item expanded "><a href="getting_started/hello_world.html"><strong aria-hidden="true">1.2.</strong> Hello, World</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/breakdown.html"><strong aria-hidden="true">1.2.1.</strong> Breakdown</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="language_concepts.html"><strong aria-hidden="true">2.</strong> Language Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="language_concepts/mutability.html"><strong aria-hidden="true">2.1.</strong> Mutability</a></li><li class="chapter-item expanded "><a href="language_concepts/data_types.html"><strong aria-hidden="true">2.2.</strong> Data types</a></li><li class="chapter-item expanded "><a href="language_concepts/functions.html"><strong aria-hidden="true">2.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="language_concepts/comments.html"><strong aria-hidden="true">2.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="language_concepts/control_flow.html"><strong aria-hidden="true">2.5.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="language_concepts/ops.html"><strong aria-hidden="true">2.6.</strong> Operations</a></li><li class="chapter-item expanded "><a href="language_concepts/constrain.html"><strong aria-hidden="true">2.7.</strong> Constrain Statement</a></li></ol></li><li class="chapter-item expanded "><a href="modules_packages_crates.html"><strong aria-hidden="true">3.</strong> Modules, Packages, Crates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="modules_packages_crates/crate.html"><strong aria-hidden="true">3.1.</strong> Crate</a></li><li class="chapter-item expanded "><a href="modules_packages_crates/packages.html"><strong aria-hidden="true">3.2.</strong> Packages</a></li></ol></li><li class="chapter-item expanded "><a href="coming_soon.html"><strong aria-hidden="true">4.</strong> Coming!</a></li><li class="chapter-item expanded "><a href="license.html"><strong aria-hidden="true">5.</strong> LICENSE</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -230,45 +230,49 @@ $ cd ~/projects
 </code></pre>
 <h2 id="compiling-our-first-project"><a class="header" href="#compiling-our-first-project">Compiling Our First Project</a></h2>
 <p>Now that we are in the projects directory, enter the following command:</p>
-<pre><code class="language-sh">noir new hello_world
+<pre><code class="language-sh">nargo new hello_world
 </code></pre>
 <p>We use the <code>new</code> command to create a new Noir project. This project will be located in the <code>hello_world</code> folder.</p>
 <p>Now <code>cd</code> into the <code>hello_world</code> folder and enter this:</p>
-<pre><code>$ noir prove my_proof
-$ noir verify my_proof
+<pre><code>$ nargo build
+$ nargo prove my_proof
+$ nargo verify my_proof
 true
 </code></pre>
 <p>Congratulations, you have now created and verified a proof for your very first Noir program! </p>
 <p>In the next section, we will go into more detail on exactly what just happened.</p>
 <h1 id="breakdown"><a class="header" href="#breakdown">Breakdown</a></h1>
 <p>This section breaks down our hello world program in section <em>1.2</em>. We elaborate on the project structure and what the <code>prove</code> and <code>verify</code> commands did in the previous section, and usage of the <code>contract</code> command.</p>
-<h2 id="anatomy-of-a-noir-project"><a class="header" href="#anatomy-of-a-noir-project">Anatomy of a Noir Project</a></h2>
-<p>Upon using the <code>new</code> command, Noir will create a Noir project. </p>
+<h2 id="anatomy-of-a-nargo-project"><a class="header" href="#anatomy-of-a-nargo-project">Anatomy of a Nargo Project</a></h2>
+<p>Upon using the <code>new</code> command, Nargo will create a Noir project. </p>
 <p>Noir Projects have the following structure:</p>
-<pre><code>- bin
-- contract 
-- proofs
+<pre><code>- src
+- Prover.toml
+- Verifier.toml
+- Nargo.toml
 </code></pre>
-<h3 id="bin-directory"><a class="header" href="#bin-directory">Bin directory</a></h3>
-<p>This directory holds the source code for your Noir program. In future releases, this will be renamed to <code>src</code>.</p>
-<p>Inside of the bin directory will be two files:</p>
-<pre><code>- main.noir 
-- input.toml
+<p><em>contract</em> and <em>proofs</em> directories will not be immediately visible until you create a contract or proof respectively.</p>
+<h3 id="source-directory"><a class="header" href="#source-directory">Source directory</a></h3>
+<p>This directory holds the source code for your Noir program.</p>
+<p>Inside of the src directory will be a single file:</p>
+<pre><code>- main.nr
 </code></pre>
-<h4 id="mainnoir"><a class="header" href="#mainnoir">main.noir</a></h4>
-<p>Noir currently does not support libraries. The main.noir file contains a <code>main</code> method, this method is the entry point into your Noir program. </p>
-<p>In our sample program, main.noir looks like this:</p>
+<h4 id="mainnr"><a class="header" href="#mainnr">main.nr</a></h4>
+<p>The main.nr file contains a <code>main</code> method, this method is the entry point into your Noir program. </p>
+<p>In our sample program, main.nr looks like this:</p>
 <pre><code>fn main(x : Field, y : Field) {
     constrain x != y;
 }
 </code></pre>
-<p>The parameters <code>x</code> and <code>y</code> can be seen as the API for the program and must be supplied by the prover. These are supplied in the <code>input.toml</code> file.</p>
-<h4 id="inputtoml"><a class="header" href="#inputtoml">input.toml</a></h4>
-<p>The input.toml file is a file which the prover uses to input his witness values. In the hello world program the toml file looks like this:</p>
+<p>The parameters <code>x</code> and <code>y</code> can be seen as the API for the program and must be supplied by the prover. Since neither <code>x</code> nor <code>y</code> is marked as public, the verifier does not supply any inputs, when verifying the proof. </p>
+<p>The prover supplies the values for <code>x</code> and <code>y</code> in the <code>Prover.toml</code> file.</p>
+<h4 id="provertoml"><a class="header" href="#provertoml">Prover.toml</a></h4>
+<p>The Prover.toml file is a file which the prover uses to supply his witness values(both private and public). </p>
+<p>In our hello world program the Prover.toml file looks like this:</p>
 <pre><code class="language-toml">x = &quot;5&quot;
 y = &quot;10&quot;
 </code></pre>
-<p>When the command <code>noir prove my_proof</code> is executed, two processes happen:</p>
+<p>When the command <code>nargo prove my_proof</code> is executed, two processes happen:</p>
 <ul>
 <li>First, Noir creates a proof that <code>x</code> which holds the value of <code>5</code> and <code>y</code> which holds the value of <code>10</code> is not equal.This not equal constraint is due to the line <code>constrain x != y</code>.</li>
 </ul>
@@ -276,10 +280,10 @@ y = &quot;10&quot;
 <p><strong>Note:</strong> We have not expanded on the meaning of the syntax <code>constrain x != y</code> as it is not the focus of this chapter.</p>
 </blockquote>
 <ul>
-<li>Second, Noir stores this proof in the directory <code>proofs</code> and names the proof <code>my_proof</code>.</li>
+<li>Second, Noir creates and stores the proof of this statement in the <code>proofs</code> directory and names the proof file <code>my_proof</code>. Opening this file will display the proof in hex format.</li>
 </ul>
 <h2 id="verifying-a-proof"><a class="header" href="#verifying-a-proof">Verifying a Proof</a></h2>
-<p>When the command <code>noir verify my_proof</code> is executed, two processes happen:</p>
+<p>When the command <code>nargo verify my_proof</code> is executed, two processes happen:</p>
 <ul>
 <li>
 <p>Noir checks in the <code>proofs</code> directory for a file called <code>my_proof</code></p>
@@ -293,7 +297,10 @@ y = &quot;10&quot;
 </blockquote>
 <h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p>This directory holds the compiled <em>Ethereum</em> contract for the current Noir program. The contract is not automatically compiled when the <code>prove</code> or <code>verify</code> command is ran. To compile execute the following:</p>
-<pre><code class="language-sh">$ noir contract
+<blockquote>
+<p><strong>Note:</strong> At the time of pre-alpha, Nargo supports only one backend which is Aztec-Barretenberg. This backend only allows you to compile from a Noir program to an Ethereum contract. It is possible for Noir to compile to another smart contract platform as long as the backend supplies an implementation.</p>
+</blockquote>
+<pre><code class="language-sh">$ nargo contract
 </code></pre>
 <h1 id="language-concepts"><a class="header" href="#language-concepts">Language Concepts</a></h1>
 <p>In this chapter, we will go over the concepts that are being used in Noir. Specifically, we will learn about types, control flow, comments, functions and declarations.
@@ -457,6 +464,27 @@ fn foo(x : Witness) -&gt; Witness {
 <blockquote>
 <p>The rationale behind this not compiling is due to ambiguity. It is not clear if the above should equate to <code>x + y == 0</code> or if it should check the truthiness of the result.</p>
 </blockquote>
+<h1 id="modules-packages-crates"><a class="header" href="#modules-packages-crates">Modules, Packages, Crates</a></h1>
+<p>In this section, we describe the package, crate and module system. As mentioned in the introduction, this will largely follow the design choice chosen by Rust.</p>
+<h1 id="crate"><a class="header" href="#crate">Crate</a></h1>
+<p>A crate is the compilation unit used in Noir.</p>
+<h2 id="crate-root"><a class="header" href="#crate-root">Crate Root</a></h2>
+<p>Every crate has a root, which is the source file that the compiler starts, this is also known as the root module.  The Noir compiler does not enforce any conditions on the name of the file which is the crate root, however if you are compiling via Nargo. The Crate Root, must be called <code>lib.nr</code> or <code>main.nr</code>.</p>
+<h1 id="packages"><a class="header" href="#packages">Packages</a></h1>
+<p>A Nargo Package is a collection of one of more crates. A Package must include a Nargo.toml file.</p>
+<p>A Package <em>must</em> contain either a library or a binary crate.</p>
+<h2 id="creating-a-new-package"><a class="header" href="#creating-a-new-package">Creating a new package</a></h2>
+<p>A new package is created using the <code>new</code> command.</p>
+<pre><code>$ nargo new my-project
+$ ls my-project
+Nargo.toml
+src
+$ ls my-project/src
+main.nr
+</code></pre>
+<h2 id="binary-vs-library"><a class="header" href="#binary-vs-library">Binary vs Library</a></h2>
+<p>Similar to Cargo, Nargo follows the convention that if there is a <code>src/main.nr</code> then the project is a binary. If it contains a <code>src/lib.nr</code> then it is a library. </p>
+<p>However, note that dissimilar to Cargo, we cannot have both a binary and library in the same project. </p>
 <h1 id="features-coming-soon"><a class="header" href="#features-coming-soon">Features Coming Soon</a></h1>
 <h3 id="if-statement--ternary-expression"><a class="header" href="#if-statement--ternary-expression">If Statement / Ternary Expression</a></h3>
 <p>It is possible to emulate conditional branching with a multiplexer in Noir as of writing. However, this may not be intuitive for most. This can be sugared with an if statement or a ternary expression.</p>
