@@ -14,7 +14,7 @@ There are two ways to install Noir; from source or from the compiled binary.
 
 ## Installing Noir from the Compiled Binary
 
-- ~~First navigate to the Github repo for Noir.~~ *(Link will be posted once Noir is publicly released.)*
+- First navigate to the Github repo for [Noir](https://github.com/noir-lang/noir).
 
 - Click on the `Releases` tab.
 
