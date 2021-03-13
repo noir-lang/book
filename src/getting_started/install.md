@@ -8,7 +8,7 @@ There are two ways to install Noir; from source or from the compiled binary.
 
 - Now download Noir from Github using Git.
 
-- `cd` into the Noir Github directory and use `cargo install --path=.` to compile the binary and store it in your path. 
+- `cd` into the Noir Github directory, then into the nargo directory and use `cargo install --path=.` to compile the binary and store it in your path. 
 
 > Before using the `cargo install` command, you should see a `Cargo.toml` file. 
 
