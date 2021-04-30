@@ -235,7 +235,13 @@ $ cd ~/projects
 <p>We use the <code>new</code> command to create a new Noir project. This project will be located in the <code>hello_world</code> folder.</p>
 <p>Now <code>cd</code> into the <code>hello_world</code> folder and enter this:</p>
 <pre><code>$ nargo build
-$ nargo prove my_proof
+</code></pre>
+<p>Now that the project is built, we need to create a proof of correct execution. Edit the file <code>Prover.toml</code> with the following content:</p>
+<pre><code>x = &quot;1&quot;
+y = &quot;2&quot;
+</code></pre>
+<p>Now you can run the proof generation and verification commands:</p>
+<pre><code>$ nargo prove my_proof
 $ nargo verify my_proof
 true
 </code></pre>
