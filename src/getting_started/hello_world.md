@@ -34,6 +34,14 @@ Now `cd` into the `hello_world` folder and enter this:
 
 ```
 $ nargo build
+```
+Now that the project is built, we need to create a proof of correct execution. Edit the file `Prover.toml` with the following content:
+```
+x = "1"
+y = "2"
+```
+Now you can run the proof generation and verification commands:
+```
 $ nargo prove my_proof
 $ nargo verify my_proof
 true
