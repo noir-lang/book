@@ -6,11 +6,11 @@ There are two ways to install Noir; from source or from the compiled binary.
 
 - Download [Rust](https://www.rust-lang.org/tools/install)
 
-- Now download Noir from Github using Git.
+- Now download Noir from Github using the following git command: `git clone git@github.com:noir-lang/noir.git`
 
-- `cd` into the Noir Github directory, then into the nargo directory and use `cargo install --locked --path=.` to compile the binary and store it in your path. 
+- Now `cd` into the nargo directory and use `cargo install --locked --path=.` to compile the binary and store it in your path. 
 
-> Before using the `cargo install` command, you should see a `Cargo.toml` file. 
+> The nargo directory should be located under `crates/nargo`
 
 ## Installing Noir from the Compiled Binary
 
