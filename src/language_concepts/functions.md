@@ -1,6 +1,6 @@
 # Functions
 
-Functions in Noir follow the same semantics of Rust, Noir does not support early returns.
+Functions in Noir follow the same semantics of Rust, though Noir does not support early returns.
 
 
 To declare a function the `fn` keyword is used.
@@ -23,6 +23,8 @@ fn foo(x : Field, y : pub Field) -> Field {
 }
 ```
 
+Note that a `return` keyword is unneeded - the last expression in a function's body is returned.
+
 ## Call Expressions
 
 Calling a function in Rust is executed by using the function name and passing the necessary arguments the function header.
@@ -31,10 +33,45 @@ Below we show how to call the `foo` function from the main function using a call
 
 ```rust,noplaypen
 fn main(x : Field, y : Field) {
-    priv z = foo(x);
+    let z = foo(x);
 }
 
 fn foo(x : Field) -> Field {
     x + x
 }
+```
+
+## Methods
+
+You can define methods in Noir on any struct type in scope.
+
+```rust,noplaypen
+struct MyStruct {
+    foo: Field,
+    bar: Field,
+}
+
+impl MyStruct {
+    fn new(foo: Field) -> MyStruct {
+        MyStruct {
+            foo,
+            bar: 2,
+        }
+    }
+
+    fn sum(self) -> Field {
+        self.foo + self.bar
+    }
+}
+
+fn main() {
+    let s = MyStruct::new(40);
+    constrain s.sum() == 42;
+}
+```
+
+Methods are just syntactic sugar for functions, so if we wanted to we could also call `sum` as follows:
+
+```rust,noplaypen
+constrain MyStruct::sum(s) == 42
 ```

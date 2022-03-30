@@ -4,11 +4,8 @@ Let's show an example of the TornadoCash circuit in Noir.
 
 ```rust,noplaypen
 fn main(message : [62]u8, index : Field, hashpath : [40]Field, root : Field) {
-
-    priv leaf = std::hash::hash_to_field(message);
-
-    priv is_member = std::merkle::check_membership(root, leaf, index, hashpath);
-
+    let leaf = std::hash::hash_to_field(message);
+    let is_member = std::merkle::check_membership(root, leaf, index, hashpath);
     constrain is_member == 1;
 }
 ```
@@ -18,13 +15,13 @@ The TornadoCash circuit involves a merkle membership proof that a leaf is in a m
 The above code uses the noir standard library to call both of the aforementioned components.
 
 ```rust,noplaypen
-   priv leaf = std::hash::hash_to_field(message);
+   let leaf = std::hash::hash_to_field(message);
 ```
 
 The message is hashed using `hash_to_field`. The specific hash function that is being used is chosen by the backend. The only requirement is that this hash function can heuristically be used as a random oracle. If only collision resistance is needed, then one can call `std::hash::pedersen` instead.
 
 ```rust,noplaypen
-    priv is_member = std::merkle::check_membership(root, leaf, index, hashpath);
+    let is_member = std::merkle::check_membership(root, leaf, index, hashpath);
 ```
 
 The leaf is then passed to a check_membership proof with the root, index and hashpath. `is_member` returns 1 if the leaf is a member of the merkle tree with the specified root, at the given index.
