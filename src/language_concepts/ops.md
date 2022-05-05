@@ -25,11 +25,17 @@
 
 ```rust,noplaypen 
 fn main(x : Field) {
-    priv y = x as u32;
-    priv z = y & y;
+    let y = x as u32;
+    let z = y & y;
 }
 ```
 
 `z` is implicitly constrained to be the result of `y & y`. The `&` operand is used to denote bitwise `&`. 
 
 > `x & x` would not compile as `x` is a Witness and not an integer type.
+
+### Logical Operators
+
+Noir has no support for the logical operators `||` and `&&`. This is because encoding the short-circuiting that these
+operators require can be inefficient for Noir's backend. Instead you can use the bitwise operators `|` and `&` which
+operate indentically for booleans, just without the short-circuiting.

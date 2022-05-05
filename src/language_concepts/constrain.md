@@ -1,6 +1,7 @@
 # Constrain Statement
 
-Noir includes a special keyword `constrain` which will explicitly constrain the expression that follows, as long as the operation is a predicate/comparison.
+Noir includes a special keyword `constrain` which will explicitly constrain the predicate/comparison expression that follows to be true.
+If this expression is false at runtime, the program will fail to be proven.
 
 ### Constrain statement example
 
