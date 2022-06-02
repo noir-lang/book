@@ -146,7 +146,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
-<p>Functions in Noir follow the same semantics of Rust, Noir does not support early returns.</p>
+<p>Functions in Noir follow the same semantics of Rust, though Noir does not support early returns.</p>
 <p>To declare a function the <code>fn</code> keyword is used.</p>
 <pre><code class="language-rust noplaypen">fn foo() {}
 </code></pre>
@@ -158,16 +158,45 @@
     x + y
 }
 </code></pre>
+<p>Note that a <code>return</code> keyword is unneeded - the last expression in a function's body is returned.</p>
 <h2 id="call-expressions"><a class="header" href="#call-expressions">Call Expressions</a></h2>
 <p>Calling a function in Rust is executed by using the function name and passing the necessary arguments the function header.</p>
 <p>Below we show how to call the <code>foo</code> function from the main function using a call expression:</p>
 <pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
-    priv z = foo(x);
+    let z = foo(x);
 }
 
 fn foo(x : Field) -&gt; Field {
     x + x
 }
+</code></pre>
+<h2 id="methods"><a class="header" href="#methods">Methods</a></h2>
+<p>You can define methods in Noir on any struct type in scope.</p>
+<pre><code class="language-rust noplaypen">struct MyStruct {
+    foo: Field,
+    bar: Field,
+}
+
+impl MyStruct {
+    fn new(foo: Field) -&gt; MyStruct {
+        MyStruct {
+            foo,
+            bar: 2,
+        }
+    }
+
+    fn sum(self) -&gt; Field {
+        self.foo + self.bar
+    }
+}
+
+fn main() {
+    let s = MyStruct::new(40);
+    constrain s.sum() == 42;
+}
+</code></pre>
+<p>Methods are just syntactic sugar for functions, so if we wanted to we could also call <code>sum</code> as follows:</p>
+<pre><code class="language-rust noplaypen">constrain MyStruct::sum(s) == 42
 </code></pre>
 
                     </main>

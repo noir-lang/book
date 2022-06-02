@@ -165,14 +165,18 @@
 <p><code>&lt;,&lt;=, !=, == , &gt;, &gt;=</code> are known are predicate/comparison operations because they compare two values. This differs from the operations such as <code>+</code> where the operands are used in <em>computation</em>.</p>
 <h3 id="bitwise-operations-example"><a class="header" href="#bitwise-operations-example">Bitwise Operations Example</a></h3>
 <pre><code class="language-rust noplaypen">fn main(x : Field) {
-    priv y = x as u32;
-    priv z = y &amp; y;
+    let y = x as u32;
+    let z = y &amp; y;
 }
 </code></pre>
 <p><code>z</code> is implicitly constrained to be the result of <code>y &amp; y</code>. The <code>&amp;</code> operand is used to denote bitwise <code>&amp;</code>. </p>
 <blockquote>
 <p><code>x &amp; x</code> would not compile as <code>x</code> is a Witness and not an integer type.</p>
 </blockquote>
+<h3 id="logical-operators"><a class="header" href="#logical-operators">Logical Operators</a></h3>
+<p>Noir has no support for the logical operators <code>||</code> and <code>&amp;&amp;</code>. This is because encoding the short-circuiting that these
+operators require can be inefficient for Noir's backend. Instead you can use the bitwise operators <code>|</code> and <code>&amp;</code> which
+operate indentically for booleans, just without the short-circuiting.</p>
 
                     </main>
 

@@ -146,61 +146,129 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="data-types"><a class="header" href="#data-types">Data types</a></h1>
-<p>There are two subsets of data types that each datatype will fall into; fundamental and compound.</p>
-<p>A <strong>fundamental type</strong> is a data type which is defined in the core language. This is not specific to Noir. Examples in modern programming languages such as Rust are u32, usize and char. </p>
-<p>A <strong>compound type</strong> is a type in the core language which must be defined using another type. Examples in modern programming languages are arrays, tuples and functions.</p>
-<p>Although each value in a constraint system is fundamentally a field element, we add a layer of abstraction over this; each value can be <em>concealed</em> or <em>revealed</em>. </p>
-<p>A <strong>concealed value</strong> is known only to the Prover, while, a <strong>revealed value</strong> is known by the Prover and Verifier. All concealed and revealed values are <em>fundamental</em> types.</p>
-<h2 id="fundamental-types"><a class="header" href="#fundamental-types">Fundamental Types</a></h2>
-<h3 id="concealed-types"><a class="header" href="#concealed-types">Concealed Types</a></h3>
-<p>Concealed types are generally referred to as witnesses.</p>
-<h4 id="witness-type"><a class="header" href="#witness-type">Witness Type</a></h4>
-<p>A Witness type is the default concealed type. Here's an example that shows declaration and usage of the Witness type.</p>
+<p>Noir has several varieties of data types: the primitive Field type, integer types, <code>bool</code>, arrays, structs, and tuple types.</p>
+<p>Although each value in a constraint system is fundamentally a field element, we add a layer of abstraction over this;
+each value can be <em>concealed</em> (a private type) or <em>revealed</em> (a public type). </p>
+<p>A <strong>private value</strong> is known only to the Prover, while, a <strong>public value</strong> is known by the Prover and Verifier.
+All public and private values are primitive types, though individual
+fields of a struct may also be marked private or public.</p>
+<p>Note that the terms private and public when applied to a type (e.g. in <code>pub Field</code>) have a different meaning than when
+applied to a function <code>pub fn foo() { ... }</code>. The later is a visibility modifier familiar to those coming from existing
+langauges, while the former can be thought of as a visibility modifier for the Verifier. So a <code>pub Field</code>
+would be visible to the Verifier while a <code>Field</code> would not (private is the default modifier).</p>
+<h2 id="primitive-types"><a class="header" href="#primitive-types">Primitive Types</a></h2>
+<p>Any of these types can be private (the default) or public (via a <code>pub</code> modifier).</p>
+<p>Note that private types are also referred to as witnesses.</p>
+<h4 id="field-type"><a class="header" href="#field-type">Field Type</a></h4>
+<p>A field type corresponds to a native field type in the backend. Usually this is a roughly ~256 bit integer. This
+should generally be the default type reached for to solve problems as using a smaller integer type like <code>u64</code> incurs
+extra range constraints and so is less efficient rather than more.</p>
 <pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
-    priv z = x + y;
+    let z = x + y;
 }
 </code></pre>
-<p><code>x</code>, <code>y</code> and <code>z</code> are Witness types. Using the <code>priv</code> keyword we derived a new Witness type <code>z</code> which is constrained to be equal to <code>x + y</code>.</p>
+<p><code>x</code>, <code>y</code> and <code>z</code> are witness types (private <code>Field</code>). Using the <code>let</code> keyword we derived a new witness <code>z</code> which is constrained to be equal to <code>x + y</code>.</p>
 <h4 id="integer-type"><a class="header" href="#integer-type">Integer Type</a></h4>
-<p>An integer type is a witness type which has been constrained using a range constraint. The Noir front-end currently supports arbitrary sized integer types.</p>
+<p>An integer type is a witness type which has been constrained using a range constraint.
+The Noir front-end currently supports arbitrary sized integer types.</p>
 <p>Below we show the integer type in action:</p>
 <pre><code class="language-rust noplaypen">fn main(x : Field) {
-    priv y = x as u24;
+    let y = x as u24;
 }
 </code></pre>
-<p><code>x</code> and <code>y</code> are both concealed types, however <code>y</code> is an integer type. If <code>y</code> exceeds the range \([0,2^{24}-1]\) then any proof created will output false by the verifier.</p>
+<p><code>x</code> and <code>y</code> are both private types (witnesses), however <code>y</code> is an integer type. If <code>y</code> exceeds the range \([0,2^{24}-1]\)
+then any proof created will output false by the verifier.</p>
 <blockquote>
 <p><strong>Note:</strong> The Aztec backend only supports even sized integer types currently, so while using the Aztec backend, only even sized integer types such as u32, u48 will produce proofs.</p>
 </blockquote>
-<h3 id="revealed-types"><a class="header" href="#revealed-types">Revealed Types</a></h3>
 <h4 id="constants"><a class="header" href="#constants">Constants</a></h4>
-<p>A constant type is a value that does not change per circuit instance. This is different to a concealed type which changes per proof. If a constant type that is being used in your program in changed, then your circuit will also change.</p>
+<p>A constant type is a value that does not change per circuit instance. This is different to a witness which changes per proof. If a constant type that is being used in your program in changed, then your circuit will also change.</p>
 <p>Below we show how to declare a constant value:</p>
 <pre><code class="language-rust noplaypen">fn main() {
-    const a = 5;
+    let a: const Field = 5;
+
+    // `const Field` can also be inferred:
+    let a = 5;
 }
 </code></pre>
-<h4 id="public-types"><a class="header" href="#public-types">Public Types</a></h4>
+<p>Note that variables declared as mutable may not be constants:</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    // error: Cannot mark a const type as mutable - any mutation would remove its const-ness
+    let mut a: const Field = 5;
+
+    // a inferred as a private Field here
+    let mut a = 5;
+}
+</code></pre>
+<h4 id="pub-modifier"><a class="header" href="#pub-modifier"><code>pub</code> Modifier</a></h4>
 <p>A public type is a value that may change per circuit instance. Unlike Constants, changing a public value will not change the circuit.</p>
 <pre><code class="language-rust noplaypen">fn main(x : pub Field) {
 
 }
 </code></pre>
-<p>As of the beta release, public types can only be declared through type parameters. In the code, they are treated no differently to witness types. </p>
+<p>As of the beta release, public types can only be declared through parameters on <code>main</code>. In the code, they are treated no differently to witness types. </p>
 <blockquote>
 <p><strong>Note:</strong> This behaviour and type will change in future releases, to catch a linearity bug in user code.</p>
 </blockquote>
 <h2 id="compound-types"><a class="header" href="#compound-types">Compound Types</a></h2>
-<p>Compound types are declared using the <code>let</code> keyword. Currently arrays are the only supported compound type.</p>
+<p>Noir also supports arrays, structs, and tuples whose elements may be public or private.</p>
 <h4 id="arrays"><a class="header" href="#arrays">Arrays</a></h4>
 <p>An array is a data structure which allows you to group together data types. All values in an array must be of the same type; homogeneous. </p>
 <pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
     let my_arr = [x, y];
 }
 </code></pre>
+<p>Note that currently Noir only supports arrays with integer or field elements.</p>
 <blockquote>
 <p><strong>Example:</strong> An array of Witness types cannot be grouped together with an array of Integer types.</p>
 </blockquote>
+<h4 id="structs"><a class="header" href="#structs">Structs</a></h4>
+<p>Structs can be used to group together multiple different types:</p>
+<pre><code class="language-rust noplaypen">struct Operation {
+    lhs: Field,
+    opcode: u8,
+    rhs: Field,
+}
+
+fn main() {
+    let opcode = 3 as u8;
+
+    // operation: Operation
+    let operation = Operation {
+        lhs: 0,
+        rhs: 1,
+        opcode,
+    }
+
+    let zero = operation.lhs;
+}
+</code></pre>
+<p>Structs can also be destructured in a pattern, binding each field to a new variable:</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let Operation { lhs, rhs: the_rhs, opcode: _ } = get_operation();
+    // lhs and the_rhs are now in scope
+}
+</code></pre>
+<h4 id="tuples"><a class="header" href="#tuples">Tuples</a></h4>
+<p>Noir also supports tuples which can be thought of as anonymous structs with integers as 
+field names.</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let tuple = (1, 2);
+    let (a, b) = tuple;
+
+    let (c, d, mut (e, f)) = (3, 4, (5, 6));
+}
+</code></pre>
+<p>Tuple fields can be accessed via destructuring as above or via member access syntax.
+The first field name of a tuple is <code>0</code>, then <code>1</code> and so on:</p>
+<pre><code>fn main() {
+    // tuple: (const Field, const Field, const Field, const Field)
+    let tuple = (5, 6, 7, 8);
+
+    let five = tuple.0;
+    let eight = tuple.3;
+}
+</code></pre>
 
                     </main>
 

@@ -148,20 +148,17 @@
                         <h1 id="tornadocash"><a class="header" href="#tornadocash">TornadoCash</a></h1>
 <p>Let's show an example of the TornadoCash circuit in Noir.</p>
 <pre><code class="language-rust noplaypen">fn main(message : [62]u8, index : Field, hashpath : [40]Field, root : Field) {
-
-    priv leaf = std::hash::hash_to_field(message);
-
-    priv is_member = std::merkle::check_membership(root, leaf, index, hashpath);
-
+    let leaf = std::hash::hash_to_field(message);
+    let is_member = std::merkle::check_membership(root, leaf, index, hashpath);
     constrain is_member == 1;
 }
 </code></pre>
 <p>The TornadoCash circuit involves a merkle membership proof that a leaf is in a merkle tree.</p>
 <p>The above code uses the noir standard library to call both of the aforementioned components.</p>
-<pre><code class="language-rust noplaypen">   priv leaf = std::hash::hash_to_field(message);
+<pre><code class="language-rust noplaypen">   let leaf = std::hash::hash_to_field(message);
 </code></pre>
 <p>The message is hashed using <code>hash_to_field</code>. The specific hash function that is being used is chosen by the backend. The only requirement is that this hash function can heuristically be used as a random oracle. If only collision resistance is needed, then one can call <code>std::hash::pedersen</code> instead.</p>
-<pre><code class="language-rust noplaypen">    priv is_member = std::merkle::check_membership(root, leaf, index, hashpath);
+<pre><code class="language-rust noplaypen">    let is_member = std::merkle::check_membership(root, leaf, index, hashpath);
 </code></pre>
 <p>The leaf is then passed to a check_membership proof with the root, index and hashpath. <code>is_member</code> returns 1 if the leaf is a member of the merkle tree with the specified root, at the given index.</p>
 <blockquote>

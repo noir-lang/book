@@ -146,12 +146,44 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="mutability"><a class="header" href="#mutability">Mutability</a></h1>
-<p>All variables in Noir are immutable and cannot be made mutable. Due to this, Noir will at some stages borrow functional programming concepts.</p>
-<h3 id="why-immutability"><a class="header" href="#why-immutability">Why immutability?</a></h3>
-<p>Witnesses in a proving system are immutable in nature. Noir aims to <em>closely</em> mirror this setting without applying additional overhead to the user. If a developer encounters a variable <em>a</em> he can lookup its definition to deduce its value.</p>
-<blockquote>
-<p>The last section may be somewhat invalidated, if temporary scopes and shadowing is introduced.</p>
-</blockquote>
+<p>Variables in noir can be declared mutable via the <code>mut</code> keyword. Mutable variables can be reassigned to via
+an assignment expression.</p>
+<pre><code class="language-rust noplaypen">let x = 2;
+x = 3; // error: x must be mutable to be assigned to
+
+let mut y = 3;
+let y = 4; // OK
+</code></pre>
+<p>The <code>mut</code> modifier can also apply to patterns:</p>
+<pre><code class="language-rust noplaypen">let (a, mut b) = (1, 2);
+a = 11; // error: x must be mutable to be assigned to
+b = 12; // OK
+
+let mut (c, d) = (3, 4);
+c = 13; // OK
+d = 14; // OK
+
+// etc.
+let MyStruct { x: mut y } = MyStruct { x: a }
+// y is now in scope
+</code></pre>
+<p>Note that mutability in noir is local and everything is passed by value, so if a
+called function mutates its parameters then the parent function will keep the old value of the parameters.</p>
+<pre><code class="language-rust noplaypen">fn main() -&gt; Field {
+    let x = 3;
+    helper(x);
+    x // x is still 3
+}
+
+fn helper(mut x: i32) {
+    x = 4;
+}
+</code></pre>
+<h3 id="why-only-local-mutability"><a class="header" href="#why-only-local-mutability">Why only local mutability?</a></h3>
+<p>Witnesses in a proving system are immutable in nature.
+Noir aims to <em>closely</em> mirror this setting without applying additional overhead to the user.
+Modeling a mutable reference is not as straightforward as on conventional architectures and
+would incur some possibly unexpected overhead.</p>
 
                     </main>
 
