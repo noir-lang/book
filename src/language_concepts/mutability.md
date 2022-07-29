@@ -1,6 +1,7 @@
 # Mutability
 
-Variables in noir can be declared mutable via the `mut` keyword. Mutable variables can be reassigned to via
+Variables in noir can be declared mutable via the `mut` keyword.
+Mutable variables can be reassigned to via
 an assignment expression.
 
 ```rust,noplaypen

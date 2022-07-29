@@ -19,6 +19,6 @@ main.nr
 
 ## Binary vs Library
 
-Similar to Cargo, Nargo follows the convention that if there is a `src/main.nr` then the project is a binary. If it contains a `src/lib.nr` then it is a library. 
+Similar to Cargo, Nargo follows the convention that if there is a `src/main.nr` then the project is a binary. If it contains a `src/lib.nr` then it is a library.
 
-However, note that dissimilar to Cargo, we cannot have both a binary and library in the same project. 
+However, note that dissimilar to Cargo, we cannot have both a binary and library in the same project.
