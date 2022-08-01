@@ -10,10 +10,10 @@ fn main(x : Field, y : Field) {
     constrain x == y
 }
 ```
- 
+
 The above snippet compiles because `==` is a predicate operation. Conversely, the following will not compile:
 
-```rust,noplaypen 
+```rust,noplaypen
 fn main(x : Field, y : Field) {
     constrain x + y
 }

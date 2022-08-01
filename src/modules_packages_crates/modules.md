@@ -6,11 +6,12 @@ Noir's module system follows the same convention as the _newer_ version of Rust'
 
 Modules are used to organise files. Without modules all of your code would need to live in a single file. In Noir, the compiler does not automatically scan all of your files to detect modules. This must be done explicitly by the developer.
 
-## Examples 
+## Examples
 
 ### Importing a module in the crate root
 
-Filename : src/main.nr
+Filename : `src/main.nr`
+
 ```rust,noplaypen
 mod foo;
 
@@ -19,12 +20,14 @@ fn main() {
 }
 ```
 
-Filename : src/foo.nr
+Filename : `src/foo.nr`
+
 ```rust,noplaypen
 fn from_foo() {}
 ```
 
-In the above snippet, the crate root is the `src/main.nr` file. The compiler sees the module declaration `mod foo` which prompts it to look for a foo.nr file.
+In the above snippet, the crate root is the `src/main.nr` file.
+The compiler sees the module declaration `mod foo` which prompts it to look for a foo.nr file.
 
 Visually this module hierarchy looks like the following :
 
@@ -39,7 +42,8 @@ crate
 
 ### Sub-modules
 
-Filename : src/main.nr
+Filename : `src/main.nr`
+
 ```rust,noplaypen
 mod foo;
 
@@ -48,20 +52,22 @@ fn main() {
 }
 ```
 
-Filename : src/foo.nr
+Filename : `src/foo.nr`
+
 ```rust,noplaypen
 mod bar;
 fn from_foo() {}
 ```
 
-Filename : src/foo/bar.nr
+Filename : `src/foo/bar.nr`
+
 ```rust,noplaypen
 fn from_bar() {}
 ```
 
 In the above snippet, we have added an extra module to the module tree; `bar`. `bar` is a submodule of `foo` hence we declare bar in `foo.nr` with `mod bar`. Since `foo` is not the crate root, the compiler looks for the file associated with the `bar` module in `src/foo/bar.nr`
 
-Visually the module hierarchy looks as follows: 
+Visually the module hierarchy looks as follows:
 
 ```
 crate

@@ -2,20 +2,20 @@
 
 ## Table of Supported Operations
 
-| Operation      | Description          | Requirements     |
-| :-- | :-----------------:         | -----------: |
-|  +             | Adds two concealed types together   | Types must be concealed    |
-|  -             | Subtracts two concealed types together | Types must be concealed |
-|  *             | Multiplies two concealed types together | Types must be concealed |
-|  /             | Divides two concealed types together | Types must be concealed |
-|  ^             | XOR two concealed types together | Types must be integer |
-|  &             | AND two concealed types together | Types must be integer |
-|  <             | constrains one value to be less than the other | Upper bound must have a known bit size |
+| Operation       | Description                                                | Requirements                           |
+| :--             | :-----------------:                                        | -----------:                           |
+|  +              | Adds two concealed types together                          | Types must be concealed                |
+|  -              | Subtracts two concealed types together                     | Types must be concealed                |
+|  *              | Multiplies two concealed types together                    | Types must be concealed                |
+|  /              | Divides two concealed types together                       | Types must be concealed                |
+|  ^              | XOR two concealed types together                           | Types must be integer                  |
+|  &              | AND two concealed types together                           | Types must be integer                  |
+|  <              | constrains one value to be less than the other             | Upper bound must have a known bit size |
 |  <=             | constrains one value to be less than or equal to the other | Upper bound must have a known bit size |
-|  >             | constrains one value to be more than the other | Upper bound must have a known bit size |
+|  >              | constrains one value to be more than the other             | Upper bound must have a known bit size |
 |  >=             | constrains one value to be more than or equal to the other | Upper bound must have a known bit size |
-|  ==             | constrains one value to be equal to the other | Both types must not be constants |
-|  !=             | constrains one value to not be equal to the other | Both types must not be constants |
+|  ==             | constrains one value to be equal to the other              | Both types must not be constants       |
+|  !=             | constrains one value to not be equal to the other          | Both types must not be constants       |
 
 ### Predicate Operators
 
@@ -23,19 +23,19 @@
 
 ### Bitwise Operations Example
 
-```rust,noplaypen 
+```rust,noplaypen
 fn main(x : Field) {
     let y = x as u32;
     let z = y & y;
 }
 ```
 
-`z` is implicitly constrained to be the result of `y & y`. The `&` operand is used to denote bitwise `&`. 
+`z` is implicitly constrained to be the result of `y & y`. The `&` operand is used to denote bitwise `&`.
 
 > `x & x` would not compile as `x` is a Witness and not an integer type.
 
 ### Logical Operators
 
-Noir has no support for the logical operators `||` and `&&`. This is because encoding the short-circuiting that these
-operators require can be inefficient for Noir's backend. Instead you can use the bitwise operators `|` and `&` which
-operate indentically for booleans, just without the short-circuiting.
+Noir has no support for the logical operators `||` and `&&`.
+This is because encoding the short-circuiting that these operators require can be inefficient for Noir's backend.
+Instead you can use the bitwise operators `|` and `&` which operate indentically for booleans, just without the short-circuiting.
