@@ -151,17 +151,18 @@
 <p>Modules are used to organise files. Without modules all of your code would need to live in a single file. In Noir, the compiler does not automatically scan all of your files to detect modules. This must be done explicitly by the developer.</p>
 <h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
 <h3 id="importing-a-module-in-the-crate-root"><a class="header" href="#importing-a-module-in-the-crate-root">Importing a module in the crate root</a></h3>
-<p>Filename : src/main.nr</p>
+<p>Filename : <code>src/main.nr</code></p>
 <pre><code class="language-rust noplaypen">mod foo;
 
 fn main() {
     foo::hello_world();
 }
 </code></pre>
-<p>Filename : src/foo.nr</p>
+<p>Filename : <code>src/foo.nr</code></p>
 <pre><code class="language-rust noplaypen">fn from_foo() {}
 </code></pre>
-<p>In the above snippet, the crate root is the <code>src/main.nr</code> file. The compiler sees the module declaration <code>mod foo</code> which prompts it to look for a foo.nr file.</p>
+<p>In the above snippet, the crate root is the <code>src/main.nr</code> file.
+The compiler sees the module declaration <code>mod foo</code> which prompts it to look for a foo.nr file.</p>
 <p>Visually this module hierarchy looks like the following :</p>
 <pre><code>crate
  ├── main
@@ -171,22 +172,22 @@ fn main() {
       
 </code></pre>
 <h3 id="sub-modules"><a class="header" href="#sub-modules">Sub-modules</a></h3>
-<p>Filename : src/main.nr</p>
+<p>Filename : <code>src/main.nr</code></p>
 <pre><code class="language-rust noplaypen">mod foo;
 
 fn main() {
     foo::from_foo();
 }
 </code></pre>
-<p>Filename : src/foo.nr</p>
+<p>Filename : <code>src/foo.nr</code></p>
 <pre><code class="language-rust noplaypen">mod bar;
 fn from_foo() {}
 </code></pre>
-<p>Filename : src/foo/bar.nr</p>
+<p>Filename : <code>src/foo/bar.nr</code></p>
 <pre><code class="language-rust noplaypen">fn from_bar() {}
 </code></pre>
 <p>In the above snippet, we have added an extra module to the module tree; <code>bar</code>. <code>bar</code> is a submodule of <code>foo</code> hence we declare bar in <code>foo.nr</code> with <code>mod bar</code>. Since <code>foo</code> is not the crate root, the compiler looks for the file associated with the <code>bar</code> module in <code>src/foo/bar.nr</code></p>
-<p>Visually the module hierarchy looks as follows: </p>
+<p>Visually the module hierarchy looks as follows:</p>
 <pre><code>crate
  ├── main
  │
