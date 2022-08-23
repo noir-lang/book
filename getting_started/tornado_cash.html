@@ -146,28 +146,6 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="tornadocash"><a class="header" href="#tornadocash">TornadoCash</a></h1>
-<p>Let's show an example of the TornadoCash circuit in Noir.</p>
-<pre><code class="language-rust noplaypen">fn main(message : [62]u8, index : Field, hashpath : [40]Field, root : Field) {
-    let leaf = std::hash::hash_to_field(message);
-    let is_member = std::merkle::check_membership(root, leaf, index, hashpath);
-    constrain is_member == 1;
-}
-</code></pre>
-<p>The TornadoCash circuit involves a merkle membership proof that a leaf is in a merkle tree.</p>
-<p>The above code uses the noir standard library to call both of the aforementioned components.</p>
-<pre><code class="language-rust noplaypen">   let leaf = std::hash::hash_to_field(message);
-</code></pre>
-<p>The message is hashed using <code>hash_to_field</code>. The specific hash function that is being used is chosen by the backend. The only requirement is that this hash function can heuristically be used as a random oracle. If only collision resistance is needed, then one can call <code>std::hash::pedersen</code> instead.</p>
-<pre><code class="language-rust noplaypen">    let is_member = std::merkle::check_membership(root, leaf, index, hashpath);
-</code></pre>
-<p>The leaf is then passed to a check_membership proof with the root, index and hashpath. <code>is_member</code> returns 1 if the leaf is a member of the merkle tree with the specified root, at the given index.</p>
-<blockquote>
-<p><strong>Note:</strong> It is possible to re-implement the merkle tree implementation without standard library. However, for most usecases, it is enough. In general, the standard library will always opt to be as conservative as possible, while striking a balance between efficiency.</p>
-</blockquote>
-<p>An example, the merkle membership proof, only requires a hash function that has collision resistance, hence a hash function like Pedersen is allowed, which in most cases is more efficient than the even more conservative sha256.</p>
-<pre><code class="language-rust noplaypen">    constrain is_member == 1;
-</code></pre>
-<p>This last line, constrains the variable to be equal to 1. If 1 was changed to 0, this would create a proof that the leaf was not present at that specific index for that specific root. <em>Importantly, it would not prove that this leaf was not in the merkle tree.</em></p>
 
                     </main>
 
