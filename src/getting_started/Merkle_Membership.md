@@ -1,6 +1,6 @@
-# TornadoCash
+# Merkle Membership Proof
 
-Let's show an example of the TornadoCash circuit in Noir.
+Let's walk through an example of a merkle membership proof in Noir that proves that a given leaf is in a merkle tree.
 
 ```rust,noplaypen
 fn main(message : [62]u8, index : Field, hashpath : [40]Field, root : Field) {
@@ -9,8 +9,6 @@ fn main(message : [62]u8, index : Field, hashpath : [40]Field, root : Field) {
     constrain is_member == 1;
 }
 ```
-
-The TornadoCash circuit involves a merkle membership proof that a leaf is in a merkle tree.
 
 The above code uses the noir standard library to call both of the aforementioned components.
 
