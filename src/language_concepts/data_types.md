@@ -24,7 +24,7 @@ Note that private types are also referred to as witnesses.
 #### Field Type
 
 A field type corresponds to a native field type in the backend. Usually this is a roughly ~256 bit integer.
-This should generally be the default type reached for to solve problems as using a smaller integer type like `u64` incurs
+This should generally be the default type reached for to solve problems. Using a smaller integer type like `u64` incurs
 extra range constraints and so is less efficient rather than more.
 
 ```rust,noplaypen
@@ -56,7 +56,7 @@ If `y` exceeds the range \\([0,2^{24}-1]\\) then any proof created will output f
 #### Constants
 
 A constant type is a value that does not change per circuit instance. This is different to a witness which changes per proof.
-If a constant type that is being used in your program in changed, then your circuit will also change.
+If a constant type that is being used in your program is changed, then your circuit will also change.
 
 Below we show how to declare a constant value:
 
@@ -78,6 +78,34 @@ fn main() {
 
     // a inferred as a private Field here
     let mut a = 5;
+}
+```
+
+#### Global Constants
+
+Constants can also be global, however, they must be declare the `const` keyword and type annotated. They can then be used like any other constant inside functions. Global consts can also be used to specify array annotations for function parameters, and can be imported from submodules. 
+
+```rust,noplaypen
+const N: Field = 5;
+
+fn main(x : Field, y : [Field; N]) {
+    let res = x * N;
+
+    constrain res == y[0];
+
+    let res2 = x * mysubmodule::N;
+    constrain res != res2;
+}
+
+mod mysubmodule {
+    use dep::std;
+
+    const N: Field = 10;
+
+    fn my_helper() -> const Field {
+        let x = N;
+        x
+    }
 }
 ```
 
@@ -111,9 +139,9 @@ fn main(x : Field, y : Field) {
 }
 ```
 
-Note that currently Noir only supports arrays with integer or field elements.
+Note that currently Noir only supports arrays with integer or Field elements.
 
-> **Example:** An array of Witness types cannot be grouped together with an array of Integer types.
+> **Example:** An array of Field types cannot be grouped together with an array of Integer types.
 
 #### Structs
 

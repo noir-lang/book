@@ -53,7 +53,7 @@ y = "10"
 
 When the command `nargo prove my_proof` is executed, two processes happen:
 
-- First, Noir creates a proof that `x` which holds the value of `5` and `y` which holds the value of `10` is not equal.This not equal constraint is due to the line `constrain x != y`.
+- First, Noir creates a proof that `x` which holds the value of `5` and `y` which holds the value of `10` is not equal. This not equal constraint is due to the line `constrain x != y`.
 
 > **Note:** We have not expanded on the meaning of the syntax `constrain x != y` as it is not the focus of this chapter.
 

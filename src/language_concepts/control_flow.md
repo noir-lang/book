@@ -12,16 +12,23 @@ for i in 0..10 {
 }
 ```
 
-For loops are expressions, so each iteration of the loop produces a value which is collected into an array.
-
-The following code produces an array of 10 values, each element contains the same values from 0 to 9.
-
-```rust,noplaypen
-let my_arr = for i in 0..10 {
-    i
-};
-```
-
 ## If Expressions
 
-> Currently, these are not supported in the language.
+Noir supports `if-else` statements. The syntax is most similar to Rust's where it is not required for the statement's conditonal to be surrounded by parentheses.
+
+```rust,noplaypen
+let a = 0;
+let mut x: u32 = 0;
+
+if a == 0 {
+    if a != 0 {
+        x = 6;
+    } else {
+        x = 2;
+    }
+} else {
+    x = 5;
+    constrain x == 5;
+}
+constrain x == 2;
+```
