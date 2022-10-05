@@ -51,7 +51,7 @@ fn main(x : Field) {
 `x` and `y` are both private types (witnesses), however `y` is an integer type.
 If `y` exceeds the range \\([0,2^{24}-1]\\) then any proof created will output false by the verifier.
 
-> **Note:** The Aztec backend only supports even sized integer types currently, so while using the Aztec backend, only even sized integer types such as u32, u48 will produce proofs.
+> **Note:** The Aztec backend supports even and odd sized integer types, so while using the Aztec backend, even sized integer types such as u32, u48, as well as odd sized integer types such as u5, u3 will produce proofs.
 
 #### Constants
 
