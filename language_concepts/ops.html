@@ -154,15 +154,15 @@
 <tr><td align="left">/</td><td align="center">Divides two concealed types together</td><td align="right">Types must be concealed</td></tr>
 <tr><td align="left">^</td><td align="center">XOR two concealed types together</td><td align="right">Types must be integer</td></tr>
 <tr><td align="left">&amp;</td><td align="center">AND two concealed types together</td><td align="right">Types must be integer</td></tr>
-<tr><td align="left">&lt;</td><td align="center">constrains one value to be less than the other</td><td align="right">Upper bound must have a known bit size</td></tr>
-<tr><td align="left">&lt;=</td><td align="center">constrains one value to be less than or equal to the other</td><td align="right">Upper bound must have a known bit size</td></tr>
-<tr><td align="left">&gt;</td><td align="center">constrains one value to be more than the other</td><td align="right">Upper bound must have a known bit size</td></tr>
-<tr><td align="left">&gt;=</td><td align="center">constrains one value to be more than or equal to the other</td><td align="right">Upper bound must have a known bit size</td></tr>
-<tr><td align="left">==</td><td align="center">constrains one value to be equal to the other</td><td align="right">Both types must not be constants</td></tr>
-<tr><td align="left">!=</td><td align="center">constrains one value to not be equal to the other</td><td align="right">Both types must not be constants</td></tr>
+<tr><td align="left">&lt;</td><td align="center">returns a bool if one value is less than the other</td><td align="right">Upper bound must have a known bit size</td></tr>
+<tr><td align="left">&lt;=</td><td align="center">returns a bool if one value is less than or equal to the other</td><td align="right">Upper bound must have a known bit size</td></tr>
+<tr><td align="left">&gt;</td><td align="center">returns a bool if one value is more than the other</td><td align="right">Upper bound must have a known bit size</td></tr>
+<tr><td align="left">&gt;=</td><td align="center">returns a bool if one value is more than or equal to the other</td><td align="right">Upper bound must have a known bit size</td></tr>
+<tr><td align="left">==</td><td align="center">returns a bool if one value is equal to the other</td><td align="right">Both types must not be constants</td></tr>
+<tr><td align="left">!=</td><td align="center">returns a bool if one value is not equal to the other</td><td align="right">Both types must not be constants</td></tr>
 </tbody></table>
 <h3 id="predicate-operators"><a class="header" href="#predicate-operators">Predicate Operators</a></h3>
-<p><code>&lt;,&lt;=, !=, == , &gt;, &gt;=</code> are known are predicate/comparison operations because they compare two values. This differs from the operations such as <code>+</code> where the operands are used in <em>computation</em>.</p>
+<p><code>&lt;,&lt;=, !=, == , &gt;, &gt;=</code> are known as predicate/comparison operations because they compare two values. This differs from the operations such as <code>+</code> where the operands are used in <em>computation</em>.</p>
 <h3 id="bitwise-operations-example"><a class="header" href="#bitwise-operations-example">Bitwise Operations Example</a></h3>
 <pre><code class="language-rust noplaypen">fn main(x : Field) {
     let y = x as u32;
@@ -177,6 +177,19 @@
 <p>Noir has no support for the logical operators <code>||</code> and <code>&amp;&amp;</code>.
 This is because encoding the short-circuiting that these operators require can be inefficient for Noir's backend.
 Instead you can use the bitwise operators <code>|</code> and <code>&amp;</code> which operate indentically for booleans, just without the short-circuiting.</p>
+<pre><code class="language-rust noplaypen">let my_val = 5;
+
+let mut flag = 1;
+if (my_val &gt; 6) | (my_val == 0) {
+    flag = 0;
+}
+constrain flag == 1;
+
+if (my_val != 10) &amp; (my_val &lt; 50) {
+    flag = 0;
+}
+constrain flag == 0;
+</code></pre>
 
                     </main>
 

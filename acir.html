@@ -149,6 +149,17 @@
 <p>The purpose of ACIR is to act as an intermediate layer between the proof system that Noir chooses to compile to and the Noir syntax.
 This separation between proof system and programming language, allows those who want to integrate proof systems to have a stable target, moreover it allows the frontend to compile to any ACIR compatible proof system.</p>
 <p>ACIR additionally allows proof systems to supply a fixed list of optimised blackbox functions that the frontend can access. Examples of this would be SHA256, PEDERSEN and SCHNORRSIGVERIFY.</p>
+<h2 id="compiling-a-proof"><a class="header" href="#compiling-a-proof">Compiling a Proof</a></h2>
+<p>When inside of a given Noir project the command <code>nargo compile my_proof</code> will perform two processes.</p>
+<ul>
+<li>
+<p>First, compile the Noir program to its ACIR and solve the circuit's witness. </p>
+</li>
+<li>
+<p>Second, create a new <code>build/</code> directory to store the ACIR, <code>my_proof.acir</code>, and the solved witness, <code>my_proof.tr</code></p>
+</li>
+</ul>
+<p>These can be used by the Noir Typescript wrapper to generate a prover and verifier inside of Typescript rather than in Nargo. This will be discussed further in another section.</p>
 
                     </main>
 

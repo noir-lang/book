@@ -271,7 +271,7 @@ y = &quot;10&quot;
 </code></pre>
 <p>When the command <code>nargo prove my_proof</code> is executed, two processes happen:</p>
 <ul>
-<li>First, Noir creates a proof that <code>x</code> which holds the value of <code>5</code> and <code>y</code> which holds the value of <code>10</code> is not equal.This not equal constraint is due to the line <code>constrain x != y</code>.</li>
+<li>First, Noir creates a proof that <code>x</code> which holds the value of <code>5</code> and <code>y</code> which holds the value of <code>10</code> is not equal. This not equal constraint is due to the line <code>constrain x != y</code>.</li>
 </ul>
 <blockquote>
 <p><strong>Note:</strong> We have not expanded on the meaning of the syntax <code>constrain x != y</code> as it is not the focus of this chapter.</p>
@@ -362,7 +362,7 @@ So a <code>pub Field</code> would be visible to the Verifier while a <code>Field
 <p>Note that private types are also referred to as witnesses.</p>
 <h4 id="field-type"><a class="header" href="#field-type">Field Type</a></h4>
 <p>A field type corresponds to a native field type in the backend. Usually this is a roughly ~256 bit integer.
-This should generally be the default type reached for to solve problems as using a smaller integer type like <code>u64</code> incurs
+This should generally be the default type reached for to solve problems. Using a smaller integer type like <code>u64</code> incurs
 extra range constraints and so is less efficient rather than more.</p>
 <pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
     let z = x + y;
@@ -380,11 +380,11 @@ The Noir front-end currently supports arbitrary sized integer types.</p>
 <p><code>x</code> and <code>y</code> are both private types (witnesses), however <code>y</code> is an integer type.
 If <code>y</code> exceeds the range \([0,2^{24}-1]\) then any proof created will output false by the verifier.</p>
 <blockquote>
-<p><strong>Note:</strong> The Aztec backend only supports even sized integer types currently, so while using the Aztec backend, only even sized integer types such as u32, u48 will produce proofs.</p>
+<p><strong>Note:</strong> The Aztec backend supports even and odd sized integer types, so while using the Aztec backend, even sized integer types such as u32, u48, as well as odd sized integer types such as u5, u3 will produce proofs.</p>
 </blockquote>
 <h4 id="constants"><a class="header" href="#constants">Constants</a></h4>
 <p>A constant type is a value that does not change per circuit instance. This is different to a witness which changes per proof.
-If a constant type that is being used in your program in changed, then your circuit will also change.</p>
+If a constant type that is being used in your program is changed, then your circuit will also change.</p>
 <p>Below we show how to declare a constant value:</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let a: const Field = 5;
@@ -400,6 +400,30 @@ If a constant type that is being used in your program in changed, then your circ
 
     // a inferred as a private Field here
     let mut a = 5;
+}
+</code></pre>
+<h4 id="global-constants"><a class="header" href="#global-constants">Global Constants</a></h4>
+<p>Constants can also be global, however, they must be declare the <code>const</code> keyword and type annotated. They can then be used like any other constant inside functions. Global consts can also be used to specify array annotations for function parameters, and can be imported from submodules. </p>
+<pre><code class="language-rust noplaypen">const N: Field = 5;
+
+fn main(x : Field, y : [Field; N]) {
+    let res = x * N;
+
+    constrain res == y[0];
+
+    let res2 = x * mysubmodule::N;
+    constrain res != res2;
+}
+
+mod mysubmodule {
+    use dep::std;
+
+    const N: Field = 10;
+
+    fn my_helper() -&gt; const Field {
+        let x = N;
+        x
+    }
 }
 </code></pre>
 <h4 id="pub-modifier"><a class="header" href="#pub-modifier"><code>pub</code> Modifier</a></h4>
@@ -422,9 +446,9 @@ All values in an array must be of the same type; homogeneous.</p>
     let my_arr = [x, y];
 }
 </code></pre>
-<p>Note that currently Noir only supports arrays with integer or field elements.</p>
+<p>Note that currently Noir only supports arrays with integer or Field elements.</p>
 <blockquote>
-<p><strong>Example:</strong> An array of Witness types cannot be grouped together with an array of Integer types.</p>
+<p><strong>Example:</strong> An array of Field types cannot be grouped together with an array of Integer types.</p>
 </blockquote>
 <h4 id="structs"><a class="header" href="#structs">Structs</a></h4>
 <p>Structs can be used to group together multiple different types:</p>
@@ -546,16 +570,23 @@ fn main() {
     // do something
 }
 </code></pre>
-<p>For loops are expressions, so each iteration of the loop produces a value which is collected into an array.</p>
-<p>The following code produces an array of 10 values, each element contains the same values from 0 to 9.</p>
-<pre><code class="language-rust noplaypen">let my_arr = for i in 0..10 {
-    i
-};
-</code></pre>
 <h2 id="if-expressions"><a class="header" href="#if-expressions">If Expressions</a></h2>
-<blockquote>
-<p>Currently, these are not supported in the language.</p>
-</blockquote>
+<p>Noir supports <code>if-else</code> statements. The syntax is most similar to Rust's where it is not required for the statement's conditonal to be surrounded by parentheses.</p>
+<pre><code class="language-rust noplaypen">let a = 0;
+let mut x: u32 = 0;
+
+if a == 0 {
+    if a != 0 {
+        x = 6;
+    } else {
+        x = 2;
+    }
+} else {
+    x = 5;
+    constrain x == 5;
+}
+constrain x == 2;
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="operations"><a class="header" href="#operations">Operations</a></h1>
 <h2 id="table-of-supported-operations"><a class="header" href="#table-of-supported-operations">Table of Supported Operations</a></h2>
 <table><thead><tr><th align="left">Operation</th><th align="center">Description</th><th align="right">Requirements</th></tr></thead><tbody>
@@ -565,15 +596,15 @@ fn main() {
 <tr><td align="left">/</td><td align="center">Divides two concealed types together</td><td align="right">Types must be concealed</td></tr>
 <tr><td align="left">^</td><td align="center">XOR two concealed types together</td><td align="right">Types must be integer</td></tr>
 <tr><td align="left">&amp;</td><td align="center">AND two concealed types together</td><td align="right">Types must be integer</td></tr>
-<tr><td align="left">&lt;</td><td align="center">constrains one value to be less than the other</td><td align="right">Upper bound must have a known bit size</td></tr>
-<tr><td align="left">&lt;=</td><td align="center">constrains one value to be less than or equal to the other</td><td align="right">Upper bound must have a known bit size</td></tr>
-<tr><td align="left">&gt;</td><td align="center">constrains one value to be more than the other</td><td align="right">Upper bound must have a known bit size</td></tr>
-<tr><td align="left">&gt;=</td><td align="center">constrains one value to be more than or equal to the other</td><td align="right">Upper bound must have a known bit size</td></tr>
-<tr><td align="left">==</td><td align="center">constrains one value to be equal to the other</td><td align="right">Both types must not be constants</td></tr>
-<tr><td align="left">!=</td><td align="center">constrains one value to not be equal to the other</td><td align="right">Both types must not be constants</td></tr>
+<tr><td align="left">&lt;</td><td align="center">returns a bool if one value is less than the other</td><td align="right">Upper bound must have a known bit size</td></tr>
+<tr><td align="left">&lt;=</td><td align="center">returns a bool if one value is less than or equal to the other</td><td align="right">Upper bound must have a known bit size</td></tr>
+<tr><td align="left">&gt;</td><td align="center">returns a bool if one value is more than the other</td><td align="right">Upper bound must have a known bit size</td></tr>
+<tr><td align="left">&gt;=</td><td align="center">returns a bool if one value is more than or equal to the other</td><td align="right">Upper bound must have a known bit size</td></tr>
+<tr><td align="left">==</td><td align="center">returns a bool if one value is equal to the other</td><td align="right">Both types must not be constants</td></tr>
+<tr><td align="left">!=</td><td align="center">returns a bool if one value is not equal to the other</td><td align="right">Both types must not be constants</td></tr>
 </tbody></table>
 <h3 id="predicate-operators"><a class="header" href="#predicate-operators">Predicate Operators</a></h3>
-<p><code>&lt;,&lt;=, !=, == , &gt;, &gt;=</code> are known are predicate/comparison operations because they compare two values. This differs from the operations such as <code>+</code> where the operands are used in <em>computation</em>.</p>
+<p><code>&lt;,&lt;=, !=, == , &gt;, &gt;=</code> are known as predicate/comparison operations because they compare two values. This differs from the operations such as <code>+</code> where the operands are used in <em>computation</em>.</p>
 <h3 id="bitwise-operations-example"><a class="header" href="#bitwise-operations-example">Bitwise Operations Example</a></h3>
 <pre><code class="language-rust noplaypen">fn main(x : Field) {
     let y = x as u32;
@@ -588,6 +619,19 @@ fn main() {
 <p>Noir has no support for the logical operators <code>||</code> and <code>&amp;&amp;</code>.
 This is because encoding the short-circuiting that these operators require can be inefficient for Noir's backend.
 Instead you can use the bitwise operators <code>|</code> and <code>&amp;</code> which operate indentically for booleans, just without the short-circuiting.</p>
+<pre><code class="language-rust noplaypen">let my_val = 5;
+
+let mut flag = 1;
+if (my_val &gt; 6) | (my_val == 0) {
+    flag = 0;
+}
+constrain flag == 1;
+
+if (my_val != 10) &amp; (my_val &lt; 50) {
+    flag = 0;
+}
+constrain flag == 0;
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="constrain-statement"><a class="header" href="#constrain-statement">Constrain Statement</a></h1>
 <p>Noir includes a special keyword <code>constrain</code> which will explicitly constrain the predicate/comparison expression that follows to be true.
 If this expression is false at runtime, the program will fail to be proven.</p>
@@ -692,14 +736,21 @@ fn from_foo() {}
 <p>The purpose of ACIR is to act as an intermediate layer between the proof system that Noir chooses to compile to and the Noir syntax.
 This separation between proof system and programming language, allows those who want to integrate proof systems to have a stable target, moreover it allows the frontend to compile to any ACIR compatible proof system.</p>
 <p>ACIR additionally allows proof systems to supply a fixed list of optimised blackbox functions that the frontend can access. Examples of this would be SHA256, PEDERSEN and SCHNORRSIGVERIFY.</p>
+<h2 id="compiling-a-proof"><a class="header" href="#compiling-a-proof">Compiling a Proof</a></h2>
+<p>When inside of a given Noir project the command <code>nargo compile my_proof</code> will perform two processes.</p>
+<ul>
+<li>
+<p>First, compile the Noir program to its ACIR and solve the circuit's witness. </p>
+</li>
+<li>
+<p>Second, create a new <code>build/</code> directory to store the ACIR, <code>my_proof.acir</code>, and the solved witness, <code>my_proof.tr</code></p>
+</li>
+</ul>
+<p>These can be used by the Noir Typescript wrapper to generate a prover and verifier inside of Typescript rather than in Nargo. This will be discussed further in another section.</p>
 <div style="break-before: page; page-break-before: always;"></div><p><img src="./acir_diagram.png" alt="" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="features-coming-soon"><a class="header" href="#features-coming-soon">Features Coming Soon</a></h1>
-<h3 id="if-statement--ternary-expression"><a class="header" href="#if-statement--ternary-expression">If Statement / Ternary Expression</a></h3>
-<p>It is possible to emulate conditional branching with a multiplexer in Noir as of writing. However, this may not be intuitive for most. This can be sugared with an if statement or a ternary expression.</p>
-<h3 id="structures"><a class="header" href="#structures">Structures</a></h3>
-<p>Currently only primitives types are available. This does not hinder expressiveness, however for large circuits, readability will be harmed without structs. </p>
 <h3 id="isize"><a class="header" href="#isize">Isize</a></h3>
-<p>Signed integers such as i32 and i64 allow one to express more circuits.</p>
+<p>Signed integers such as i32 and i64 allow one to express more circuits. They are partially supported but need to be finalised. </p>
 <h3 id="recursion"><a class="header" href="#recursion">Recursion</a></h3>
 <p>Recursion is becoming feasible in circuits, hence Noir will have native support for it. Currently, only composition is supported. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="license"><a class="header" href="#license">LICENSE</a></h1>

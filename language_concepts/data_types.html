@@ -162,7 +162,7 @@ So a <code>pub Field</code> would be visible to the Verifier while a <code>Field
 <p>Note that private types are also referred to as witnesses.</p>
 <h4 id="field-type"><a class="header" href="#field-type">Field Type</a></h4>
 <p>A field type corresponds to a native field type in the backend. Usually this is a roughly ~256 bit integer.
-This should generally be the default type reached for to solve problems as using a smaller integer type like <code>u64</code> incurs
+This should generally be the default type reached for to solve problems. Using a smaller integer type like <code>u64</code> incurs
 extra range constraints and so is less efficient rather than more.</p>
 <pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
     let z = x + y;
@@ -180,11 +180,11 @@ The Noir front-end currently supports arbitrary sized integer types.</p>
 <p><code>x</code> and <code>y</code> are both private types (witnesses), however <code>y</code> is an integer type.
 If <code>y</code> exceeds the range \([0,2^{24}-1]\) then any proof created will output false by the verifier.</p>
 <blockquote>
-<p><strong>Note:</strong> The Aztec backend only supports even sized integer types currently, so while using the Aztec backend, only even sized integer types such as u32, u48 will produce proofs.</p>
+<p><strong>Note:</strong> The Aztec backend supports even and odd sized integer types, so while using the Aztec backend, even sized integer types such as u32, u48, as well as odd sized integer types such as u5, u3 will produce proofs.</p>
 </blockquote>
 <h4 id="constants"><a class="header" href="#constants">Constants</a></h4>
 <p>A constant type is a value that does not change per circuit instance. This is different to a witness which changes per proof.
-If a constant type that is being used in your program in changed, then your circuit will also change.</p>
+If a constant type that is being used in your program is changed, then your circuit will also change.</p>
 <p>Below we show how to declare a constant value:</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let a: const Field = 5;
@@ -200,6 +200,30 @@ If a constant type that is being used in your program in changed, then your circ
 
     // a inferred as a private Field here
     let mut a = 5;
+}
+</code></pre>
+<h4 id="global-constants"><a class="header" href="#global-constants">Global Constants</a></h4>
+<p>Constants can also be global, however, they must be declare the <code>const</code> keyword and type annotated. They can then be used like any other constant inside functions. Global consts can also be used to specify array annotations for function parameters, and can be imported from submodules. </p>
+<pre><code class="language-rust noplaypen">const N: Field = 5;
+
+fn main(x : Field, y : [Field; N]) {
+    let res = x * N;
+
+    constrain res == y[0];
+
+    let res2 = x * mysubmodule::N;
+    constrain res != res2;
+}
+
+mod mysubmodule {
+    use dep::std;
+
+    const N: Field = 10;
+
+    fn my_helper() -&gt; const Field {
+        let x = N;
+        x
+    }
 }
 </code></pre>
 <h4 id="pub-modifier"><a class="header" href="#pub-modifier"><code>pub</code> Modifier</a></h4>
@@ -222,9 +246,9 @@ All values in an array must be of the same type; homogeneous.</p>
     let my_arr = [x, y];
 }
 </code></pre>
-<p>Note that currently Noir only supports arrays with integer or field elements.</p>
+<p>Note that currently Noir only supports arrays with integer or Field elements.</p>
 <blockquote>
-<p><strong>Example:</strong> An array of Witness types cannot be grouped together with an array of Integer types.</p>
+<p><strong>Example:</strong> An array of Field types cannot be grouped together with an array of Integer types.</p>
 </blockquote>
 <h4 id="structs"><a class="header" href="#structs">Structs</a></h4>
 <p>Structs can be used to group together multiple different types:</p>
