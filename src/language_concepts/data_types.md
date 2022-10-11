@@ -23,7 +23,7 @@ Note that private types are also referred to as witnesses.
 
 #### Field Type
 
-A field type corresponds to a native field type in the backend. Usually this is a roughly ~256 bit integer.
+A field type corresponds to a native field type in the backend. Usually this is a (roughly) 256-bit integer.
 This should generally be the default type reached for to solve problems. Using a smaller integer type like `u64` incurs
 extra range constraints and so is less efficient rather than more.
 
