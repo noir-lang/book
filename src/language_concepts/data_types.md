@@ -1,6 +1,6 @@
 # Data types
 
-Noir has several varieties of data types: the primitive Field type, integer types, `bool`, arrays, structs, and tuple types.
+Noir has several varieties of data types: the primitive `Field` type, integer types, `bool`, arrays, structs, and tuple types.
 
 Although each value in a constraint system is fundamentally a field element, we add a layer of abstraction over this;
 each value can be _concealed_ (a private type) or _revealed_ (a public type).
