@@ -24,7 +24,7 @@ fn foo(x : Field, y : pub Field) -> Field {
 }
 ```
 
-Note that a `return` keyword is unneeded - the last expression in a function's body is returned.
+Note that a `return` keyword is unneeded in this case - the last expression in a function's body is returned.
 
 ## Call Expressions
 
