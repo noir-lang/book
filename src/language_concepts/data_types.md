@@ -83,7 +83,7 @@ fn main() {
 
 #### Global Constants
 
-Constants can also be global, however, they must be declare the `const` keyword and type annotated. They can then be used like any other constant inside functions. Global consts can also be used to specify array annotations for function parameters, and can be imported from submodules. 
+Constants can also be global; however, they must be declared `const` and explicitly type annotated. They can then be used like any other constant inside functions. Global consts can also be used to specify array annotations for function parameters and can be imported from submodules. 
 
 ```rust,noplaypen
 const N: Field = 5;
