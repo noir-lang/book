@@ -32,7 +32,7 @@ fn main(x : Field) {
 
 `z` is implicitly constrained to be the result of `y & y`. The `&` operand is used to denote bitwise `&`.
 
-> `x & x` would not compile as `x` is a Witness and not an integer type.
+> `x & x` would not compile as `x` is a `Field` and not an integer type.
 
 ### Logical Operators
 
