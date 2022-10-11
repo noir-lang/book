@@ -30,7 +30,7 @@ Note that a `return` keyword is unneeded in this case - the last expression in a
 
 Calling a function in Noir is executed by using the function name and passing in the necessary arguments.
 
-Below we show how to call the `foo` function from the main function using a call expression:
+Below we show how to call the `foo` function from the `main` function using a call expression:
 
 ```rust,noplaypen
 fn main(x : Field, y : Field) {
