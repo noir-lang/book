@@ -16,7 +16,7 @@ The `mut` modifier can also apply to patterns:
 
 ```rust,noplaypen
 let (a, mut b) = (1, 2);
-a = 11; // error: x must be mutable to be assigned to
+a = 11; // error: a must be mutable to be assigned to
 b = 12; // OK
 
 let mut (c, d) = (3, 4);
