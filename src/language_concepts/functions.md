@@ -16,7 +16,7 @@ Multiple parameters are separated using a comma.
 fn foo(x : Field, y : pub Field){}
 ```
 
-The return type of a function can be stated by using the `->` arrow notation. The function below states that the foo function must return a Witness. If the function returns no value, then the arrow is omitted.
+The return type of a function can be stated by using the `->` arrow notation. The function below states that the foo function must return a `Field`. If the function returns no value, then the arrow is omitted.
 
 ```rust,noplaypen
 fn foo(x : Field, y : pub Field) -> Field {
