@@ -139,9 +139,9 @@ fn main(x : Field, y : Field) {
 }
 ```
 
-Note that currently Noir only supports arrays with integer or Field elements.
+Note that currently Noir only supports arrays with integer or `Field` elements.
 
-> **Example:** An array of Field types cannot be grouped together with an array of Integer types.
+> **Example:** An array of `Field` types cannot be grouped together with an array of integer types.
 
 #### Structs
 
@@ -179,7 +179,7 @@ fn main() {
 
 #### Tuples
 
-Noir also supports tuples which can be thought of as anonymous structs with integers as field names.
+Noir also supports tuples, which can be thought of as anonymous structs with integers as field names.
 
 ```rust,noplaypen
 fn main() {
