@@ -131,7 +131,7 @@ Noir also supports arrays, structs, and tuples whose elements may be public or p
 #### Arrays
 
 An array is a data structure which allows you to group together data types.
-All values in an array must be of the same type; homogeneous.
+All values in an array must be of the same type (i.e., they're homogeneous).
 
 ```rust,noplaypen
 fn main(x : Field, y : Field) {
