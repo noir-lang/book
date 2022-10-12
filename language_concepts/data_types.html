@@ -146,7 +146,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="data-types"><a class="header" href="#data-types">Data types</a></h1>
-<p>Noir has several varieties of data types: the primitive Field type, integer types, <code>bool</code>, arrays, structs, and tuple types.</p>
+<p>Noir has several varieties of data types: the primitive <code>Field</code> type, integer types, <code>bool</code>, arrays, structs, and tuple types.</p>
 <p>Although each value in a constraint system is fundamentally a field element, we add a layer of abstraction over this;
 each value can be <em>concealed</em> (a private type) or <em>revealed</em> (a public type).</p>
 <p>A <strong>private value</strong> is known only to the Prover, while, a <strong>public value</strong> is known by the Prover and Verifier.
@@ -161,7 +161,7 @@ So a <code>pub Field</code> would be visible to the Verifier while a <code>Field
 <p>Any of these types can be private (the default) or public (via a <code>pub</code> modifier).</p>
 <p>Note that private types are also referred to as witnesses.</p>
 <h4 id="field-type"><a class="header" href="#field-type">Field Type</a></h4>
-<p>A field type corresponds to a native field type in the backend. Usually this is a roughly ~256 bit integer.
+<p>A field type corresponds to a native field type in the backend. Usually this is a (roughly) 256-bit integer.
 This should generally be the default type reached for to solve problems. Using a smaller integer type like <code>u64</code> incurs
 extra range constraints and so is less efficient rather than more.</p>
 <pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
@@ -203,7 +203,7 @@ If a constant type that is being used in your program is changed, then your circ
 }
 </code></pre>
 <h4 id="global-constants"><a class="header" href="#global-constants">Global Constants</a></h4>
-<p>Constants can also be global, however, they must be declare the <code>const</code> keyword and type annotated. They can then be used like any other constant inside functions. Global consts can also be used to specify array annotations for function parameters, and can be imported from submodules. </p>
+<p>Constants can also be global; however, they must be declared <code>const</code> and explicitly type annotated. They can then be used like any other constant inside functions. Global consts can also be used to specify array annotations for function parameters and can be imported from submodules. </p>
 <pre><code class="language-rust noplaypen">const N: Field = 5;
 
 fn main(x : Field, y : [Field; N]) {
@@ -241,14 +241,14 @@ In the code, they are treated no differently to witness types.</p>
 <p>Noir also supports arrays, structs, and tuples whose elements may be public or private.</p>
 <h4 id="arrays"><a class="header" href="#arrays">Arrays</a></h4>
 <p>An array is a data structure which allows you to group together data types.
-All values in an array must be of the same type; homogeneous.</p>
+All values in an array must be of the same type (i.e., they're homogeneous).</p>
 <pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
     let my_arr = [x, y];
 }
 </code></pre>
-<p>Note that currently Noir only supports arrays with integer or Field elements.</p>
+<p>Note that currently Noir only supports arrays with integer or <code>Field</code> elements.</p>
 <blockquote>
-<p><strong>Example:</strong> An array of Field types cannot be grouped together with an array of Integer types.</p>
+<p><strong>Example:</strong> An array of <code>Field</code> types cannot be grouped together with an array of integer types.</p>
 </blockquote>
 <h4 id="structs"><a class="header" href="#structs">Structs</a></h4>
 <p>Structs can be used to group together multiple different types:</p>
@@ -278,7 +278,7 @@ fn main() {
 }
 </code></pre>
 <h4 id="tuples"><a class="header" href="#tuples">Tuples</a></h4>
-<p>Noir also supports tuples which can be thought of as anonymous structs with integers as field names.</p>
+<p>Noir also supports tuples, which can be thought of as anonymous structs with integers as field names.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let tuple = (1, 2);
     let (a, b) = tuple;

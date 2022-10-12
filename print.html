@@ -317,7 +317,7 @@ let y = 4; // OK
 </code></pre>
 <p>The <code>mut</code> modifier can also apply to patterns:</p>
 <pre><code class="language-rust noplaypen">let (a, mut b) = (1, 2);
-a = 11; // error: x must be mutable to be assigned to
+a = 11; // error: a must be mutable to be assigned to
 b = 12; // OK
 
 let mut (c, d) = (3, 4);
@@ -346,7 +346,7 @@ Noir aims to <em>closely</em> mirror this setting without applying additional ov
 Modeling a mutable reference is not as straightforward as on conventional architectures and
 would incur some possibly unexpected overhead.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="data-types"><a class="header" href="#data-types">Data types</a></h1>
-<p>Noir has several varieties of data types: the primitive Field type, integer types, <code>bool</code>, arrays, structs, and tuple types.</p>
+<p>Noir has several varieties of data types: the primitive <code>Field</code> type, integer types, <code>bool</code>, arrays, structs, and tuple types.</p>
 <p>Although each value in a constraint system is fundamentally a field element, we add a layer of abstraction over this;
 each value can be <em>concealed</em> (a private type) or <em>revealed</em> (a public type).</p>
 <p>A <strong>private value</strong> is known only to the Prover, while, a <strong>public value</strong> is known by the Prover and Verifier.
@@ -361,7 +361,7 @@ So a <code>pub Field</code> would be visible to the Verifier while a <code>Field
 <p>Any of these types can be private (the default) or public (via a <code>pub</code> modifier).</p>
 <p>Note that private types are also referred to as witnesses.</p>
 <h4 id="field-type"><a class="header" href="#field-type">Field Type</a></h4>
-<p>A field type corresponds to a native field type in the backend. Usually this is a roughly ~256 bit integer.
+<p>A field type corresponds to a native field type in the backend. Usually this is a (roughly) 256-bit integer.
 This should generally be the default type reached for to solve problems. Using a smaller integer type like <code>u64</code> incurs
 extra range constraints and so is less efficient rather than more.</p>
 <pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
@@ -403,7 +403,7 @@ If a constant type that is being used in your program is changed, then your circ
 }
 </code></pre>
 <h4 id="global-constants"><a class="header" href="#global-constants">Global Constants</a></h4>
-<p>Constants can also be global, however, they must be declare the <code>const</code> keyword and type annotated. They can then be used like any other constant inside functions. Global consts can also be used to specify array annotations for function parameters, and can be imported from submodules. </p>
+<p>Constants can also be global; however, they must be declared <code>const</code> and explicitly type annotated. They can then be used like any other constant inside functions. Global consts can also be used to specify array annotations for function parameters and can be imported from submodules. </p>
 <pre><code class="language-rust noplaypen">const N: Field = 5;
 
 fn main(x : Field, y : [Field; N]) {
@@ -441,14 +441,14 @@ In the code, they are treated no differently to witness types.</p>
 <p>Noir also supports arrays, structs, and tuples whose elements may be public or private.</p>
 <h4 id="arrays"><a class="header" href="#arrays">Arrays</a></h4>
 <p>An array is a data structure which allows you to group together data types.
-All values in an array must be of the same type; homogeneous.</p>
+All values in an array must be of the same type (i.e., they're homogeneous).</p>
 <pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
     let my_arr = [x, y];
 }
 </code></pre>
-<p>Note that currently Noir only supports arrays with integer or Field elements.</p>
+<p>Note that currently Noir only supports arrays with integer or <code>Field</code> elements.</p>
 <blockquote>
-<p><strong>Example:</strong> An array of Field types cannot be grouped together with an array of Integer types.</p>
+<p><strong>Example:</strong> An array of <code>Field</code> types cannot be grouped together with an array of integer types.</p>
 </blockquote>
 <h4 id="structs"><a class="header" href="#structs">Structs</a></h4>
 <p>Structs can be used to group together multiple different types:</p>
@@ -478,7 +478,7 @@ fn main() {
 }
 </code></pre>
 <h4 id="tuples"><a class="header" href="#tuples">Tuples</a></h4>
-<p>Noir also supports tuples which can be thought of as anonymous structs with integers as field names.</p>
+<p>Noir also supports tuples, which can be thought of as anonymous structs with integers as field names.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let tuple = (1, 2);
     let (a, b) = tuple;
@@ -506,15 +506,15 @@ The parameter is pre-pended with a colon and the parameter type.
 Multiple parameters are separated using a comma.</p>
 <pre><code class="language-rust noplaypen">fn foo(x : Field, y : pub Field){}
 </code></pre>
-<p>The return type of a function can be stated by using the <code>-&gt;</code> arrow notation. The function below states that the foo function must return a Witness. If the function returns no value, then the arrow is omitted.</p>
+<p>The return type of a function can be stated by using the <code>-&gt;</code> arrow notation. The function below states that the foo function must return a <code>Field</code>. If the function returns no value, then the arrow is omitted.</p>
 <pre><code class="language-rust noplaypen">fn foo(x : Field, y : pub Field) -&gt; Field {
     x + y
 }
 </code></pre>
-<p>Note that a <code>return</code> keyword is unneeded - the last expression in a function's body is returned.</p>
+<p>Note that a <code>return</code> keyword is unneeded in this case - the last expression in a function's body is returned.</p>
 <h2 id="call-expressions"><a class="header" href="#call-expressions">Call Expressions</a></h2>
-<p>Calling a function in noir is executed by using the function name and passing the necessary arguments the function header.</p>
-<p>Below we show how to call the <code>foo</code> function from the main function using a call expression:</p>
+<p>Calling a function in Noir is executed by using the function name and passing in the necessary arguments.</p>
+<p>Below we show how to call the <code>foo</code> function from the <code>main</code> function using a call expression:</p>
 <pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
     let z = foo(x);
 }
@@ -552,7 +552,7 @@ fn main() {
 <pre><code class="language-rust noplaypen">constrain MyStruct::sum(s) == 42
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="comments"><a class="header" href="#comments">Comments</a></h1>
-<p>A comment is a line in your codebase which the compiler ignores, however it can be seen read by programmers.</p>
+<p>A comment is a line in your codebase which the compiler ignores, however it can be read by programmers.</p>
 <p>Here is a single line comment:</p>
 <pre><code class="language-rust noplaypen">// This is a comment and is ignored
 </code></pre>
@@ -564,8 +564,8 @@ fn main() {
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h1>
 <h2 id="loops"><a class="header" href="#loops">Loops</a></h2>
-<p>Noir has one kind of loop, the <code>for-loop</code>. For loops allow you to repeat a block of code multiple times.</p>
-<p>The following block of code between the braces is ran 10 times.</p>
+<p>Noir has one kind of loop: the <code>for</code> loop. <code>for</code> loops allow you to repeat a block of code multiple times.</p>
+<p>The following block of code between the braces is run 10 times.</p>
 <pre><code class="language-rust noplaypen">for i in 0..10 {
     // do something
 }
@@ -613,7 +613,7 @@ constrain x == 2;
 </code></pre>
 <p><code>z</code> is implicitly constrained to be the result of <code>y &amp; y</code>. The <code>&amp;</code> operand is used to denote bitwise <code>&amp;</code>.</p>
 <blockquote>
-<p><code>x &amp; x</code> would not compile as <code>x</code> is a Witness and not an integer type.</p>
+<p><code>x &amp; x</code> would not compile as <code>x</code> is a <code>Field</code> and not an integer type.</p>
 </blockquote>
 <h3 id="logical-operators"><a class="header" href="#logical-operators">Logical Operators</a></h3>
 <p>Noir has no support for the logical operators <code>||</code> and <code>&amp;&amp;</code>.
