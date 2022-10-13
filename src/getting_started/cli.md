@@ -11,13 +11,13 @@ Alternatively, if you intend to perform the same interactions in TypeScript, you
 2. Download Noir's source code from Github by running:
 
    ```bash
-   git clone git@github.com:noir-lang/noir.git
+   $ git clone git@github.com:noir-lang/noir.git
    ```
 
 3. Change directory into the nargo crate by running:
 
    ```bash
-   cd noir/crates/nargo
+   $ cd noir/crates/nargo
    ```
 
 There are then two approaches to proceed, differing in how the proving backend is installed:
@@ -63,7 +63,7 @@ For macOS users, installing [Homebrew] is highly recommended.
    _macOS_
 
    ```bash
-   brew install cmake llvm libomp
+   $ brew install cmake llvm libomp
    ```
 
 [barretenberg]: https://github.com/AztecProtocol/aztec-connect/tree/master/barretenberg
@@ -77,11 +77,11 @@ For macOS users, installing [Homebrew] is highly recommended.
 5. Install nargo by running:
 
    ```bash
-   cargo install --locked --path=.
+   $ cargo install --locked --path=.
    ```
 
 6. Check if the installation was successful by running:
 
    ```bash
-   nargo help
+   $ nargo help
    ```
