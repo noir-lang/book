@@ -57,7 +57,6 @@ For macOS users, installing [Homebrew] is highly recommended.
    && make install \
    && cd ../.. && rm -rf llvm-project
    ```
-
    --->
 
    _macOS_
