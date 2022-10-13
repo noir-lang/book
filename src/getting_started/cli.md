@@ -40,7 +40,7 @@ There are then two approaches to proceed, differing in how the proving backend i
 
 The [barretenberg] proving backend is written in C++, hence compiling it from source would first require certain dependencies to be installed.
 
-For macOS users, installing [Homebrew] is highly recommended.
+For macOS users, installing through [Homebrew] is highly recommended.
 
 4. Install [CMake], [LLVM] and [OpenMP] by running:
 
