@@ -3,7 +3,7 @@
 [The Noir Programming Language](index.md)
 
 - [Getting Started](getting_started.md)
-  - [Command Line Tool](getting_started/install.md)
+  - [Command Line Tool](getting_started/cli.md)
   - [Hello, World](getting_started/hello_world.md)
     - [Breakdown](getting_started/breakdown.md)
   - [TornadoCash](getting_started/tornado_cash.md)

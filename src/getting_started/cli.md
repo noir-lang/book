@@ -1,8 +1,10 @@
-# Command Line Tool - Nargo
+# Command Line Tool: nargo
+
+`nargo` is a command line tool for interacting with Noir programs (e.g. compiling, proving, verifying and more).
+
+Alternatively, if you intend to perform the same interactions in TypeScript, you can skip the installations below.
 
 ## Setup
-
-`Nargo` is used for interacting with Noir programs from the command line. Alternatively, Noir program interactions can also be performed using TypeScript where the following installations are not required.
 
 1. Install [Rust](https://www.rust-lang.org/tools/install)
 
@@ -18,7 +20,7 @@
    cd noir/crates/nargo
    ```
 
-There are then two approaches to proceed, differing in how the proving backend is installed.
+There are then two approaches to proceed, differing in how the proving backend is installed:
 
 ## Option 1: WASM Executable Backend
 
@@ -26,23 +28,26 @@ There are then two approaches to proceed, differing in how the proving backend i
 
 4. Go into `nargo/Cargo.toml` and replace `aztec_backend = ...` with the following:
 
-```
-aztec_backend = { optional = true, git = "https://github.com/noir-lang/aztec_backend", features = ["wasm-base"] , default-features = false }
-```
+   ```
+   aztec_backend = { optional = true, git = "https://github.com/noir-lang/aztec_backend", features = ["wasm-base"] , default-features = false }
+   ```
 
-> **Note:** `nargo contract` is not implemented yet for wasm-base nargo installations.
+> **Note:** `nargo contract` has not been implemented yet for _wasm-base_ `nargo` installations.
 
 ## Option 2: Compile Backend from Source
 
 **Platforms Supported:** Linux, macOS
 
-The [barretenberg] backend is written in C++, hence compiling it from source would first require certain dependencies to be installed.
+The [barretenberg] proving backend is written in C++, hence compiling it from source would first require certain dependencies to be installed.
 
 For macOS users, installing [Homebrew] is highly recommended.
 
-4. Install [CMake], [LLVM] and [OpenMP]
+4. Install [CMake], [LLVM] and [OpenMP] by running:
 
-   _Linux_
+   <!---
+   TODO: Supplement Linux scripts.
+
+   Linux's command for openMP from barretenberg's GitHub README:
 
    ```bash
    RUN git clone -b release/10.x --depth 1 https://github.com/llvm/llvm-project.git \
@@ -52,6 +57,8 @@ For macOS users, installing [Homebrew] is highly recommended.
    && make install \
    && cd ../.. && rm -rf llvm-project
    ```
+
+   --->
 
    _macOS_
 
