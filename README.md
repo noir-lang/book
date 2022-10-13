@@ -10,9 +10,9 @@ You can read the book here: https://noir-lang.github.io/book/
 
 The book is deployed using [peaceiris's GitHub Pages Action](https://github.com/peaceiris/actions-gh-pages).
 
-## Local Build
+## Local Serve
 
-Alternatively, the book can also be built and viewed locally.
+Alternatively, the book can also be served and viewed locally.
 
 ### Requirements
 
@@ -23,35 +23,17 @@ Alternatively, the book can also be built and viewed locally.
   $ cargo install mdbook
   ```
 
-### Building
+### Serve
 
-To build the book, run:
-
-```bash
-$ mdbook build
-```
-
-The output will be in the `book` subdirectory. To check it out, open it in your web browser.
-
-You can open the `index.html` in the subdirectory from your GUI, or alternatively using commands:
-
-_Firefox_
+To serve the book, run:
 
 ```bash
-$ firefox book/index.html                       # Linux
-$ open -a "Firefox" book/index.html             # macOS
-$ Start-Process "firefox.exe" .\book\index.html # Windows (PowerShell)
-$ start firefox.exe .\book\index.html           # Windows (Cmd)
+$ mdbook serve --open
 ```
 
-_Chrome_
+A local server will start and hot-builds your local book. The `--open` flag will open the book in your default web browser.
 
-```bash
-$ google-chrome book/index.html                 # Linux
-$ open -a "Google Chrome" book/index.html       # macOS
-$ Start-Process "chrome.exe" .\book\index.html  # Windows (PowerShell)
-$ start chrome.exe .\book\index.html            # Windows (Cmd)
-```
+To learn more about mdBook, visit [mdBook Documentation](https://rust-lang.github.io/mdBook/).
 
 ## Get In Touch
 
