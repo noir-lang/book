@@ -1,4 +1,4 @@
-# Installing Nargo
+# Command Line Tool - Nargo
 
 ## Setup
 
@@ -27,7 +27,7 @@ There are then two approaches to proceed, differing in how the proving backend i
 4. Go into `nargo/Cargo.toml` and replace `aztec_backend = ...` with the following:
 
 ```
-aztec_backend = { optional = true, git = "https://github.com/noir-lang/aztec_backend", features = ["wasm-base"] , default-features = false}
+aztec_backend = { optional = true, git = "https://github.com/noir-lang/aztec_backend", features = ["wasm-base"] , default-features = false }
 ```
 
 > **Note:** `nargo contract` is not implemented yet for wasm-base nargo installations.
