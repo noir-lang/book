@@ -81,6 +81,25 @@ For macOS users, installing [Homebrew] is highly recommended.
 
 6. Check if the installation was successful by running:
 
-   ```bash
+   ```
    $ nargo help
+   nargo 0.1
+   Kevaundray Wedderburn <kevtheappdev@gmail.com>
+   Noir's package manager
+
+   USAGE:
+      nargo [SUBCOMMAND]
+
+   FLAGS:
+      -h, --help       Prints help information
+      -V, --version    Prints version information
+
+   SUBCOMMANDS:
+      build       Builds the constraint system
+      compile     Compile the program and its secret execution trace into ACIR format
+      contract    Creates the smart contract code for circuit
+      help        Prints this message or the help of the given subcommand(s)
+      new         Create a new binary project
+      prove       Create proof for this program
+      verify      Given a proof and a program, verify whether the proof is valid
    ```
