@@ -3,7 +3,9 @@
 [The Noir Programming Language](index.md)
 
 - [Getting Started](getting_started.md)
-  - [Command Line Tool](getting_started/cli.md)
+  - [Nargo](getting_started/nargo.md)
+    - [Installation](getting_started/nargo/installation.md)
+    - [Commands](getting_started/nargo/commands.md)
   - [Hello, World](getting_started/hello_world.md)
     - [Breakdown](getting_started/breakdown.md)
   - [TornadoCash](getting_started/tornado_cash.md)

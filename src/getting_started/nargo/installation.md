@@ -1,8 +1,4 @@
-# Command Line Tool: nargo
-
-`nargo` is a command line tool for interacting with Noir programs (e.g. compiling, proving, verifying and more).
-
-Alternatively, if you intend to perform the same interactions in TypeScript, you can skip the installations below.
+# Installation
 
 ## Setup
 
