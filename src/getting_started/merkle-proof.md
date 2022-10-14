@@ -33,3 +33,5 @@ An example, the merkle membership proof, only requires a hash function that has 
 ```
 
 This last line, constrains the variable to be equal to 1. If 1 was changed to 0, this would create a proof that the leaf was not present at that specific index for that specific root. _Importantly, it would not prove that this leaf was not in the merkle tree._
+
+Example Project: <https://github.com/vezenovm/simple_shield>
