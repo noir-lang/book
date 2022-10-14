@@ -1,6 +1,6 @@
 # Comments
 
-A comment is a line in your codebase which the compiler ignores, however it can be seen read by programmers.
+A comment is a line in your codebase which the compiler ignores, however it can be read by programmers.
 
 Here is a single line comment:
 

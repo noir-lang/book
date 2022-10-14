@@ -2,9 +2,9 @@
 
 ## Loops
 
-Noir has one kind of loop, the `for-loop`. For loops allow you to repeat a block of code multiple times.
+Noir has one kind of loop: the `for` loop. `for` loops allow you to repeat a block of code multiple times.
 
-The following block of code between the braces is ran 10 times.
+The following block of code between the braces is run 10 times.
 
 ```rust,noplaypen
 for i in 0..10 {

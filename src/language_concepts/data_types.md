@@ -1,6 +1,6 @@
 # Data types
 
-Noir has several varieties of data types: the primitive Field type, integer types, `bool`, arrays, structs, and tuple types.
+Noir has several varieties of data types: the primitive `Field` type, integer types, `bool`, arrays, structs, and tuple types.
 
 Although each value in a constraint system is fundamentally a field element, we add a layer of abstraction over this;
 each value can be _concealed_ (a private type) or _revealed_ (a public type).
@@ -23,7 +23,7 @@ Note that private types are also referred to as witnesses.
 
 #### Field Type
 
-A field type corresponds to a native field type in the backend. Usually this is a roughly ~256 bit integer.
+A field type corresponds to a native field type in the backend. Usually this is a (roughly) 256-bit integer.
 This should generally be the default type reached for to solve problems. Using a smaller integer type like `u64` incurs
 extra range constraints and so is less efficient rather than more.
 
@@ -83,7 +83,7 @@ fn main() {
 
 #### Global Constants
 
-Constants can also be global, however, they must be declare the `const` keyword and type annotated. They can then be used like any other constant inside functions. Global consts can also be used to specify array annotations for function parameters, and can be imported from submodules. 
+Constants can also be global; however, they must be declared `const` and explicitly type annotated. They can then be used like any other constant inside functions. Global consts can also be used to specify array annotations for function parameters and can be imported from submodules. 
 
 ```rust,noplaypen
 const N: Field = 5;
@@ -131,7 +131,7 @@ Noir also supports arrays, structs, and tuples whose elements may be public or p
 #### Arrays
 
 An array is a data structure which allows you to group together data types.
-All values in an array must be of the same type; homogeneous.
+All values in an array must be of the same type (i.e., they're homogeneous).
 
 ```rust,noplaypen
 fn main(x : Field, y : Field) {
@@ -139,9 +139,9 @@ fn main(x : Field, y : Field) {
 }
 ```
 
-Note that currently Noir only supports arrays with integer or Field elements.
+Note that currently Noir only supports arrays with integer or `Field` elements.
 
-> **Example:** An array of Field types cannot be grouped together with an array of Integer types.
+> **Example:** An array of `Field` types cannot be grouped together with an array of integer types.
 
 #### Structs
 
@@ -179,7 +179,7 @@ fn main() {
 
 #### Tuples
 
-Noir also supports tuples which can be thought of as anonymous structs with integers as field names.
+Noir also supports tuples, which can be thought of as anonymous structs with integers as field names.
 
 ```rust,noplaypen
 fn main() {

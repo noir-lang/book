@@ -16,7 +16,7 @@ Multiple parameters are separated using a comma.
 fn foo(x : Field, y : pub Field){}
 ```
 
-The return type of a function can be stated by using the `->` arrow notation. The function below states that the foo function must return a Witness. If the function returns no value, then the arrow is omitted.
+The return type of a function can be stated by using the `->` arrow notation. The function below states that the foo function must return a `Field`. If the function returns no value, then the arrow is omitted.
 
 ```rust,noplaypen
 fn foo(x : Field, y : pub Field) -> Field {
@@ -24,13 +24,13 @@ fn foo(x : Field, y : pub Field) -> Field {
 }
 ```
 
-Note that a `return` keyword is unneeded - the last expression in a function's body is returned.
+Note that a `return` keyword is unneeded in this case - the last expression in a function's body is returned.
 
 ## Call Expressions
 
-Calling a function in noir is executed by using the function name and passing the necessary arguments the function header.
+Calling a function in Noir is executed by using the function name and passing in the necessary arguments.
 
-Below we show how to call the `foo` function from the main function using a call expression:
+Below we show how to call the `foo` function from the `main` function using a call expression:
 
 ```rust,noplaypen
 fn main(x : Field, y : Field) {
