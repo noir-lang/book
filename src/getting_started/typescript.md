@@ -5,8 +5,8 @@ Interactions with Noir programs can also be performed in TypeScript, which can c
 The following sections use the [_Standard Noir Example_] as an example to dissect a typical Noir workflow in TypeScript, with specific focus on its:
 
 - Test script [`1_mul.ts`]
-- Noir program [main.nr]
-- Verifier contract generator script [generate_sol_verifier.ts]
+- Noir program [`main.nr`]
+- Verifier contract generator script [`generate_sol_verifier.ts`]
 
 [Hardhat]: https://hardhat.org/
 [_Standard Noir Example_]: https://github.com/vezenovm/basic_mul_noir_example
@@ -109,7 +109,11 @@ expect(verified).eq(true);
 
 ## Verifying with Smart Contract
 
-Alternatively, a verifier smart contract can be generated in TypeScript as well:
+Alternatively, a verifier smart contract can be generated and used for verifying Noir proofs in TypeScript as well.
+
+This could be useful if the Noir program is designed to be decentrally verified and/or make use of decentralized states and logics that is handled at the smart contract level.
+
+To generate the verifier smart contract:
 
 ```ts
 // generate_sol_verifier.ts
@@ -117,6 +121,7 @@ import { writeFileSync } from 'fs';
 
 ...
 
+// Generate verifier contract
 const sc = verifier.SmartContract();
 syncWriteFile("../contracts/plonk_vk.sol", sc);
 
@@ -129,7 +134,7 @@ function syncWriteFile(filename: string, data: any) {
 }
 ```
 
-Which can then be used to verify Noir proofs: 
+To verify a Noir proof using the verifier contract:
 
 ```ts
 // 1_mul.ts
@@ -149,6 +154,7 @@ before(async () => {
 
 ...
 
+// Verify proof
 const sc_verified = await verifierContract.verify(proof);
 expect(sc_verified).eq(true)
 ```
