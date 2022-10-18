@@ -8,11 +8,14 @@ The following sections use the [_Standard Noir Example_] as an example to dissec
 - Noir program [`main.nr`]
 - Verifier contract generator script [`generate_sol_verifier.ts`]
 
+You are also welcome to revisit the full scripts [`1_mul.ts`] of _Standard Noir Example_ and [`mm.ts`] of _Mastermind in Noir_ anytime for inspirations.
+
 [Hardhat]: https://hardhat.org/
 [_Standard Noir Example_]: https://github.com/vezenovm/basic_mul_noir_example
 [`1_mul.ts`]: https://github.com/vezenovm/basic_mul_noir_example/blob/master/test/1_mul.ts
-[main.nr]: https://github.com/vezenovm/basic_mul_noir_example/blob/master/circuits/src/main.nr
-[generate_sol_verifier.ts]: https://github.com/vezenovm/basic_mul_noir_example/blob/master/scripts/generate_sol_verifier.ts
+[`main.nr`]: https://github.com/vezenovm/basic_mul_noir_example/blob/master/circuits/src/main.nr
+[`generate_sol_verifier.ts`]: https://github.com/vezenovm/basic_mul_noir_example/blob/master/scripts/generate_sol_verifier.ts
+[`mm.ts`]: https://github.com/vezenovm/mastermind-noir/blob/master/test/mm.ts
 
 ## Setup
 
@@ -48,6 +51,8 @@ let acir = compiled_program.circuit;
 const abi = compiled_program.abi;
 ```
 
+> **Note:** Compiling with `noir_wasm` may lack some of the newer features that `nargo compile` offers. See the [Proving and Verifying Externally Compiled Files](#proving-and-verifying-externally-compiled-files) section to learn more.
+
 ## Specifying Inputs
 
 Having obtained the compiled program, the program inputs shall then be specified in its ABI.
@@ -71,7 +76,9 @@ abi.y = 4;
 abi.return = 12;
 ```
 
-> **Note:** Return values are also required to be specified, as they are merely syntax sugar of inputs with equality constraints.
+> **Info:** Return values are also required to be specified, as they are merely syntax sugar of inputs with equality constraints.
+
+> **Tip:** To best protect the private inputs in your program (if applicable) from public knowledge, you should consider minimizing any passing around of inputs and deleting the inputs on the prover instance once the proof is created when designing your program.
 
 ## Initializing Prover & Verifier
 
@@ -117,6 +124,8 @@ To generate the verifier smart contract:
 
 ```ts
 // generate_sol_verifier.ts
+
+// Imports
 import { writeFileSync } from 'fs';
 
 ...
@@ -138,6 +147,8 @@ To verify a Noir proof using the verifier contract:
 
 ```ts
 // 1_mul.ts
+
+// Imports
 import { ethers } from "hardhat";
 import { Contract, ContractFactory, utils } from 'ethers';
 
@@ -159,7 +170,31 @@ const sc_verified = await verifierContract.verify(proof);
 expect(sc_verified).eq(true)
 ```
 
-For more inspiration on ways to interact with Noir programs in TypeScript, see the full scripts [`1_mul.ts` of _Standard Noir Example_] and [`mm.ts` of _Mastermind in Noir_].
+## Proving and Verifying Externally Compiled Files
 
-[`1_mul.ts` of _Standard Noir Example_]: https://github.com/vezenovm/basic_mul_noir_example/blob/master/test/1_mul.ts
-[`mm.ts` of _Mastermind in Noir_]: https://github.com/vezenovm/mastermind-noir/blob/master/test/mm.ts
+In some cases, `noir_wasm` may lack some of the newer features for compiling Noir programs due to separated upgrade workflows.
+
+To benefit from the best of both worlds, a Noir program can be compiled with `nargo compile`, with the `.acir` and `.tr` files then passed into your TypeScript project for proving and verifying:
+
+```ts
+// 1_mul.ts
+
+// Parse acir
+let acirByteArray = path_to_uint8array(path.resolve(__dirname, '../circuits/build/p.acir'));
+let acir = acir_from_bytes(acirByteArray);
+
+// Parse witness
+let witnessByteArray = path_to_uint8array(path.resolve(__dirname, '../circuits/build/p.tr'));
+const barretenberg_witness_arr = await packed_witness_to_witness(acir, witnessByteArray);
+
+...
+
+// Create proof
+const proof = await create_proof_with_witness(prover, barretenberg_witness_arr);
+```
+
+> **Info:** The `.acir` file is the ACIR of your Noir program, and the `.tr` file is the witness file. The witness file can be considered as program inputs parsed for your program's ACIR.
+
+See the [Commands] section to learn more about the `nargo compile` command.
+
+[Commands]: nargo/commands.md#nargo-compile-circuit_name
