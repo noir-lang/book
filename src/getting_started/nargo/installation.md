@@ -2,7 +2,9 @@
 
 ## Setup
 
-1. Install [Git] and [Rust]
+1. Install [Git] and [Rust].
+
+   Optionally you can install [Noir VS Code extension] for syntax highlighting as well.
 
 2. Download Noir's source code from Github by running:
 
@@ -18,6 +20,7 @@
 
 [Git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 [Rust]: https://www.rust-lang.org/tools/install
+[Noir VS Code extension]: https://marketplace.visualstudio.com/items?itemName=noir-lang.noir-programming-language-syntax-highlighter
 
 There are then two approaches to proceed, differing in how the proving backend is installed:
 
