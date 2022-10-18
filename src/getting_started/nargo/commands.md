@@ -19,7 +19,7 @@ _Arguments_
 
 ## `nargo build`
 
-Generate the `toml` files for specifying in/output values of the Noir program.
+Generate the `Prover.toml` and `Verifier.toml` files for specifying prover and verifier in/output values of the Noir program respectively.
 
 ## `nargo prove <proof_name>`
 
@@ -39,12 +39,18 @@ _Arguments_
 
 ## `nargo contract`
 
-Generate a smart contract verifier for the program.
+Generate a Solidity smart contract verifier for the program.
 
 ## `nargo compile <circuit_name>`
 
-Compile the program and its secret execution trace into Abstract Circuit Intermediate Representation (ACIR) format.
+Compile the program and its secret execution trace into [ACIR](../../acir.md) format.
 
 _Arguments_
 
 - `<circuit_name>` - The name of the ACIR file
+
+_Usage_
+
+Fill in the values in `Prover.toml` generated from `nargo build`, then run the command. A new folder `build` should then be generated in your project directory, containing `<circuit_name>.acir` and `<circuit_name>.tr`.
+
+The `.acir` file is the ACIR of your Noir program, and the `.tr` file is the witness file. The witness file can be considered as program inputs parsed for your program's ACIR. The files compiled can be passed into a TypeScript project for proving and verification. See the [TypeScript](../typescript.md#proving-and-verifying-externally-compiled-files) section to learn more.
