@@ -2,7 +2,7 @@
 
 ## Setup
 
-1. Install [Rust](https://www.rust-lang.org/tools/install)
+1. Install [Git] and [Rust]
 
 2. Download Noir's source code from Github by running:
 
@@ -15,6 +15,9 @@
    ```bash
    $ cd noir/crates/nargo
    ```
+
+[Git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+[Rust]: https://www.rust-lang.org/tools/install
 
 There are then two approaches to proceed, differing in how the proving backend is installed:
 
