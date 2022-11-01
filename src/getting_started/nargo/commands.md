@@ -15,11 +15,11 @@ Creates a new Noir project.
 _Arguments_
 
 - `<package_name>` - Name of the package
-- `<path>` - The path to save the new project
+- `[path]` - The path to save the new project
 
 ## `nargo build`
 
-Generate the `toml` files for specifying in/output values of the Noir program.
+Generate the `Prover.toml` and `Verifier.toml` files for specifying prover and verifier in/output values of the Noir program respectively.
 
 ## `nargo prove <proof_name>`
 
@@ -39,12 +39,23 @@ _Arguments_
 
 ## `nargo contract`
 
-Generate a smart contract verifier for the program.
+Generate a Solidity smart contract verifier for the program.
 
-## `nargo compile <circuit_name>`
+## `nargo compile [FLAGS] <circuit_name>`
 
-Compile the program and its secret execution trace into Abstract Circuit Intermediate Representation (ACIR) format.
+Compile the program and its secret execution trace into [ACIR](../../acir.md) format.
 
 _Arguments_
 
 - `<circuit_name>` - The name of the ACIR file
+- `[FLAGS]` - Add `--witness` to compile the witness file as well
+
+_Usage_
+
+Running the command would create a new folder `build` with the compiled `<circuit_name>.acir` file in your project directory.
+
+To also compile a witness file, fill in the values in `Prover.toml` generated from `nargo build` and run the command with the `--witness` flag. A `<circuit_name>.tr` file would be compiled in the `build` folder.
+
+> **Info:** The `.acir` file is the ACIR of your Noir program, and the `.tr` file is the witness file. The witness file can be considered as program inputs parsed for your program's ACIR.
+>
+> The files compiled can be passed into a TypeScript project for proving and verification. See the [TypeScript](../typescript.md#proving-and-verifying-externally-compiled-files) section to learn more.
