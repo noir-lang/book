@@ -105,3 +105,21 @@ For macOS users, installing through [Homebrew] is highly recommended.
       prove       Create proof for this program
       verify      Given a proof and a program, verify whether the proof is valid
    ```
+
+## Update
+
+Updating nargo is currently performed through reinstallation. To update your nargo:
+
+1. Uninstall your existing nargo by running:
+
+   ```bash
+   $ cargo uninstall nargo
+   ```
+
+2. Change directory into your local noir repository cloned from GitHub and update it by running:
+
+   ```bash
+   $ git pull
+   ```
+
+3. Proceed with reinstallation using the updated local repository starting from the proving backend installation step.
