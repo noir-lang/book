@@ -187,24 +187,25 @@ If <code>y</code> exceeds the range \([0,2^{24}-1]\) then any proof created will
 If a constant type that is being used in your program is changed, then your circuit will also change.</p>
 <p>Below we show how to declare a constant value:</p>
 <pre><code class="language-rust noplaypen">fn main() {
-    let a: const Field = 5;
+    let a: comptime Field = 5;
 
-    // `const Field` can also be inferred:
+    // `comptime Field` can also be inferred:
     let a = 5;
 }
 </code></pre>
 <p>Note that variables declared as mutable may not be constants:</p>
 <pre><code class="language-rust noplaypen">fn main() {
-    // error: Cannot mark a const type as mutable - any mutation would remove its const-ness
-    let mut a: const Field = 5;
+    // error: Cannot mark a comptime type as mutable - any mutation would remove its const-ness
+    let mut a: comptime Field = 5;
 
     // a inferred as a private Field here
     let mut a = 5;
 }
 </code></pre>
-<h4 id="global-constants"><a class="header" href="#global-constants">Global Constants</a></h4>
-<p>Constants can also be global; however, they must be declared <code>const</code> and explicitly type annotated. They can then be used like any other constant inside functions. Global consts can also be used to specify array annotations for function parameters and can be imported from submodules. </p>
-<pre><code class="language-rust noplaypen">const N: Field = 5;
+<h4 id="globals"><a class="header" href="#globals">Globals</a></h4>
+<p>Noir also supports global variables. However, they must be compile-time variables. If <code>comptime</code> is not explicitly written in the type annotation the compiler will implicitly specify the declaration as compile-time. They can then be used like any other compile-time variable inside functions. The global type can also be inferred by the compiler entirely. Globals can also be used to specify array annotations for function parameters and can be imported from submodules. </p>
+<p>Globals are currently limited to Field, integer, and bool literals.</p>
+<pre><code class="language-rust noplaypen">global N: Field = 5; // Same as `global N: comptime Field = 5`
 
 fn main(x : Field, y : [Field; N]) {
     let res = x * N;
@@ -218,9 +219,9 @@ fn main(x : Field, y : [Field; N]) {
 mod mysubmodule {
     use dep::std;
 
-    const N: Field = 10;
+    global N: Field = 10;
 
-    fn my_helper() -&gt; const Field {
+    fn my_helper() -&gt; comptime Field {
         let x = N;
         x
     }
@@ -289,7 +290,7 @@ fn main() {
 <p>Tuple fields can be accessed via destructuring as above or via member access syntax.
 The first field name of a tuple is <code>0</code>, then <code>1</code> and so on:</p>
 <pre><code>fn main() {
-    // tuple: (const Field, const Field, const Field, const Field)
+    // tuple: (comptime Field, comptime Field, comptime Field, comptime Field)
     let tuple = (5, 6, 7, 8);
 
     let five = tuple.0;
