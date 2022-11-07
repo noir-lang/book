@@ -9,7 +9,7 @@ The following block of code between the braces is run 10 times.
 ```rust,noplaypen
 for i in 0..10 {
     // do something
-}
+};
 ```
 
 ## If Expressions
