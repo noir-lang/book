@@ -8,6 +8,7 @@
     - [Commands](getting_started/nargo/commands.md)
   - [Hello, World](getting_started/hello_world.md)
     - [Breakdown](getting_started/breakdown.md)
+  - [Solidity Verifier](getting_started/solidity_verifier.md)
   - [TornadoCash](getting_started/tornado_cash.md)
   - [TypeScript](getting_started/typescript.md)
 - [Language Concepts](language_concepts.md)
