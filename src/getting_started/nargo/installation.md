@@ -23,19 +23,19 @@ There are two approaches to install Nargo:
    mkdir C:\nargo
    ```
 
-2. Download the binary package from GitHub into the directory created in Step 1:
+2. Download the binary package from [GitHub Releases](https://github.com/noir-lang/noir/releases/tag/nightly) according to your OS, and move it into the directory created in Step 1:
 
-   - [macOS (Apple Silicon)](https://github.com/kobyhallx/build-noir/suites/9553357751/artifacts/454490397)
-   - [macOS (Intel)](https://github.com/kobyhallx/build-noir/suites/9553357751/artifacts/454490398)
-   - [Windows](https://github.com/kobyhallx/build-noir/suites/9553445421/artifacts/454485541)
+   - macOS (Apple Silicon): `nargo-aarch64-apple-darwin.tar.gz`
+   - macOS (Intel): `nargo-x86_64-apple-darwin.tar.gz`
+   - Windows: `nargo-x86_64-pc-windows-msvc.zip`
 
-3. Paste and run the following in the terminal to extract and expose the binary:
+3. Paste and run the following in the terminal to extract and install the binary:
 
    _macOS (Apple Silicon)_
 
    ```bash
    cd ~/nargo && \
-   unzip nargo-aarch64-apple-darwin.zip && \
+   gunzip -c nargo-aarch64-apple-darwin.tar.gz | tar xopf - && \
    chmod +x nargo && \
    echo '\nexport PATH=$PATH:~/nargo' >> ~/.zshrc && \
    source ~/.zshrc
@@ -45,7 +45,7 @@ There are two approaches to install Nargo:
 
    ```bash
    cd ~/nargo && \
-   unzip nargo-x86_64-apple-darwin.zip && \
+   gunzip -c nargo-x86_64-apple-darwin.tar.gz | tar xopf - && \
    chmod +x nargo && \
    echo '\nexport PATH=$PATH:~/nargo' >> ~/.zshrc && \
    source ~/.zshrc
