@@ -26,7 +26,7 @@ Ways to install Nargo are described in ascending order of complexity below.
    cd ~/nargo && \
    unzip nargo-aarch64-apple-darwin.zip && \
    chmod +x nargo && \
-   echo 'export PATH=$PATH:~/nargo' >> ~/.zshrc && \
+   echo '\nexport PATH=$PATH:~/nargo' >> ~/.zshrc && \
    source ~/.zshrc
    ```
 
@@ -36,7 +36,7 @@ Ways to install Nargo are described in ascending order of complexity below.
    cd ~/nargo && \
    unzip nargo-x86_64-apple-darwin.zip && \
    chmod +x nargo && \
-   echo 'export PATH=$PATH:~/nargo' >> ~/.zshrc && \
+   echo '\nexport PATH=$PATH:~/nargo' >> ~/.zshrc && \
    source ~/.zshrc
    ```
 
