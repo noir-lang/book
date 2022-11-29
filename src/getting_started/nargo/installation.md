@@ -1,15 +1,26 @@
 # Installation
 
-Ways to install Nargo are described in ascending order of complexity below.
+There are two approaches to install Nargo:
+
+- [Option 1: Binaries](#option-1-binaries)
+- [Option 2: Compile from Source](#option-2-compile-from-source)
 
 ## Option 1: Binaries
 
-**Platforms Supported:** macOS, Windows
+> **Platforms Supported:** macOS, Windows
 
 1. Create a directory to host the binary. For example, run:
 
+   _macOS_
+
    ```bash
    mkdir ~/nargo
+   ```
+
+   _Windows_
+
+   ```sh
+   mkdir C:\nargo
    ```
 
 2. Download the binary package from GitHub into the directory created in Step 1:
@@ -30,7 +41,7 @@ Ways to install Nargo are described in ascending order of complexity below.
    source ~/.zshrc
    ```
 
-   To Test: _macOS (Intel)_
+   _macOS (Intel)_
 
    ```bash
    cd ~/nargo && \
@@ -40,21 +51,19 @@ Ways to install Nargo are described in ascending order of complexity below.
    source ~/.zshrc
    ```
 
-   To Test: _Windows_
+   _Windows (PowerShell)_
 
-   ```bash
-   cd ~/nargo && \
-   unzip nargo-x86_64-pc-windows-msvc.zip && \
-   setx PATH "~/nargo;%PATH%"
+   ```sh
+   cd C:\nargo;`
+   Expand-Archive nargo-x86_64-pc-windows-msvc.zip; `
+   $Env:PATH += ";C:\nargo\nargo-x86_64-pc-windows-msvc"
    ```
 
 4. Check if the installation was successful by running `nargo --help`.
 
-   If you are prompted with an OS alert, follow the instructions to grant the necessary permissions:
-
-   - _macOS_
-
-     Proceed with "Show in Finder", then right-click and open the nargo executable. You can close the new terminal that popped up and `nargo` should now be accessible.
+   > **Note:** For macOS users, you may be prompted with an OS alert.
+   >
+   > In Finder, right-click and open the nargo executable. You can close the new terminal that popped up and `nargo` should now be accessible.
 
    For a successful installation, you should see something similar to the following after running the command:
 
@@ -86,7 +95,7 @@ Optionally you can also install [Noir VS Code extension] for syntax highlighting
 
 ## Option 2: Compile from Source
 
-**Platforms Supported:** Linux, macOS (and Windows with Option 2.1)
+> **Platforms Supported:** Linux, macOS, Windows
 
 ### Setup
 
@@ -112,7 +121,7 @@ There are then two approaches to proceed, differing in how the proving backend i
 
 ### Option 2.1: WASM Executable Backend
 
-**Platforms Supported:** Linux, macOS, Windows
+> **Platforms Supported:** Linux, macOS, Windows
 
 4. Go into `nargo/Cargo.toml` and replace `aztec_backend = ...` with the following:
 
@@ -122,7 +131,7 @@ There are then two approaches to proceed, differing in how the proving backend i
 
 ### Option 2.2: Compile Backend from Source
 
-**Platforms Supported:** Linux, macOS
+> **Platforms Supported:** Linux, macOS
 
 The [barretenberg] proving backend is written in C++, hence compiling it from source would first require certain dependencies to be installed.
 
