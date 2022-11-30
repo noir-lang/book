@@ -173,72 +173,62 @@ In order for you to use Noir in your blockchain, a proving system backend must b
 <p><code>nargo</code> is a command line tool for interacting with Noir programs (e.g. compiling, proving, verifying and more).</p>
 <p>Alternatively, the interactions can also be performed in <a href="getting_started/typescript.html">TypeScript</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
-<h2 id="setup"><a class="header" href="#setup">Setup</a></h2>
-<ol>
-<li>
-<p>Install <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git</a> and <a href="https://www.rust-lang.org/tools/install">Rust</a>.</p>
-<p>Optionally you can install <a href="https://marketplace.visualstudio.com/items?itemName=noir-lang.noir-programming-language-syntax-highlighter">Noir VS Code extension</a> for syntax highlighting as well.</p>
-</li>
-<li>
-<p>Download Noir's source code from Github by running:</p>
-<pre><code class="language-bash">$ git clone git@github.com:noir-lang/noir.git
+<p>There are two approaches to install Nargo:</p>
+<ul>
+<li><a href="getting_started/nargo/installation.html#option-1-binaries">Option 1: Binaries</a></li>
+<li><a href="getting_started/nargo/installation.html#option-2-compile-from-source">Option 2: Compile from Source</a></li>
+</ul>
+<h2 id="option-1-binaries"><a class="header" href="#option-1-binaries">Option 1: Binaries</a></h2>
+<p>1.1 Paste and run the following in the terminal to extract and install the binary:</p>
+<h3 id="macos-apple-silicon"><a class="header" href="#macos-apple-silicon"><em>macOS (Apple Silicon)</em></a></h3>
+<pre><code class="language-bash">mkdir -p $HOME/.nargo/bin &amp;&amp; \
+curl -o $HOME/.nargo/bin/nargo-aarch64-apple-darwin.tar.gz -L https://github.com/noir-lang/noir/releases/download/nightly/nargo-aarch64-apple-darwin.tar.gz &amp;&amp; \
+tar -xvf $HOME/.nargo/bin/nargo-aarch64-apple-darwin.tar.gz -C $HOME/.nargo/bin/ &amp;&amp; \
+mkdir -p &quot;$HOME/Library/Application Support/noir-lang/std/src&quot; &amp;&amp; \
+cp -R $HOME/.nargo/bin/noir-lang/std/* &quot;$HOME/Library/Application Support/noir-lang/std/src&quot; &amp;&amp; \
+echo '\nexport PATH=$PATH:$HOME/.nargo/bin' &gt;&gt; ~/.zshrc &amp;&amp; \
+source ~/.zshrc
 </code></pre>
-</li>
-<li>
-<p>Change directory into the nargo crate by running:</p>
-<pre><code class="language-bash">$ cd noir/crates/nargo
+<h3 id="macos-intel"><a class="header" href="#macos-intel"><em>macOS (Intel)</em></a></h3>
+<pre><code class="language-bash">mkdir -p $HOME/.nargo/bin &amp;&amp; \
+curl -o $HOME/.nargo/bin/nargo-x86_64-apple-darwin.tar.gz -L https://github.com/noir-lang/noir/releases/download/nightly/nargo-x86_64-apple-darwin.tar.gz &amp;&amp; \
+tar -xvf $HOME/.nargo/bin/nargo-x86_64-apple-darwin.tar.gz -C $HOME/.nargo/bin/ &amp;&amp; \
+mkdir -p &quot;$HOME/Library/Application Support/noir-lang/std/src&quot; &amp;&amp; \
+cp -R $HOME/.nargo/bin/noir-lang/std/* &quot;$HOME/Library/Application Support/noir-lang/std/src&quot; &amp;&amp; \
+echo '\nexport PATH=$PATH:$HOME/.nargo/bin' &gt;&gt; ~/.zshrc &amp;&amp; \
+source ~/.zshrc
+
 </code></pre>
-</li>
-</ol>
-<p>There are then two approaches to proceed, differing in how the proving backend is installed:</p>
-<h2 id="option-1-wasm-executable-backend"><a class="header" href="#option-1-wasm-executable-backend">Option 1: WASM Executable Backend</a></h2>
-<p><strong>Platforms Supported:</strong> Linux, macOS, Windows</p>
-<ol start="4">
-<li>
-<p>Go into <code>nargo/Cargo.toml</code> and replace <code>aztec_backend = ...</code> with the following:</p>
-<pre><code>aztec_backend = { optional = true, git = &quot;https://github.com/noir-lang/aztec_backend&quot;, features = [&quot;wasm-base&quot;] , default-features = false }
+<h3 id="windows-powershell"><a class="header" href="#windows-powershell"><em>Windows (PowerShell)</em></a></h3>
+<p>Open your terminal as Administrator, execute following comands one by one:</p>
+<pre><code class="language-sh">mkdir -f -p &quot;$env:USERPROFILE\.nargo\bin\&quot;
+Invoke-RestMethod -Method Get -Uri https://github.com/noir-lang/noir/releases/download/nightly/nargo-x86_64-pc-windows-msvc.zip -Outfile &quot;$env:USERPROFILE\.nargo\bin\nargo-x86_64-pc-windows-msvc.zip&quot;
+Expand-Archive -Path &quot;$env:USERPROFILE\.nargo\bin\nargo-x86_64-pc-windows-msvc.zip&quot; -DestinationPath &quot;$env:USERPROFILE\.nargo\bin\&quot;
+mkdir -f -p &quot;$env:APPDATA\noir-lang\std\src&quot;
+cp -R &quot;$env:USERPROFILE\.nargo\bin\noir-lang\std\*&quot; &quot;$env:APPDATA\noir-lang\std\src&quot;
+$Reg = &quot;Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment&quot;
+$OldPath = (Get-ItemProperty -Path &quot;$Reg&quot; -Name PATH).Path
+$NewPath= $OldPath + ’;’ + &quot;$env:USERPROFILE\.nargo\bin\&quot;
+Set-ItemProperty -Path &quot;$Reg&quot; -Name PATH –Value &quot;$NewPath&quot;
 </code></pre>
-</li>
-</ol>
+<p>Restart your powershell...</p>
+<h3 id="linux-bash"><a class="header" href="#linux-bash"><em>Linux (Bash)</em></a></h3>
+<pre><code class="language-sh">mkdir -p $HOME/.nargo/bin &amp;&amp; \
+curl -o $HOME/.nargo/bin/nargo-x86_64-unknown-linux-gnu.tar.gz -L https://github.com/noir-lang/noir/releases/download/nightly/nargo-x86_64-unknown-linux-gnu.tar.gz &amp;&amp; \
+tar -xvf $HOME/.nargo/bin/nargo-x86_64-unknown-linux-gnu.tar.gz -C $HOME/.nargo/bin/ &amp;&amp; \
+mkdir -p $HOME/.config/noir-lang/std/src
+cp -r $HOME/.nargo/bin/noir-lang/std/* &quot;$HOME/.config/noir-lang/std/src&quot;
+echo '\nexport PATH=$PATH:$HOME/.nargo/bin' &gt;&gt; ~/.bashrc &amp;&amp; \
+source ~/.bashrc
+</code></pre>
+<p>See <a href="https://github.com/noir-lang/noir/releases/tag/nightly">GitHub Releases</a> for additional platform specific binaries.</p>
+<p>2.2 Check if the installation was successful by running <code>nargo --help</code>.</p>
 <blockquote>
-<p><strong>Note:</strong> <code>nargo contract</code> has not been implemented yet for <em>wasm-base</em> <code>nargo</code> installations.</p>
+<p><strong>macOS:</strong> If you are prompted with an OS alert, right-click and open the <em>nargo</em> executable from Finder.</p>
+<p>You can close the new terminal that popped up and <code>nargo</code> should now be accessible.</p>
 </blockquote>
-<h2 id="option-2-compile-backend-from-source"><a class="header" href="#option-2-compile-backend-from-source">Option 2: Compile Backend from Source</a></h2>
-<p><strong>Platforms Supported:</strong> Linux, macOS</p>
-<p>The <a href="https://github.com/AztecProtocol/aztec-connect/tree/master/barretenberg">barretenberg</a> proving backend is written in C++, hence compiling it from source would first require certain dependencies to be installed.</p>
-<p>For macOS users, installing through <a href="https://brew.sh/">Homebrew</a> is highly recommended.</p>
-<ol start="4">
-<li>
-<p>Install <a href="https://cmake.org/install/">CMake</a>, <a href="https://llvm.org/docs/GettingStarted.html">LLVM</a> and <a href="https://openmp.llvm.org/">OpenMP</a> by running:</p>
-<!---
-TODO: Supplement Linux scripts.
-
-Linux's command for openMP from barretenberg's GitHub README:
-
-```bash
-RUN git clone -b release/10.x --depth 1 https://github.com/llvm/llvm-project.git \
-&& cd llvm-project && mkdir build-openmp && cd build-openmp \
-&& cmake ../openmp -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DLIBOMP_ENABLE_SHARED=OFF \
-&& make -j$(nproc) \
-&& make install \
-&& cd ../.. && rm -rf llvm-project
-```
---->
-<p><em>macOS</em></p>
-<pre><code class="language-bash">$ brew install cmake llvm libomp
-</code></pre>
-</li>
-</ol>
-<h2 id="continue-with-installation"><a class="header" href="#continue-with-installation">Continue with Installation</a></h2>
-<ol start="5">
-<li>
-<p>Install nargo by running:</p>
-<pre><code class="language-bash">$ cargo install --locked --path=.
-</code></pre>
-</li>
-<li>
-<p>Check if the installation was successful by running:</p>
-<pre><code>$ nargo help
+<p>For a successful installation, you should see something similar to the following after running the command:</p>
+<pre><code>$ nargo --help
 nargo 0.1
 Kevaundray Wedderburn &lt;kevtheappdev@gmail.com&gt;
 Noir's package manager
@@ -254,6 +244,100 @@ SUBCOMMANDS:
    build       Builds the constraint system
    compile     Compile the program and its secret execution trace into ACIR format
    contract    Creates the smart contract code for circuit
+   gates       Counts the occurences of different gates in circuit
+   help        Prints this message or the help of the given subcommand(s)
+   new         Create a new binary project
+   prove       Create proof for this program
+   verify      Given a proof and a program, verify whether the proof is valid
+</code></pre>
+<p>Optionally you can also install <a href="https://marketplace.visualstudio.com/items?itemName=noir-lang.noir-programming-language-syntax-highlighter">Noir VS Code extension</a> for syntax highlighting.</p>
+<h2 id="option-2-compile-from-source"><a class="header" href="#option-2-compile-from-source">Option 2: Compile from Source</a></h2>
+<blockquote>
+<p><strong>Platforms Supported:</strong> Linux, macOS, Windows</p>
+</blockquote>
+<h3 id="setup"><a class="header" href="#setup">Setup</a></h3>
+<ol>
+<li>
+<p>Install <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git</a> and <a href="https://www.rust-lang.org/tools/install">Rust</a>. Optionally you can also install <a href="https://marketplace.visualstudio.com/items?itemName=noir-lang.noir-programming-language-syntax-highlighter">Noir VS Code extension</a> for syntax highlighting.</p>
+</li>
+<li>
+<p>Download Noir's source code from Github by running:</p>
+<pre><code class="language-bash">git clone git@github.com:noir-lang/noir.git
+</code></pre>
+</li>
+<li>
+<p>Change directory into the Nargo crate by running:</p>
+<pre><code class="language-bash">cd noir/crates/nargo
+</code></pre>
+</li>
+</ol>
+<p>There are then two approaches to proceed, differing in how the proving backend is installed:</p>
+<h3 id="option-21-wasm-executable-backend"><a class="header" href="#option-21-wasm-executable-backend">Option 2.1: WASM Executable Backend</a></h3>
+<blockquote>
+<p><strong>Platforms Supported:</strong> Linux, macOS, Windows</p>
+</blockquote>
+<ol start="4">
+<li>
+<p>Go into <code>nargo/Cargo.toml</code> and replace <code>aztec_backend = ...</code> with the following:</p>
+<pre><code>aztec_backend = { optional = true, package = &quot;barretenberg_wasm&quot;, git = &quot;https://github.com/noir-lang/aztec_backend&quot;, rev = &quot;484d1f3e780010d04892490641de6a9d92ed805b&quot; }
+</code></pre>
+</li>
+</ol>
+<h3 id="option-22-compile-backend-from-source"><a class="header" href="#option-22-compile-backend-from-source">Option 2.2: Compile Backend from Source</a></h3>
+<blockquote>
+<p><strong>Platforms Supported:</strong> Linux, macOS</p>
+</blockquote>
+<p>The <a href="https://github.com/AztecProtocol/aztec-connect/tree/master/barretenberg">barretenberg</a> proving backend is written in C++, hence compiling it from source would first require certain dependencies to be installed.</p>
+<p>For macOS users, installing through <a href="https://brew.sh/">Homebrew</a> is highly recommended.</p>
+<ol start="4">
+<li>
+<p>Install <a href="https://cmake.org/install/">CMake</a>, <a href="https://llvm.org/docs/GettingStarted.html">LLVM</a> and <a href="https://openmp.llvm.org/">OpenMP</a> by running:</p>
+<p><em>macOS</em></p>
+<pre><code class="language-bash">brew install cmake llvm libomp
+</code></pre>
+<p><em>Linux</em></p>
+<pre><code class="language-bash">TBC
+</code></pre>
+<!---
+Linux's command for openMP from barretenberg's GitHub README:
+
+```bash
+RUN git clone -b release/10.x --depth 1 https://github.com/llvm/llvm-project.git \
+&& cd llvm-project && mkdir build-openmp && cd build-openmp \
+&& cmake ../openmp -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DLIBOMP_ENABLE_SHARED=OFF \
+&& make -j$(nproc) \
+&& make install \
+&& cd ../.. && rm -rf llvm-project
+```
+--->
+</li>
+</ol>
+<h3 id="continue-with-installation"><a class="header" href="#continue-with-installation">Continue with Installation</a></h3>
+<ol start="5">
+<li>
+<p>Install Nargo by running:</p>
+<pre><code class="language-bash">cargo install --locked --path=.
+</code></pre>
+</li>
+<li>
+<p>Check if the installation was successful by running <code>nargo --help</code>:</p>
+<pre><code>$ nargo --help
+nargo 0.1
+Kevaundray Wedderburn &lt;kevtheappdev@gmail.com&gt;
+Noir's package manager
+
+USAGE:
+   nargo [SUBCOMMAND]
+
+FLAGS:
+   -h, --help       Prints help information
+   -V, --version    Prints version information
+
+SUBCOMMANDS:
+   build       Builds the constraint system
+   compile     Compile the program and its secret execution trace into ACIR format
+   contract    Creates the smart contract code for circuit
+   gates       Counts the occurences of different gates in circuit
    help        Prints this message or the help of the given subcommand(s)
    new         Create a new binary project
    prove       Create proof for this program
