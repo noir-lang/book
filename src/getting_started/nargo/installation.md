@@ -14,13 +14,13 @@ There are two approaches to install Nargo:
    _macOS_
 
    ```bash
-   mkdir ~/nargo
+   mkdir -p ~/.nargo/bin
    ```
 
    _Windows_
 
    ```sh
-   mkdir C:\nargo
+   mkdir C:\.nargo\bin
    ```
 
 2. Download the binary package from [GitHub Releases](https://github.com/noir-lang/noir/releases/tag/nightly) according to your OS, and move it into the directory created in Step 1:
@@ -29,41 +29,43 @@ There are two approaches to install Nargo:
    - macOS (Intel): `nargo-x86_64-apple-darwin.tar.gz`
    - Windows: `nargo-x86_64-pc-windows-msvc.zip`
 
+   > **macOS:** If you cannot find the _.nargo_ directory created, press _Command+Shift+._ in Finder to view hidden files.
+
 3. Paste and run the following in the terminal to extract and install the binary:
 
    _macOS (Apple Silicon)_
 
    ```bash
-   cd ~/nargo && \
+   cd ~/.nargo/bin && \
    gunzip -c nargo-aarch64-apple-darwin.tar.gz | tar xopf - && \
    chmod +x nargo && \
-   echo '\nexport PATH=$PATH:~/nargo' >> ~/.zshrc && \
+   echo '\nexport PATH=$PATH:~/.nargo/bin' >> ~/.zshrc && \
    source ~/.zshrc
    ```
 
    _macOS (Intel)_
 
    ```bash
-   cd ~/nargo && \
+   cd ~/.nargo/bin && \
    gunzip -c nargo-x86_64-apple-darwin.tar.gz | tar xopf - && \
    chmod +x nargo && \
-   echo '\nexport PATH=$PATH:~/nargo' >> ~/.zshrc && \
+   echo '\nexport PATH=$PATH:~/.nargo/bin' >> ~/.zshrc && \
    source ~/.zshrc
    ```
 
    _Windows (PowerShell)_
 
    ```sh
-   cd C:\nargo;`
+   cd C:\.nargo\bin;`
    Expand-Archive nargo-x86_64-pc-windows-msvc.zip; `
-   $Env:PATH += ";C:\nargo\nargo-x86_64-pc-windows-msvc"
+   $Env:PATH += ";C:\.nargo\bin\nargo-x86_64-pc-windows-msvc"
    ```
 
 4. Check if the installation was successful by running `nargo --help`.
 
-   > **Note:** For macOS users, you may be prompted with an OS alert.
+   > **macOS:** If you are prompted with an OS alert, right-click and open the _nargo_ executable from Finder.
    >
-   > In Finder, right-click and open the nargo executable. You can close the new terminal that popped up and `nargo` should now be accessible.
+   > You can close the new terminal that popped up and `nargo` should now be accessible.
 
    For a successful installation, you should see something similar to the following after running the command:
 
