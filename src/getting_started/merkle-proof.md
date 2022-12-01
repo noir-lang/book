@@ -1,4 +1,4 @@
-# Merkle Membership Proof
+# Merkle Proof
 
 Let's walk through an example of a merkle membership proof in Noir that proves that a given leaf is in a merkle tree.
 
@@ -24,7 +24,7 @@ The message is hashed using `hash_to_field`. The specific hash function that is 
 
 The leaf is then passed to a check_membership proof with the root, index and hashpath. `is_member` returns 1 if the leaf is a member of the merkle tree with the specified root, at the given index.
 
->**Note:** It is possible to re-implement the merkle tree implementation without standard library. However, for most usecases, it is enough. In general, the standard library will always opt to be as conservative as possible, while striking a balance between efficiency.
+> **Note:** It is possible to re-implement the merkle tree implementation without standard library. However, for most usecases, it is enough. In general, the standard library will always opt to be as conservative as possible, while striking a balance between efficiency.
 
 An example, the merkle membership proof, only requires a hash function that has collision resistance, hence a hash function like Pedersen is allowed, which in most cases is more efficient than the even more conservative sha256.
 
@@ -33,3 +33,5 @@ An example, the merkle membership proof, only requires a hash function that has 
 ```
 
 This last line, constrains the variable to be equal to 1. If 1 was changed to 0, this would create a proof that the leaf was not present at that specific index for that specific root. _Importantly, it would not prove that this leaf was not in the merkle tree._
+
+Example Project: <https://github.com/vezenovm/simple_shield>
