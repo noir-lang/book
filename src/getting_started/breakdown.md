@@ -1,36 +1,34 @@
 # Breakdown
 
 This section breaks down our hello world program in section _1.2_.
-We elaborate on the project structure and what the `prove` and `verify` commands did in the previous section, and usage of the `contract` command.
+We elaborate on the project structure and what the `prove` and `verify` commands did in the previous section.
 
 ## Anatomy of a Nargo Project
 
-Upon using the `new` command, Nargo will create a Noir project.
-
-Noir Projects have the following structure:
+Upon creating a new project with `nargo new` and building the in/output files with `nargo build` commands, you would get a minimal Nargo project of the following structure:
 
     - src
     - Prover.toml
     - Verifier.toml
     - Nargo.toml
 
-_contract_ and _proofs_ directories will not be immediately visible until you create a contract or proof respectively.
+The source directory _src_ holds the source code for your Noir program. By default only a _main.nr_ file will be generated within it.
 
-### Source directory
+_Prover.toml_ is used for specifying the input values for executing and proving the program. Optionally you may specify expected output values for prove-time checking as well.
 
-This directory holds the source code for your Noir program.
+_Verifier.toml_ contains public in/output values computed when executing the Noir program.
 
-Inside of the src directory will be a single file:
+_Nargo.toml_ contains the environmental options of your project.
 
-    - main.nr
+_proofs_ and _contract_ directories will not be immediately visible until you create a proof or verifier contract respectively.
 
-#### main.nr
+### main.nr
 
-The main.nr file contains a `main` method, this method is the entry point into your Noir program.
+The _main.nr_ file contains a `main` method, this method is the entry point into your Noir program.
 
-In our sample program, main.nr looks like this:
+In our sample program, _main.nr_ looks like this:
 
-```
+```rust
 fn main(x : Field, y : Field) {
     constrain x != y;
 }
@@ -38,45 +36,41 @@ fn main(x : Field, y : Field) {
 
 The parameters `x` and `y` can be seen as the API for the program and must be supplied by the prover. Since neither `x` nor `y` is marked as public, the verifier does not supply any inputs, when verifying the proof.
 
-The prover supplies the values for `x` and `y` in the `Prover.toml` file.
+The prover supplies the values for `x` and `y` in the _Prover.toml_ file.
 
-#### Prover.toml
+As for the program body, `constrain` ensures the satisfaction of the condition (e.g. `x != y`) is constrained by the proof of the execution of said program (i.e. if the condition was not met, the verifier would reject the proof as an invalid proof).
 
-The Prover.toml file is a file which the prover uses to supply his witness values(both private and public).
+### Prover.toml
 
-In our hello world program the Prover.toml file looks like this:
+The _Prover.toml_ file is a file which the prover uses to supply his witness values(both private and public).
+
+In our hello world program the _Prover.toml_ file looks like this:
 
 ```toml
-x = "5"
-y = "10"
+x = "1"
+y = "2"
 ```
 
 When the command `nargo prove my_proof` is executed, two processes happen:
 
-- First, Noir creates a proof that `x` which holds the value of `5` and `y` which holds the value of `10` is not equal. This not equal constraint is due to the line `constrain x != y`.
+1. Noir creates a proof that `x` which holds the value of `1` and `y` which holds the value of `2` is not equal. This not equal constraint is due to the line `constrain x != y`.
 
-> **Note:** We have not expanded on the meaning of the syntax `constrain x != y` as it is not the focus of this chapter.
-
-- Second, Noir creates and stores the proof of this statement in the `proofs` directory and names the proof file `my_proof`. Opening this file will display the proof in hex format.
+2. Noir creates and stores the proof of this statement in the _proofs_ directory and names the proof file _my_proof_. Opening this file will display the proof in hex format.
 
 ## Verifying a Proof
 
 When the command `nargo verify my_proof` is executed, two processes happen:
 
-- Noir checks in the `proofs` directory for a file called `my_proof`
+1. Noir checks in the _proofs_ directory for a file called _my_proof_
 
-- If that file is found, the proof's validity is checked.
+2. If that file is found, the proof's validity is checked
 
 > **Note:** The validity of the proof is linked to the current Noir program; if the program is changed and the verifier verifies the proof, it will fail because the proof is not valid for the _modified_ Noir program.
 
-## Contract
+In production, the prover and the verifier are usually two separate entities. A prover would retrieve the necessary inputs, execute the Noir program, generate a proof and pass it to the verifier. The verifier would then retrieve the public inputs from usually external sources and verifies the validity of the proof against it.
 
-This directory holds the compiled _Ethereum_ contract for the current Noir program.
-The contract is not automatically compiled when the `prove` or `verify` command is ran.
-To compile execute the following:
+Take a private asset transfer as an example:
 
-> **Note:** At the time of pre-alpha, Nargo supports only one backend which is Aztec-Barretenberg. This backend only allows you to compile from a Noir program to an Ethereum contract. It is possible for Noir to compile to another smart contract platform as long as the backend supplies an implementation.  
+A user on browser as the prover would retrieve private inputs (e.g. the user's private key) and public inputs (e.g. the user's encrypted balance on-chain), compute the transfer, generate a proof and submit it to the verifier smart contract.
 
-```sh
-$ nargo contract
-```
+The verifier contract would then draw the user's encrypted balance directly from the blockchain and verify the proof submitted against it. If the verification passes, additional functions in the verifier contract could trigger (e.g. approve the asset transfer).
