@@ -5,11 +5,17 @@ There are two approaches to install Nargo:
 - [Option 1: Binaries](#option-1-binaries)
 - [Option 2: Compile from Source](#option-2-compile-from-source)
 
+Optionally you can also install [Noir VS Code extension] for syntax highlighting.
+
 ## Option 1: Binaries
 
-1.1 Paste and run the following in the terminal to extract and install the binary:
+### Step 1
 
-### _macOS (Apple Silicon)_
+Paste and run the following in the terminal to extract and install the binary:
+
+> **macOS / Linux:** If you are prompted with `Permission denied` when running commands, prepend `sudo` and re-run it.
+
+#### macOS (Apple Silicon)
 
 ```bash
 mkdir -p $HOME/.nargo/bin && \
@@ -21,7 +27,7 @@ echo '\nexport PATH=$PATH:$HOME/.nargo/bin' >> ~/.zshrc && \
 source ~/.zshrc
 ```
 
-### _macOS (Intel)_
+#### macOS (Intel)
 
 ```bash
 mkdir -p $HOME/.nargo/bin && \
@@ -31,30 +37,30 @@ mkdir -p "$HOME/Library/Application Support/noir-lang/std/src" && \
 cp -R $HOME/.nargo/bin/noir-lang/std/* "$HOME/Library/Application Support/noir-lang/std/src" && \
 echo '\nexport PATH=$PATH:$HOME/.nargo/bin' >> ~/.zshrc && \
 source ~/.zshrc
-
 ```
 
-### _Windows (PowerShell)_
+#### Windows (PowerShell)
 
-Open your terminal as Administrator, execute following comands one by one:
+Open PowerShell as Administrator and run:
 
 ```sh
-mkdir -f -p "$env:USERPROFILE\.nargo\bin\"
-Invoke-RestMethod -Method Get -Uri https://github.com/noir-lang/noir/releases/download/nightly/nargo-x86_64-pc-windows-msvc.zip -Outfile "$env:USERPROFILE\.nargo\bin\nargo-x86_64-pc-windows-msvc.zip"
-Expand-Archive -Path "$env:USERPROFILE\.nargo\bin\nargo-x86_64-pc-windows-msvc.zip" -DestinationPath "$env:USERPROFILE\.nargo\bin\"
-mkdir -f -p "$env:APPDATA\noir-lang\std\src"
-cp -R "$env:USERPROFILE\.nargo\bin\noir-lang\std\*" "$env:APPDATA\noir-lang\std\src"
-$Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"
-$OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path
-$NewPath= $OldPath + ’;’ + "$env:USERPROFILE\.nargo\bin\"
-Set-ItemProperty -Path "$Reg" -Name PATH –Value "$NewPath"
+mkdir -f -p "$env:USERPROFILE\.nargo\bin\"; `
+Invoke-RestMethod -Method Get -Uri https://github.com/noir-lang/noir/releases/download/nightly/nargo-x86_64-pc-windows-msvc.zip -Outfile "$env:USERPROFILE\.nargo\bin\nargo-x86_64-pc-windows-msvc.zip"; `
+Expand-Archive -Path "$env:USERPROFILE\.nargo\bin\nargo-x86_64-pc-windows-msvc.zip" -DestinationPath "$env:USERPROFILE\.nargo\bin\"; `
+mkdir -f -p "$env:APPDATA\noir-lang\std\src"; `
+cp -R "$env:USERPROFILE\.nargo\bin\noir-lang\std\*" "$env:APPDATA\noir-lang\std\src"; `
+$Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"; `
+$OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path; `
+$NewPath= $OldPath + ’;’ + "$env:USERPROFILE\.nargo\bin\"; `
+Set-ItemProperty -Path "$Reg" -Name PATH –Value "$NewPath"; `
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 ```
 
-Restart your powershell...
+#### Linux (Bash)
 
-### _Linux (Bash)_
+See [GitHub Releases](https://github.com/noir-lang/noir/releases/tag/nightly) for additional platform specific binaries.
 
-```sh
+```bash
 mkdir -p $HOME/.nargo/bin && \
 curl -o $HOME/.nargo/bin/nargo-x86_64-unknown-linux-gnu.tar.gz -L https://github.com/noir-lang/noir/releases/download/nightly/nargo-x86_64-unknown-linux-gnu.tar.gz && \
 tar -xvf $HOME/.nargo/bin/nargo-x86_64-unknown-linux-gnu.tar.gz -C $HOME/.nargo/bin/ && \
@@ -64,13 +70,11 @@ echo '\nexport PATH=$PATH:$HOME/.nargo/bin' >> ~/.bashrc && \
 source ~/.bashrc
 ```
 
-See [GitHub Releases](https://github.com/noir-lang/noir/releases/tag/nightly) for additional platform specific binaries.
+### Step 2
 
-2.2 Check if the installation was successful by running `nargo --help`.
+Check if the installation was successful by running `nargo --help`.
 
-> **macOS:** If you are prompted with an OS alert, right-click and open the _nargo_ executable from Finder.
->
-> You can close the new terminal that popped up and `nargo` should now be accessible.
+> **macOS:** If you are prompted with an OS alert, right-click and open the _nargo_ executable from Finder. Close the new terminal popped up and `nargo` should now be accessible.
 
 For a successful installation, you should see something similar to the following after running the command:
 
@@ -98,15 +102,12 @@ SUBCOMMANDS:
    verify      Given a proof and a program, verify whether the proof is valid
 ```
 
-Optionally you can also install [Noir VS Code extension] for syntax highlighting.
-
 ## Option 2: Compile from Source
-
-> **Platforms Supported:** Linux, macOS, Windows
 
 ### Setup
 
-1. Install [Git] and [Rust]. Optionally you can also install [Noir VS Code extension] for syntax highlighting.
+1. Install [Git] and [Rust].
+
 2. Download Noir's source code from Github by running:
 
    ```bash
@@ -123,8 +124,6 @@ There are then two approaches to proceed, differing in how the proving backend i
 
 ### Option 2.1: WASM Executable Backend
 
-> **Platforms Supported:** Linux, macOS, Windows
-
 4. Go into `nargo/Cargo.toml` and replace `aztec_backend = ...` with the following:
 
    ```
@@ -133,21 +132,19 @@ There are then two approaches to proceed, differing in how the proving backend i
 
 ### Option 2.2: Compile Backend from Source
 
-> **Platforms Supported:** Linux, macOS
-
 The [barretenberg] proving backend is written in C++, hence compiling it from source would first require certain dependencies to be installed.
 
-For macOS users, installing through [Homebrew] is highly recommended.
+4. Install [CMake], [LLVM] and [OpenMP]:
 
-4. Install [CMake], [LLVM] and [OpenMP] by running:
+   #### macOS
 
-   _macOS_
+   Installing through [Homebrew] is recommended:
 
    ```bash
    brew install cmake llvm libomp
    ```
 
-   _Linux_
+   #### Linux
 
    ```bash
    TBC
@@ -165,6 +162,12 @@ For macOS users, installing through [Homebrew] is highly recommended.
    && cd ../.. && rm -rf llvm-project
    ```
    --->
+
+   #### Windows
+
+   ```sh
+   TBC
+   ```
 
 ### Continue with Installation
 
