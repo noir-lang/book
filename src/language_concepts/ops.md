@@ -10,6 +10,9 @@
 |  /              | Divides two concealed types together                       | Types must be concealed                |
 |  ^              | XOR two concealed types together                           | Types must be integer                  |
 |  &              | AND two concealed types together                           | Types must be integer                  |
+|  <<             | Left shift an integer by another integer amount            | Types must be integer                  |
+|  >>             | Right shift an integer by another integer amount           | Types must be integer                  |
+|  !              | Bitwise not of a value                                     | Types must be integer or boolean       |
 |  <              | returns a bool if one value is less than the other             | Upper bound must have a known bit size |
 |  <=             | returns a bool if one value is less than or equal to the other | Upper bound must have a known bit size |
 |  >              | returns a bool if one value is more than the other             | Upper bound must have a known bit size |
