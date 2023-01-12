@@ -144,24 +144,13 @@ The [barretenberg] proving backend is written in C++, hence compiling it from so
    brew install cmake llvm libomp
    ```
 
-   #### Linux
+   #### Ubuntu (Linux)
 
    ```bash
-   TBC
+   sudo apt update && sudo apt install clang lld cmake libomp-dev
    ```
 
-   <!---
-   Linux's command for openMP from barretenberg's GitHub README:
-
-   ```bash
-   RUN git clone -b release/10.x --depth 1 https://github.com/llvm/llvm-project.git \
-   && cd llvm-project && mkdir build-openmp && cd build-openmp \
-   && cmake ../openmp -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DLIBOMP_ENABLE_SHARED=OFF \
-   && make -j$(nproc) \
-   && make install \
-   && cd ../.. && rm -rf llvm-project
-   ```
-   --->
+   Other variants of Linux will need to adjust the commands for their package manager.
 
    #### Windows
 
