@@ -262,21 +262,10 @@ SUBCOMMANDS:
 <p>Installing through <a href="https://brew.sh/">Homebrew</a> is recommended:</p>
 <pre><code class="language-bash">brew install cmake llvm libomp
 </code></pre>
-<h4 id="linux"><a class="header" href="#linux">Linux</a></h4>
-<pre><code class="language-bash">TBC
+<h4 id="ubuntu-linux"><a class="header" href="#ubuntu-linux">Ubuntu (Linux)</a></h4>
+<pre><code class="language-bash">sudo apt update &amp;&amp; sudo apt install clang lld cmake libomp-dev
 </code></pre>
-<!---
-Linux's command for openMP from barretenberg's GitHub README:
-
-```bash
-RUN git clone -b release/10.x --depth 1 https://github.com/llvm/llvm-project.git \
-&& cd llvm-project && mkdir build-openmp && cd build-openmp \
-&& cmake ../openmp -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DLIBOMP_ENABLE_SHARED=OFF \
-&& make -j$(nproc) \
-&& make install \
-&& cd ../.. && rm -rf llvm-project
-```
---->
+<p>Other variants of Linux will need to adjust the commands for their package manager.</p>
 <h4 id="windows"><a class="header" href="#windows">Windows</a></h4>
 <pre><code class="language-sh">TBC
 </code></pre>
