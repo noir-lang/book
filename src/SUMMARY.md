@@ -13,7 +13,7 @@
   - [Merkle Proof](getting_started/merkle-proof.md)
 - [Language Concepts](language_concepts.md)
   - [Mutability](language_concepts/mutability.md)
-  - [Data types](language_concepts/data_types.md)
+  - [Data Types](language_concepts/data_types.md)
   - [Functions](language_concepts/functions.md)
   - [Comments](language_concepts/comments.md)
   - [Control Flow](language_concepts/control_flow.md)

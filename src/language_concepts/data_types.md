@@ -1,139 +1,97 @@
-# Data types
+# Data Types
 
-Noir has several varieties of data types: the primitive `Field` type, integer types, `bool`, arrays, structs, and tuple types.
+Every value in Noir is specified with a certain data type, which informs Noir tools how to work with that data when processing Noir programs.
 
-Although each value in a constraint system is fundamentally a field element, we add a layer of abstraction over this;
-each value can be _concealed_ (a private type) or _revealed_ (a public type).
+All values in Noir are fundamentally `Field` elements. For a more approachable developing experience, abstractions are added on top to introduce different data types in Noir.
 
-A **private value** is known only to the Prover, while, a **public value** is known by the Prover and Verifier.
-All public and private values are primitive types, though individual
-fields of a struct may also be marked private or public.
+Noir has two category of data types: primitive types (e.g. `Field`, integer, `bool`) and compound types (e.g. array, tuple, struct). Each value can either be private or public.
 
-Note that the terms private and public when applied to a type (e.g. in `pub Field`) have a different meaning than when
-applied to a function `pub fn foo() { ... }`.
-The later is a visibility modifier familiar to those coming from existing
-langauges, while the former can be thought of as a visibility modifier for the Verifier.
-So a `pub Field` would be visible to the Verifier while a `Field` would not (private is the default modifier).
+## Private & Public Types
+
+A **private value** is known only to the Prover, while a **public value** is known by both the Prover and Verifier. All public and private values are primitive types, though individual fields of compound types may also be marked private or public.
+
+> **Note:** For Noir programs using public smart contract verifiers, public values defined in such programs can be considered as public knowledge once their proofs are verified on-chain.
+
+Public data types are treated no differently to private types apart from the fact that their values will be revealed in proofs generated. Simply changing the value of a public type will not change the circuit (where the same goes for changing values of private types as well).
+
+_Private_ are also referred to as _witnesses_ sometimes.
+
+> **Note:** The terms private and public when applied to a type (e.g. `pub Field`) have a different meaning than when applied to a function (e.g. `pub fn foo() {}`).
+>
+> The latter is a visibility modifier familiar to those coming from other languages, while the former can be thought of as a visibility modifier for the Verifier to interpret.
+
+### pub Modifier
+
+All data types in Noir are private by default. Types are explicitly declared as public using the `pub` modifier:
+
+```rust,noplaypen
+fn main(x : Field, y : pub Field) -> pub Field {
+    x + y
+}
+```
+
+In this example, the first input (i.e. `x`) is private while the second input (i.e. `y`) and the return value (i.e. `x + y`) are public.
+
+> **Note:** As of this moment, public types can only be declared through parameters on `main`.
 
 ## Primitive Types
 
-Any of these types can be private (the default) or public (via a `pub` modifier).
+A primitive type represents a single value. They can be private or public.
 
-Note that private types are also referred to as witnesses.
+### The Field Type
 
-#### Field Type
+The `Field` type corresponds to the native field type of the proving backend. For example, this would be a (roughly) 256-bit integer when using the default TurboPlonk backend.
 
-A field type corresponds to a native field type in the backend. Usually this is a (roughly) 256-bit integer.
-This should generally be the default type reached for to solve problems. Using a smaller integer type like `u64` incurs
-extra range constraints and so is less efficient rather than more.
+Fields are simply defined with the keyword `Field`:
 
 ```rust,noplaypen
-fn main(x : Field, y : Field) {
+fn main(x : Field, y : Field)  {
     let z = x + y;
 }
 ```
 
-`x`, `y` and `z` are witness types (private `Field`). Using the `let` keyword we derived a new witness `z` which is constrained to be equal to `x + y`.
+`x`, `y` and `z` are all private `Field` in this example. Using the `let` keyword we derived a new private value `z` constrained to be equal to `x + y`.
 
-#### Integer Type
+If efficiency is of priority, `Field` should be used as the default type for solving problems. Using smaller integer types (e.g. `u64`) incurs extra range constraints.
 
-An integer type is a witness type which has been constrained using a range constraint.
-The Noir front-end currently supports arbitrary sized integer types.
+### Integer Types
 
-Below we show the integer type in action:
+An integer type is a range constrained `Field` value, and the Noir frontend currently supports unsigned, arbitrary-sized integer types.
+
+An integer type is specified first with the letter `u`, indicating its unsigned nature, followed by its length in bits (e.g. `32`). For example, a `u32` variable can store a value in the range of \\([0,2^{32}-1]\\):
 
 ```rust,noplaypen
-fn main(x : Field) {
-    let y = x as u24;
+fn main(x : Field, y : u32) {
+    let z = x as u32 + y;
 }
 ```
 
-`x` and `y` are both private types (witnesses), however `y` is an integer type.
-If `y` exceeds the range \\([0,2^{24}-1]\\) then any proof created will output false by the verifier.
+`x`, `y` and `z` are all private values in this example. However, `x` is a `Field` while `y` and `z` are unsigned 32-bit integers. If `y` or `z` exceeds the range \\([0,2^{32}-1]\\), proofs created will be rejected by the verifier.
 
-> **Note:** The Aztec backend supports even and odd sized integer types, so while using the Aztec backend, even sized integer types such as u32, u48, as well as odd sized integer types such as u5, u3 will produce proofs.
+> **Note:** The default TurboPlonk backend supports both even (e.g. `u16`, `u48`) and odd (e.g. `u5`, `u3`) sized integer types.
 
-#### Constants
+### The Boolean Type
 
-A constant type is a value that does not change per circuit instance. This is different to a witness which changes per proof.
-If a constant type that is being used in your program is changed, then your circuit will also change.
-
-Below we show how to declare a constant value:
+A boolean type in Noir has two possible values: `true` and `false`, and is specified using `bool`. For example:
 
 ```rust,noplaypen
 fn main() {
-    let a: comptime Field = 5;
-
-    // `comptime Field` can also be inferred:
-    let a = 5;
+    let t = true; // type implicitly interpreted
+    let f: bool = false; // type explicit annotated
 }
 ```
 
-Note that variables declared as mutable may not be constants:
+> **Note:** When returning a boolean value, it will show up as a value of 1 for `true` and 0 for `false` in _Verifier.toml_.
 
-```rust,noplaypen
-fn main() {
-    // error: Cannot mark a comptime type as mutable - any mutation would remove its const-ness
-    let mut a: comptime Field = 5;
-
-    // a inferred as a private Field here
-    let mut a = 5;
-}
-```
-
-#### Globals
-
-Noir also supports global variables. However, they must be compile-time variables. If `comptime` is not explicitly written in the type annotation the compiler will implicitly specify the declaration as compile-time. They can then be used like any other compile-time variable inside functions. The global type can also be inferred by the compiler entirely. Globals can also be used to specify array annotations for function parameters and can be imported from submodules. 
-
-Globals are currently limited to Field, integer, and bool literals.
-
-```rust,noplaypen
-global N: Field = 5; // Same as `global N: comptime Field = 5`
-
-fn main(x : Field, y : [Field; N]) {
-    let res = x * N;
-
-    constrain res == y[0];
-
-    let res2 = x * mysubmodule::N;
-    constrain res != res2;
-}
-
-mod mysubmodule {
-    use dep::std;
-
-    global N: Field = 10;
-
-    fn my_helper() -> comptime Field {
-        let x = N;
-        x
-    }
-}
-```
-
-#### `pub` Modifier
-
-A public type is a value that may change per circuit instance. Unlike Constants, changing a public value will not change the circuit.
-
-```rust,noplaypen
-fn main(x : pub Field) {
-
-}
-```
-
-As of the beta release, public types can only be declared through parameters on `main`.
-In the code, they are treated no differently to witness types.
-
-> **Note:** This behaviour and type will change in future releases, to catch a linearity bug in user code.
+The main usage of the boolean type is in conditionals (e.g. `if` expressions, `constrain`). More about conditionals are covered in the [Control Flow](./control_flow.md) and [Constrain Statement](./constrain.md) sections.
 
 ## Compound Types
 
-Noir also supports arrays, structs, and tuples whose elements may be public or private.
+A compound type groups together multiple values into one type. Elements within a compound type can be private or public.
 
-#### Arrays
+### The Array Type
 
-An array is a data structure which allows you to group together data types.
-All values in an array must be of the same type (i.e., they're homogeneous).
+An array is one way of grouping together values into one compound type:
 
 ```rust,noplaypen
 fn main(x : Field, y : Field) {
@@ -141,32 +99,72 @@ fn main(x : Field, y : Field) {
 }
 ```
 
-Note that currently Noir only supports arrays with integer or `Field` elements.
+All elements in an array must be of the same type (i.e. homogeneous). That is, `Field` values cannot be grouped together with integer values in one array for example.
 
-> **Example:** An array of `Field` types cannot be grouped together with an array of integer types.
+Noir currently supports arrays with `Field` or integer elements only.
 
-#### Structs
+### The Tuple Type
 
-Structs can be used to group together multiple different types:
+A tuple collects multiple values like an array, but with the added ability to collect values of different types:
 
 ```rust,noplaypen
-struct Operation {
-    lhs: Field,
-    opcode: u8,
-    rhs: Field,
-}
-
 fn main() {
-    let opcode = 3 as u8;
+    let tup: (u8, u64, Field) = (255, 500, 1000);
+}
+```
 
-    // operation: Operation
-    let operation = Operation {
-        lhs: 0,
-        rhs: 1,
-        opcode,
-    }
+One way to access tuple elements is via destructuring using pattern matching:
 
-    let zero = operation.lhs;
+```rust,noplaypen
+fn main() {
+    let tup = (1, 2);
+
+    let (one, two) = tup;
+
+    let three = one + two;
+}
+```
+
+Another way to access tuple elements is via direct member access, using a period (`.`) followed by the index of the element we want to access. Index `0` corresponds to the first tuple element, `1` to the second and so on:
+
+```rust,noplaypen
+fn main() {
+    let tup = (5, 6, 7, 8);
+
+    let five = tup.0;
+    let eight = tup.3;
+}
+```
+
+### Structs
+
+A struct is used for grouping multiple related values of different types like a tuple, with the added ability to name the pieces of data (also referred to as _fields_).
+
+> **Note:** The naming of _fields_ here is unrelated to Noir's `Field` type. It simply mimics Rust's convention.
+
+When defining a struct, you will name the struct and every fields within as `key: type` pairs. A struct can hold fields of different types:
+
+```rust,noplaypen
+struct Animal {
+    hands: Field,
+    legs: Field,
+    eyes: u8,
+}
+```
+
+An instance of struct can then be created with concrete values in `key: value` pairs. Struct fields are accessible using their given names, instead of by their order like in arrays and tuples:
+
+```rust,noplaypen
+fn main() {
+    let legs = 4;
+
+    let dog = Animal {
+        hands: 0,
+        legs,
+        eyes: 2, // type implicitly interpreted
+    };
+
+    let zero = dog.hands;
 }
 ```
 
@@ -174,33 +172,21 @@ Structs can also be destructured in a pattern, binding each field to a new varia
 
 ```rust,noplaypen
 fn main() {
-    let Operation { lhs, rhs: the_rhs, opcode: _ } = get_operation();
-    // lhs and the_rhs are now in scope
+    let Animal { hands, legs: feet, eyes } = get_octopus();
+
+    // hands, feet and eyes are now in scope
+    let ten = hands + feet + eyes as u8;
+}
+
+fn get_octopus() -> Animal {
+    let octopus = Animal {
+        hands: 0,
+        legs: 8,
+        eyes: 2,
+    };
+
+    octopus
 }
 ```
 
-#### Tuples
-
-Noir also supports tuples, which can be thought of as anonymous structs with integers as field names.
-
-```rust,noplaypen
-fn main() {
-    let tuple = (1, 2);
-    let (a, b) = tuple;
-
-    let (c, d, mut (e, f)) = (3, 4, (5, 6));
-}
-```
-
-Tuple fields can be accessed via destructuring as above or via member access syntax.
-The first field name of a tuple is `0`, then `1` and so on:
-
-```
-fn main() {
-    // tuple: (comptime Field, comptime Field, comptime Field, comptime Field)
-    let tuple = (5, 6, 7, 8);
-
-    let five = tuple.0;
-    let eight = tuple.3;
-}
-```
+The new variables can be binded with names different from the original struct field names, as showcased in the `legs --> feet` binding in the example above.
