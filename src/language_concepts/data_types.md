@@ -189,4 +189,4 @@ fn get_octopus() -> Animal {
 }
 ```
 
-The new variables can be binded with names different from the original struct field names, as showcased in the `legs --> feet` binding in the example above.
+The new variables can be bound with names different from the original struct field names, as showcased in the `legs --> feet` binding in the example above.
