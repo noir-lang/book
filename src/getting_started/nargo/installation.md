@@ -114,23 +114,23 @@ SUBCOMMANDS:
    git clone git@github.com:noir-lang/noir.git
    ```
 
-3. Change directory into the Nargo crate by running:
+3. Change directory into the Noir project by running:
 
    ```bash
-   cd noir/crates/nargo
+   cd noir
    ```
 
 There are then two approaches to proceed, differing in how the proving backend is installed:
 
-### Option 2.1: WASM Executable Backend
+### Option 2.1: Install Executable with WASM backend
 
-4. Go into `nargo/Cargo.toml` and replace `aztec_backend = ...` with the following:
+4. Install Nargo by running:
 
+   ```bash
+   cargo install --locked --path=crates/nargo --no-default-features --features plonk_bn254_wasm
    ```
-   aztec_backend = { optional = true, package = "barretenberg_wasm", git = "https://github.com/noir-lang/aztec_backend", rev = "484d1f3e780010d04892490641de6a9d92ed805b" }
-   ```
 
-### Option 2.2: Compile Backend from Source
+### Option 2.2: Install Executable with Native Backend
 
 The [barretenberg] proving backend is written in C++, hence compiling it from source would first require certain dependencies to be installed.
 
@@ -158,13 +158,13 @@ The [barretenberg] proving backend is written in C++, hence compiling it from so
    TBC
    ```
 
-### Continue with Installation
-
 5. Install Nargo by running:
 
    ```bash
-   cargo install --locked --path=.
+   cargo install --locked --path=crates/nargo
    ```
+
+### Verify Installation
 
 6. Check if the installation was successful by running `nargo --help`:
 
