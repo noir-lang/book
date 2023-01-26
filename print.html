@@ -266,21 +266,21 @@ SUBCOMMANDS:
 </code></pre>
 </li>
 <li>
-<p>Change directory into the Nargo crate by running:</p>
-<pre><code class="language-bash">cd noir/crates/nargo
+<p>Change directory into the Noir project by running:</p>
+<pre><code class="language-bash">cd noir
 </code></pre>
 </li>
 </ol>
 <p>There are then two approaches to proceed, differing in how the proving backend is installed:</p>
-<h3 id="option-21-wasm-executable-backend"><a class="header" href="#option-21-wasm-executable-backend">Option 2.1: WASM Executable Backend</a></h3>
+<h3 id="option-21-install-executable-with-wasm-backend"><a class="header" href="#option-21-install-executable-with-wasm-backend">Option 2.1: Install Executable with WASM backend</a></h3>
 <ol start="4">
 <li>
-<p>Go into <code>nargo/Cargo.toml</code> and replace <code>aztec_backend = ...</code> with the following:</p>
-<pre><code>aztec_backend = { optional = true, package = &quot;barretenberg_wasm&quot;, git = &quot;https://github.com/noir-lang/aztec_backend&quot;, rev = &quot;484d1f3e780010d04892490641de6a9d92ed805b&quot; }
+<p>Install Nargo by running:</p>
+<pre><code class="language-bash">cargo install --locked --path=crates/nargo --no-default-features --features plonk_bn254_wasm
 </code></pre>
 </li>
 </ol>
-<h3 id="option-22-compile-backend-from-source"><a class="header" href="#option-22-compile-backend-from-source">Option 2.2: Compile Backend from Source</a></h3>
+<h3 id="option-22-install-executable-with-native-backend"><a class="header" href="#option-22-install-executable-with-native-backend">Option 2.2: Install Executable with Native Backend</a></h3>
 <p>The <a href="https://github.com/AztecProtocol/aztec-connect/tree/master/barretenberg">barretenberg</a> proving backend is written in C++, hence compiling it from source would first require certain dependencies to be installed.</p>
 <ol start="4">
 <li>
@@ -297,14 +297,14 @@ SUBCOMMANDS:
 <pre><code class="language-sh">TBC
 </code></pre>
 </li>
-</ol>
-<h3 id="continue-with-installation"><a class="header" href="#continue-with-installation">Continue with Installation</a></h3>
-<ol start="5">
 <li>
 <p>Install Nargo by running:</p>
-<pre><code class="language-bash">cargo install --locked --path=.
+<pre><code class="language-bash">cargo install --locked --path=crates/nargo
 </code></pre>
 </li>
+</ol>
+<h3 id="verify-installation"><a class="header" href="#verify-installation">Verify Installation</a></h3>
+<ol start="6">
 <li>
 <p>Check if the installation was successful by running <code>nargo --help</code>:</p>
 <pre><code>$ nargo --help
@@ -345,7 +345,7 @@ SUBCOMMANDS:
 <li><code>&lt;package_name&gt;</code> - Name of the package</li>
 <li><code>[path]</code> - The path to save the new project</li>
 </ul>
-<h2 id="nargo-build"><a class="header" href="#nargo-build"><code>nargo build</code></a></h2>
+<h2 id="nargo-check"><a class="header" href="#nargo-check"><code>nargo check</code></a></h2>
 <p>Generate the <code>Prover.toml</code> and <code>Verifier.toml</code> files for specifying prover and verifier in/output values of the Noir program respectively.</p>
 <h2 id="nargo-prove-proof_name"><a class="header" href="#nargo-prove-proof_name"><code>nargo prove &lt;proof_name&gt;</code></a></h2>
 <p>Creates a proof for the program.</p>
@@ -370,7 +370,7 @@ SUBCOMMANDS:
 </ul>
 <p><em>Usage</em></p>
 <p>Running the command would create a new folder <code>build</code> with the compiled <code>&lt;circuit_name&gt;.acir</code> file in your project directory.</p>
-<p>To also compile a witness file, fill in the values in <code>Prover.toml</code> generated from <code>nargo build</code> and run the command with the <code>--witness</code> flag. A <code>&lt;circuit_name&gt;.tr</code> file would be compiled in the <code>build</code> folder.</p>
+<p>To also compile a witness file, fill in the values in <code>Prover.toml</code> generated from <code>nargo check</code> and run the command with the <code>--witness</code> flag. A <code>&lt;circuit_name&gt;.tr</code> file would be compiled in the <code>build</code> folder.</p>
 <blockquote>
 <p><strong>Info:</strong> The <code>.acir</code> file is the ACIR of your Noir program, and the <code>.tr</code> file is the witness file. The witness file can be considered as program inputs parsed for your program's ACIR.</p>
 <p>The files compiled can be passed into a TypeScript project for proving and verification. See the <a href="getting_started/nargo/../typescript.html#proving-and-verifying-externally-compiled-files">TypeScript</a> section to learn more.</p>
@@ -426,7 +426,7 @@ $ cd ~/projects
 <h2 id="build-inoutput-files"><a class="header" href="#build-inoutput-files">Build In/Output Files</a></h2>
 <p>Change directory into <em>hello_world</em> and build in/output files for your Noir program by running:</p>
 <pre><code class="language-sh">$ cd hello_world
-$ nargo build
+$ nargo check
 </code></pre>
 <p>Two additional files would be generated in your project directory:</p>
 <p><em>Prover.toml</em> houses input values, and <em>Verifier.toml</em> houses public values.</p>
@@ -464,7 +464,7 @@ Proof verified : true
 <p>This section breaks down our hello world program in section <em>1.2</em>.
 We elaborate on the project structure and what the <code>prove</code> and <code>verify</code> commands did in the previous section.</p>
 <h2 id="anatomy-of-a-nargo-project"><a class="header" href="#anatomy-of-a-nargo-project">Anatomy of a Nargo Project</a></h2>
-<p>Upon creating a new project with <code>nargo new</code> and building the in/output files with <code>nargo build</code> commands, you would get a minimal Nargo project of the following structure:</p>
+<p>Upon creating a new project with <code>nargo new</code> and building the in/output files with <code>nargo check</code> commands, you would get a minimal Nargo project of the following structure:</p>
 <pre><code>- src
 - Prover.toml
 - Verifier.toml

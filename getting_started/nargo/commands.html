@@ -159,7 +159,7 @@
 <li><code>&lt;package_name&gt;</code> - Name of the package</li>
 <li><code>[path]</code> - The path to save the new project</li>
 </ul>
-<h2 id="nargo-build"><a class="header" href="#nargo-build"><code>nargo build</code></a></h2>
+<h2 id="nargo-check"><a class="header" href="#nargo-check"><code>nargo check</code></a></h2>
 <p>Generate the <code>Prover.toml</code> and <code>Verifier.toml</code> files for specifying prover and verifier in/output values of the Noir program respectively.</p>
 <h2 id="nargo-prove-proof_name"><a class="header" href="#nargo-prove-proof_name"><code>nargo prove &lt;proof_name&gt;</code></a></h2>
 <p>Creates a proof for the program.</p>
@@ -184,7 +184,7 @@
 </ul>
 <p><em>Usage</em></p>
 <p>Running the command would create a new folder <code>build</code> with the compiled <code>&lt;circuit_name&gt;.acir</code> file in your project directory.</p>
-<p>To also compile a witness file, fill in the values in <code>Prover.toml</code> generated from <code>nargo build</code> and run the command with the <code>--witness</code> flag. A <code>&lt;circuit_name&gt;.tr</code> file would be compiled in the <code>build</code> folder.</p>
+<p>To also compile a witness file, fill in the values in <code>Prover.toml</code> generated from <code>nargo check</code> and run the command with the <code>--witness</code> flag. A <code>&lt;circuit_name&gt;.tr</code> file would be compiled in the <code>build</code> folder.</p>
 <blockquote>
 <p><strong>Info:</strong> The <code>.acir</code> file is the ACIR of your Noir program, and the <code>.tr</code> file is the witness file. The witness file can be considered as program inputs parsed for your program's ACIR.</p>
 <p>The files compiled can be passed into a TypeScript project for proving and verification. See the <a href="../typescript.html#proving-and-verifying-externally-compiled-files">TypeScript</a> section to learn more.</p>

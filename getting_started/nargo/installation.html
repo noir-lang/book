@@ -239,21 +239,21 @@ SUBCOMMANDS:
 </code></pre>
 </li>
 <li>
-<p>Change directory into the Nargo crate by running:</p>
-<pre><code class="language-bash">cd noir/crates/nargo
+<p>Change directory into the Noir project by running:</p>
+<pre><code class="language-bash">cd noir
 </code></pre>
 </li>
 </ol>
 <p>There are then two approaches to proceed, differing in how the proving backend is installed:</p>
-<h3 id="option-21-wasm-executable-backend"><a class="header" href="#option-21-wasm-executable-backend">Option 2.1: WASM Executable Backend</a></h3>
+<h3 id="option-21-install-executable-with-wasm-backend"><a class="header" href="#option-21-install-executable-with-wasm-backend">Option 2.1: Install Executable with WASM backend</a></h3>
 <ol start="4">
 <li>
-<p>Go into <code>nargo/Cargo.toml</code> and replace <code>aztec_backend = ...</code> with the following:</p>
-<pre><code>aztec_backend = { optional = true, package = &quot;barretenberg_wasm&quot;, git = &quot;https://github.com/noir-lang/aztec_backend&quot;, rev = &quot;484d1f3e780010d04892490641de6a9d92ed805b&quot; }
+<p>Install Nargo by running:</p>
+<pre><code class="language-bash">cargo install --locked --path=crates/nargo --no-default-features --features plonk_bn254_wasm
 </code></pre>
 </li>
 </ol>
-<h3 id="option-22-compile-backend-from-source"><a class="header" href="#option-22-compile-backend-from-source">Option 2.2: Compile Backend from Source</a></h3>
+<h3 id="option-22-install-executable-with-native-backend"><a class="header" href="#option-22-install-executable-with-native-backend">Option 2.2: Install Executable with Native Backend</a></h3>
 <p>The <a href="https://github.com/AztecProtocol/aztec-connect/tree/master/barretenberg">barretenberg</a> proving backend is written in C++, hence compiling it from source would first require certain dependencies to be installed.</p>
 <ol start="4">
 <li>
@@ -270,14 +270,14 @@ SUBCOMMANDS:
 <pre><code class="language-sh">TBC
 </code></pre>
 </li>
-</ol>
-<h3 id="continue-with-installation"><a class="header" href="#continue-with-installation">Continue with Installation</a></h3>
-<ol start="5">
 <li>
 <p>Install Nargo by running:</p>
-<pre><code class="language-bash">cargo install --locked --path=.
+<pre><code class="language-bash">cargo install --locked --path=crates/nargo
 </code></pre>
 </li>
+</ol>
+<h3 id="verify-installation"><a class="header" href="#verify-installation">Verify Installation</a></h3>
+<ol start="6">
 <li>
 <p>Check if the installation was successful by running <code>nargo --help</code>:</p>
 <pre><code>$ nargo --help
