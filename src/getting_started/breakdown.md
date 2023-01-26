@@ -5,7 +5,7 @@ We elaborate on the project structure and what the `prove` and `verify` commands
 
 ## Anatomy of a Nargo Project
 
-Upon creating a new project with `nargo new` and building the in/output files with `nargo build` commands, you would get a minimal Nargo project of the following structure:
+Upon creating a new project with `nargo new` and building the in/output files with `nargo check` commands, you would get a minimal Nargo project of the following structure:
 
     - src
     - Prover.toml

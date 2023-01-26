@@ -72,7 +72,7 @@ Change directory into _hello_world_ and build in/output files for your Noir prog
 
 ```sh
 $ cd hello_world
-$ nargo build
+$ nargo check
 ```
 
 Two additional files would be generated in your project directory:
