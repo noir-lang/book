@@ -150,12 +150,12 @@
 If this expression is false at runtime, the program will fail to be proven.</p>
 <h3 id="constrain-statement-example"><a class="header" href="#constrain-statement-example">Constrain statement example</a></h3>
 <pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
-    constrain x == y
+    constrain x == y;
 }
 </code></pre>
 <p>The above snippet compiles because <code>==</code> is a predicate operation. Conversely, the following will not compile:</p>
 <pre><code class="language-rust noplaypen">fn main(x : Field, y : Field) {
-    constrain x + y
+    constrain x + y;
 }
 </code></pre>
 <blockquote>
