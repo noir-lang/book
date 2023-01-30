@@ -39,7 +39,7 @@ _Arguments_
 
 ## `nargo contract`
 
-Generate a Solidity smart contract verifier for the program.
+Generate a Solidity verifier smart contract for the program.
 
 ## `nargo compile [FLAGS] <circuit_name>`
 
