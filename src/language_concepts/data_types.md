@@ -54,7 +54,7 @@ fn main(x : Field, y : Field)  {
 
 `x`, `y` and `z` are all private fields in this example. Using the `let` keyword we defined a new private value `z` constrained to be equal to `x + y`.
 
-If proving efficiency is of priority, fields should be used as a default for solving problems. Smaller integer types (e.g. `u64`) come with overflow protections at the cost of extra range constraints.
+If proving efficiency is of priority, fields should be used as a default for solving problems. Smaller integer types (e.g. `u64`) incur extra range constraints.
 
 ### Integer Types
 
@@ -93,7 +93,7 @@ A compound type groups together multiple values into one type. Elements within a
 
 ### The Array Type
 
-An array is one way of grouping together values into one compound type. It can be implicitly inferred or explicitly defined with `[<Type>; <Size>]`:
+An array is one way of grouping together values into one compound type. Array types can be inferred or explicitly specified via the syntax `[<Type>; <Size>]`:
 
 ```rust,noplaypen
 fn main(x : Field, y : Field) {
@@ -102,7 +102,7 @@ fn main(x : Field, y : Field) {
 }
 ```
 
-Here, both `my_arr` and `your_arr` are instantiated as an array of `Field` type with `2` elements.
+Here, both `my_arr` and `your_arr` are instantiated as an array containing two `Field` elements.
 
 Array elements can be accessed using indexing:
 
@@ -166,7 +166,7 @@ struct Animal {
 }
 ```
 
-An instance of struct can then be created with actual values in `<Key>: <Value>` pairs of any order. Struct fields are accessible using their given names:
+An instance of a struct can then be created with actual values in `<Key>: <Value>` pairs in any order. Struct fields are accessible using their given names:
 
 ```rust,noplaypen
 fn main() {
