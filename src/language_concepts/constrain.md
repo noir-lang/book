@@ -5,9 +5,9 @@ If this expression is false at runtime, the program will fail to be proven.
 
 ### Constrain statement example
 
-```rust,noplaypen 
+```rust,noplaypen
 fn main(x : Field, y : Field) {
-    constrain x == y
+    constrain x == y;
 }
 ```
 
@@ -15,7 +15,7 @@ The above snippet compiles because `==` is a predicate operation. Conversely, th
 
 ```rust,noplaypen
 fn main(x : Field, y : Field) {
-    constrain x + y
+    constrain x + y;
 }
 ```
 

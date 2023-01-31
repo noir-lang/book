@@ -17,7 +17,7 @@ _Arguments_
 - `<package_name>` - Name of the package
 - `[path]` - The path to save the new project
 
-## `nargo build`
+## `nargo check`
 
 Generate the `Prover.toml` and `Verifier.toml` files for specifying prover and verifier in/output values of the Noir program respectively.
 
@@ -39,7 +39,7 @@ _Arguments_
 
 ## `nargo contract`
 
-Generate a Solidity smart contract verifier for the program.
+Generate a Solidity verifier smart contract for the program.
 
 ## `nargo compile [FLAGS] <circuit_name>`
 
@@ -54,7 +54,7 @@ _Usage_
 
 Running the command would create a new folder `build` with the compiled `<circuit_name>.acir` file in your project directory.
 
-To also compile a witness file, fill in the values in `Prover.toml` generated from `nargo build` and run the command with the `--witness` flag. A `<circuit_name>.tr` file would be compiled in the `build` folder.
+To also compile a witness file, fill in the values in `Prover.toml` generated from `nargo check` and run the command with the `--witness` flag. A `<circuit_name>.tr` file would be compiled in the `build` folder.
 
 > **Info:** The `.acir` file is the ACIR of your Noir program, and the `.tr` file is the witness file. The witness file can be considered as program inputs parsed for your program's ACIR.
 >
