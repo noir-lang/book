@@ -30,7 +30,7 @@ $ nargo new hello_world
 
 > **Note:** `hello_world` can be any arbitrary project name, we are simply using `hello_world` for demonstration.
 >
-> In production, the common practice is to name the project folder as `circuits` for better identifiability when sitting alongside other folders in the codebase (e.g. `contracts`).
+> In production, the common practice is to name the project folder as `circuits` for better identifiability when sitting alongside other folders in the codebase (e.g. `contracts`, `scripts`, `test`).
 
 A `hello_world` folder would be created. Similar to Rust, the folder houses _src/main.nr_ and _Nargo.toml_ that contains the source code and environmental options of your Noir program respectively.
 
@@ -50,11 +50,7 @@ The first line of the program specifies the program's inputs:
 x : Field, y : pub Field
 ```
 
-Program inputs in Noir are private by default (e.g. `x`), but can be labeled public using the keyword `pub` (e.g. `y`).
-
-> **Note:** Private inputs are known only to the prover, while public inputs are shared with the verifier alongside the proof.
->
-> Most projects intend to implement the verifier as a public smart contract, hence public inputs are often considered as public knowledge.
+Program inputs in Noir are private by default (e.g. `x`), but can be labeled public using the keyword `pub` (e.g. `y`). To learn more about private and public values, check the [Data Types](../language_concepts/data_types.md) section.
 
 The next line of the program specifies its body:
 
@@ -64,7 +60,7 @@ constrain x != y;
 
 The Noir syntax `constrain` can be interpreted as something similar to `assert` in other languages.
 
-For more Noir syntax, check the [language chapter](../language_concepts.md).
+For more Noir syntax, check the [Language Concepts](../language_concepts.md) chapter.
 
 ## Build In/Output Files
 
