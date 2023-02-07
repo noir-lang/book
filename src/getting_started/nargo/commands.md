@@ -21,6 +21,12 @@ _Arguments_
 
 Generate the `Prover.toml` and `Verifier.toml` files for specifying prover and verifier in/output values of the Noir program respectively.
 
+## `nargo execute`
+
+Runs the Noir program and prints its return value.
+
+- `<witness_name>` - The name of the witness
+
 ## `nargo prove <proof_name>`
 
 Creates a proof for the program.
