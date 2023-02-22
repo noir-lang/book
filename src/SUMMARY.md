@@ -19,6 +19,7 @@
   - [Control Flow](language_concepts/control_flow.md)
   - [Operations](language_concepts/ops.md)
   - [Constrain Statement](language_concepts/constrain.md)
+  - [Standard Library (std)](language_concepts/standard_library.md)
 - [Modules, Packages, Crates](modules_packages_crates.md)
   - [Crate](modules_packages_crates/crate.md)
   - [Packages](modules_packages_crates/packages.md)
