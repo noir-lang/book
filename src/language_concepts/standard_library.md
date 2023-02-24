@@ -18,8 +18,8 @@ std::hash::pedersen(data);
 
 After declaring a Field, you can use these common methods on it [^migrationNote]:
 
-| Method   | Description                                                                                                                   | Example                        |
-|:---------|-------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
+| Method   | Description  | Example                        |
+|:---------|--------------|--------------------------------|
 |to_le_bits| Transforms into an array of bits, Little Endian | `field.to_le_bits()` |
 |to_le_bytes| Transforms into an array of bytes, Little Endian | `field.to_le_bytes(byte_size)` |
 |to_radix| Decomposes into a vector over the specificed base | `field.to_radix(radix_base, vector)`
@@ -29,8 +29,8 @@ After declaring a Field, you can use these common methods on it [^migrationNote]
 
 For convenience, the STD provides some ready-to-use, common methods for arrays[^migrationNote]:
 
-| Method   | Description                                                                                                                   | Example                        |
-|:---------|-------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
+| Method   | Description    | Example                        |
+|:---------|----------------------|--------------------------------|
 | len      | Returns the length of an array                                                                                                | `array.len()`                  |
 | sort | Sorts the array with a built-in function                                                                                           | `array.sort()`                 |
 | sort_via | Sorts with a custom sorting function                                                                                          | `array.sort_via(|a, b| a < b)` |
@@ -45,10 +45,10 @@ For convenience, the STD provides some ready-to-use, common methods for arrays[^
 
 Some constructs for merkle tree membership and root calculation are available.
 
-| Method   | Description                                                                                                                   | Example                        | Obs                        |
-|:---------|-------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
-| check_membership      | Returns 1 if the specified leaf is at the given index on a tree                                                                                                | `merkle::check_membership(root, leaf, index, hashpath)`                  | Implementation provided by barretenberg |
-| check_membership_in_noir      | Returns 1 if the specified leaf is at the given index on a tree                                                                                                | `merkle::check_membership_in_noir(root, leaf, index, hashpath)`                  | Computed in noir, so it works in all backends |
+| Method                   | Description                                                     | Example                                                         | Obs                                           |
+|:-------------------------|-----------------------------------------------------------------|-----------------------------------------------------------------|-----------------------------------------------|
+| check_membership         | Returns 1 if the specified leaf is at the given index on a tree | `merkle::check_membership(root, leaf, index, hashpath)`         | Implementation provided by barretenberg       |
+| check_membership_in_noir | Returns 1 if the specified leaf is at the given index on a tree | `merkle::check_membership_in_noir(root, leaf, index, hashpath)` | Computed in noir, so it works in all backends |
 | compute_root_from_leaf      | Returns the root of the tree from the provided leaf and its hashpath, using pedersen hash                                                                                                | `merkle::compute_root_from_leaf(leaf, index, hashpath)`                  |
 
 ## Cryptographic primitives
