@@ -7,11 +7,25 @@ Noir features a standard library with some ready-to-use, built-in structures. To
 use dep::std;
 ```
 
-You should then have these constructs available. Example:
+You should then have these constructs available. For example, you can now call the `std::hash::pedersen` function like so:
 
 ``` rust
 let data : [Field; 2] = [42, 42];
 std::hash::pedersen(data);
+```
+
+## Logging
+
+The standard library provides a familiar `println` statement you can use. Despite being a limited implementation of rust's `println!` macro, this construct can be useful for debugging.
+
+```rust
+use dep::std;
+
+fn main(string: pub str<5>) {
+    let x = 5;
+    std::println(x)
+}
+
 ```
 
 ## Field
@@ -34,12 +48,12 @@ For convenience, the STD provides some ready-to-use, common methods for arrays[^
 | len      | Returns the length of an array                                                                                                | `array.len()`                  |
 | sort | Sorts the array with a built-in function                                                                                           | `array.sort()`                 |
 | sort_via | Sorts with a custom sorting function                                                                                          | `array.sort_via(|a, b| a < b)` |
-| fold     | Applies a function to each element of the array, returning the final accumulated value. First parameter is the initial value. | `array.fold(0, |a, b| a < b)`  |
-| reduce   | Same as fold, but uses the first element as starting element                                                                  | `array.reduce(|a, b| a < b)`   |
+| fold     | Applies a function to each element of the array, returning the final accumulated value. First parameter is the initial value. | `array.fold(0, |a, b| a + b)`  |
+| reduce   | Same as fold, but uses the first element as starting element                                                                  | `array.reduce(|a, b| a + b)`   |
 | all      | Returns true if all the elements satisfy the given predicate                                                                  | `array.all(|a, b| a < b)`      |
 | any      | Returns true if any of the elements satisfy the given predicate                                                               | `array.any(|a, b| a < b)`      |
 
-[^migrationNote]: Migration Note: These methods were previously used like `std::field::to_le_bits()`. For the sake of ease of use and readability, this syntax is now deprecated, and you should use the respective `impl` as suggested (`your_field_var.to_le_bits()`)
+[^migrationNote]: Migration Note: These methods were previously free functions, called via `std::field::to_le_bits(my_field)`. For the sake of ease of use and readability, these functions are now methods and the old syntax for them is now deprecated.
 
 ## Merkle Trees
 
