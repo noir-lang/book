@@ -3,11 +3,14 @@
 Let's walk through an example of a merkle membership proof in Noir that proves that a given leaf is in a merkle tree.
 
 ```rust,noplaypen
-fn main(message : [62]u8, index : Field, hashpath : [40]Field, root : Field) {
+use dep::std;
+
+fn main(message : [Field; 62], index : Field, hashpath : [Field; 40], root : Field) {
     let leaf = std::hash::hash_to_field(message);
     let is_member = std::merkle::check_membership(root, leaf, index, hashpath);
     constrain is_member == 1;
 }
+
 ```
 
 The above code uses the noir standard library to call both of the aforementioned components.
