@@ -112,7 +112,7 @@ Verify your proof of name `p` by running:
 $ nargo verify p
 ```
 
-The verification would complete in silence if it is successful. If it fails, it will log the corresponding error instead.
+The verification will complete in silence if it is successful. If it fails, it will log the corresponding error instead.
 
 Congratulations, you have now created and verified a proof for your very first Noir program!
 
