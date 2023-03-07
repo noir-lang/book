@@ -87,6 +87,23 @@ fn main() {
 
 The boolean type is most commonly used in conditionals like `if` expressions and `constrain` statements. More about conditionals is covered in the [Control Flow](./control_flow.md) and [Constrain Statement](./constrain.md) sections.
 
+## The String Type
+
+There's a basic string implementation in Noir, which can be useful for logging, for example. Since circuit inputs need to be known at compile time, the string length for an input must be hardcoded into the circuit, like so:
+
+``` rust
+// **input**
+// field = "hello"
+
+fn main(string: pub str<5>) {
+    let hello : str<5> = ("hello");
+    constrain string == hello;
+}
+
+```
+
+String manipulation isn't available at this time, but as long as you make the variable `mut`, you can replace it.
+
 ## Compound Types
 
 A compound type groups together multiple values into one type. Elements within a compound type can be private or public.
