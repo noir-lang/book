@@ -666,11 +666,14 @@ const proof = await create_proof_with_witness(prover, barretenberg_witness_arr);
 <p>See the <a href="getting_started/nargo/commands.html#nargo-compile-circuit_name">Commands</a> section to learn more about the <code>nargo compile</code> command.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="merkle-proof"><a class="header" href="#merkle-proof">Merkle Proof</a></h1>
 <p>Let's walk through an example of a merkle membership proof in Noir that proves that a given leaf is in a merkle tree.</p>
-<pre><code class="language-rust noplaypen">fn main(message : [62]u8, index : Field, hashpath : [40]Field, root : Field) {
+<pre><code class="language-rust noplaypen">use dep::std;
+
+fn main(message : [Field; 62], index : Field, hashpath : [Field; 40], root : Field) {
     let leaf = std::hash::hash_to_field(message);
     let is_member = std::merkle::check_membership(root, leaf, index, hashpath);
     constrain is_member == 1;
 }
+
 </code></pre>
 <p>The above code uses the noir standard library to call both of the aforementioned components.</p>
 <pre><code class="language-rust noplaypen">   let leaf = std::hash::hash_to_field(message);
