@@ -8,34 +8,33 @@ For convenience, the STD provides some ready-to-use, common methods for arrays[^
 Returns the length of an array
 
 ```rust
-fn len(_array: Self) -> comptime Field
+fn len<T, N>(_array: [T; N]) -> comptime Field
 ```
 
 example
 
 ```rust
-// arr = [42, 42]
-fn main(arr : pub [Field; 2]) {
-    let t = arr.len();
-    constrain t == 2;
+fn main() {
+    let array = [42, 42]
+    constrain arr.len() == 2;
 }
 ```
 
 ## sort
 
-Sorts the array with a built-in function
+Returns a new sorted array with a built-in function. Original array remains untouched.
 
 ```rust
-fn sort(_array: Self) -> Self
+fn sort<T, N>(_array: [T; N]) -> Self
 ```
 
 example
 
 ```rust
-// arr = [42, 32]
-fn main(arr : pub [u32; 2]) {
-    let t = arr.sort();
-    constrain t == [32, 42];
+fn main() {
+    let arr = [42, 32]
+    let sorted = arr.sort();
+    constrain sorted == [32, 42];
 }
 ```
 
@@ -44,37 +43,49 @@ fn main(arr : pub [u32; 2]) {
 Sorts the array with a custom sorting function
 
 ```rust
-fn sort_via(mut a: Self, ordering: fn(T, T) -> bool) -> Self
+fn sort_via<T, N>(mut a: [T; N], ordering: fn(T, T) -> bool) -> Self
 ```
 
 example
 
 ```rust
-// arr = [42, 32]
-fn main(arr : pub [u32; 2]) {
-    let t = arr.sort_via(|a, b| a < b);
+fn main() {
+    let arr = [42, 32]
+    let sorted_ascending = arr.sort_via(|a, b| a < b);
     constrain t == [32, 42]; // verifies
 
-    let t = arr.sort_via(|a, b| a > b);
+    let sorted_descending = arr.sort_via(|a, b| a > b);
     constrain t == [32, 42]; // does not verify
-
 }
 ```
 
 ## fold
 
-Applies a function to each element of the array, returning the final accumulated value. First parameter is the initial value
+Applies a function to each element of the array, returning the final accumulated value. The first parameter is the initial value.
+
+One should know ihis is a left fold, meaning that the function is always applied to the leftiest element. So for a given call the expected result would be equivalent to:
 
 ```rust
-fn fold<U>(self, mut accumulator: U, f: fn(U, T) -> U) -> U
+let a1 = [1];
+let a2 = [1, 2];
+let a3 = [1, 2, 3];
+
+let f = |a, b| a - b;
+a1.fold(10, f)  //=> f(10, 1)
+a2.fold(10, f)  //=> f(f(10, 1), 2)
+a3.fold(10, f)  //=> f(f(f(10, 1), 2), 3)
+```
+
+```rust
+fn fold<U>(mut accumulator: U, f: fn(U, T) -> U) -> U
 ```
 
 example:
 
 ``` rust
 
-// arr = [2,2,2,2,2]
-fn main(arr : [Field; 5]) {
+fn main() {
+    let arr = [2,2,2,2,2]
     let folded = arr.fold(0, |a, b| a + b);
     constrain folded == 10;
 }
@@ -83,17 +94,17 @@ fn main(arr : [Field; 5]) {
 
 ## reduce
 
-Same as fold, but uses the first element as starting element
+Same as fold, but uses the first element as starting element.
 
 ```rust
-fn reduce(self, f: fn(T, T) -> T) -> T 
+fn reduce<T, N>(f: fn(T, T) -> T) -> T 
 ```
 
 example:
 
 ```rust
-// arr = [2,2,2,2,2]
-fn main(arr : [Field; 5]) {
+fn main() {
+    let arr = [2,2,2,2,2]
     let reduced = arr.reduce(|a, b| a + b);
     constrain reduced == 10;
 }
@@ -104,14 +115,14 @@ fn main(arr : [Field; 5]) {
 Returns true if all the elements satisfy the given predicate
 
 ```rust
-fn all(self, predicate: fn(T) -> bool) -> bool
+fn all<T, N>(predicate: fn(T) -> bool) -> bool
 ```
 
 example:
 
 ```rust
-// arr = [2,2,2,2,2]
-fn main(arr : [Field; 5]) {
+fn main() {
+    let arr = [2,2,2,2,2]
     let all = arr.all(|a| a == 2);
     constrain all == true;
 }
@@ -122,18 +133,18 @@ fn main(arr : [Field; 5]) {
 Returns true if any of the elements satisfy the given predicate
 
 ```rust
-fn any(self, predicate: fn(T) -> bool) -> bool
+fn any<T, N>(predicate: fn(T) -> bool) -> bool
 ```
 
 example:
 
 ```rust
-// arr = [2,2,2,2,5]
-fn main(arr : [Field; 5]) {
+fn main() {
+    let arr = [2,2,2,2,5]
     let any = arr.any(|a| a == 5);
     constrain any == true;
 }
 
 ```
 
-[^migrationNote]: Migration Note: These methods were previously free functions, called via `std::field::to_le_bits(my_field)`. For the sake of ease of use and readability, these functions are now methods and the old syntax for them is now deprecated.
+[^migrationNote]: Migration Note: These methods were previously free functions, called via `std::array::len()`. For the sake of ease of use and readability, these functions are now methods and the old syntax for them is now deprecated.

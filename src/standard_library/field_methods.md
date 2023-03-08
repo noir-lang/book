@@ -8,7 +8,7 @@ After declaring a Field, you can use these common methods on it [^migrationNote]
 Transforms the field into an array of bits, Little Endian.
 
 ``` rust
-fn to_le_bits(_x : Field, _bit_size: u32) -> [u1]
+fn to_le_bits<N>(_x : Field, _bit_size: u32) -> [u1; N]
 ```
 
 example:
@@ -25,7 +25,7 @@ fn main(field : pub Field) {
 Transforms into an array of bytes, Little Endian
 
 ``` rust
-fn to_le_bits(_x : Field, _bit_size: u32) -> [u1]
+fn to_le_bytes(_x : Field, byte_size: u32) -> [u8]
 ```
 
 example:

@@ -1,4 +1,3 @@
-
 # Cryptographic primitives
 
 Some cryptographic primitives are already developed and ready-to-use for any Noir project:
@@ -8,11 +7,9 @@ Some cryptographic primitives are already developed and ready-to-use for any Noi
 Given an array of bytes, returns the sha256 of it:
 
 ```rust
-// x = [72, 101, 108, 108, 111, 44, 32, 119, 111, 114, 108, 100, 33] (Hello, world!)
-fn main(x : [u8; 13]) {
-    constrain x == x;
+fn main() {
+    let x = [163, 117, 178, 149] // some random bytes
     let hash = std::hash::sha256(x);
-    std::println(hash);
 }
 ```
 
@@ -21,11 +18,9 @@ fn main(x : [u8; 13]) {
 Given an array of bytes, returns the Blake2 of it:
 
 ```rust
-// x = [72, 101, 108, 108, 111, 44, 32, 119, 111, 114, 108, 100, 33] (Hello, world!)
-fn main(x : [u8; 13]) {
-    constrain x == x;
-    let hash = std::hash::sha512(x);
-    std::println(hash);
+fn main() {
+    let x = [163, 117, 178, 149] // some random bytes
+    let hash = std::hash::blake2s(x);
 }
 ```
 
@@ -34,11 +29,9 @@ fn main(x : [u8; 13]) {
 Given an array of Fields, returns the Pedersen hash of it:
 
 ```rust
-// x = [72, 101, 108, 108, 111, 44, 32, 119, 111, 114, 108, 100, 33] (Hello, world!)
-fn main(x : [Field; 13]) {
-    constrain x == x;
+fn main() {
+    let x = [163, 117, 178, 149] // some random bytes
     let hash = std::hash::pedersen(x);
-    std::println(hash);
 }
 ```
 
@@ -60,11 +53,9 @@ example:
 
 ```rust
 
-// x = [72, 101, 108, 108, 111, 44, 32, 119, 111, 114, 108, 100, 33] (Hello, world!)
-fn main(x : [Field; 13]) {
-    constrain x == x;
+fn main() {
+    let x = [163, 117, 178, 149] // some random bytes
     let hash = std::hash::mimc_bn254(x);
-    std::println(hash);
 }
 ```
 
@@ -80,7 +71,6 @@ example
 
 ```rust
 fn main(x : Field) {
-    constrain x == x;
     let scal = std::scalar_mul::fixed_base(x);
     std::println(scal);
 }

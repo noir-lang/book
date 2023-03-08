@@ -89,14 +89,14 @@ The boolean type is most commonly used in conditionals like `if` expressions and
 
 ## The String Type
 
-There's a basic string implementation in Noir, which can be useful for logging, for example. Since circuit inputs need to be known at compile time, the string length for an input must be hardcoded into the circuit, like so:
+Strings in Noir are fairly basic with their main use being for debugging via std::println.. Since circuit inputs need to be known at compile time, the string length for an input must be hardcoded into the circuit, like so:
 
 ``` rust
 // **input**
 // field = "hello"
 
-fn main(string: pub str<5>) {
-    let hello : str<5> = ("hello");
+fn main(string: str<5>) {
+    let hello = "hello";
     constrain string == hello;
 }
 
