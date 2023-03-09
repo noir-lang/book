@@ -37,12 +37,12 @@ fn main() {
 }
 ```
 
-## to_radix
+## to_le_radix
 
-Decomposes into a vector over the specificed base
+Decomposes into a vector over the specificed base, Little Endian
 
 ```rust
-fn to_radix(_x : Field, _radix: u32, _result_len: u32) -> [u8]
+fn to_le_radix(_x : Field, _radix: u32, _result_len: u32) -> [u8]
 ```
 
 example:
@@ -50,7 +50,24 @@ example:
 ```rust
 fn main() {
     const field = 2
-    let radix = field.to_radix(256, 4);
+    let radix = field.to_le_radix(256, 4);
+}
+```
+
+## to_be_radix
+
+Decomposes into a vector over the specificed base, Big Endian
+
+```rust
+fn to_be_radix(_x : Field, _radix: u32, _result_len: u32) -> [u8]
+```
+
+example:
+
+```rust
+fn main() {
+    const field = 2
+    let radix = field.to_be_radix(256, 4);
 }
 ```
 
