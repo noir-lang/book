@@ -43,7 +43,7 @@ _Arguments_
 
 - `<proof>` - The proof to verify
 
-## `nargo contract`
+## `nargo codegen-verifier`
 
 Generate a Solidity verifier smart contract for the program.
 
