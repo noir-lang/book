@@ -14,9 +14,9 @@ fn to_le_bits<N>(_x : Field, _bit_size: u32) -> [u1; N]
 example:
 
 ``` rust
-fn main(field : pub Field) {
-    let t = field.to_le_bits(32);
-    constrain t == t;
+fn main() {
+    const field = 2
+    let bits = field.to_le_bits(32);
 }
 ```
 
@@ -31,9 +31,9 @@ fn to_le_bytes(_x : Field, byte_size: u32) -> [u8]
 example:
 
 ```rust
-fn main(field : pub Field) {
-    let t = field.to_le_bytes(4);
-    constrain t == t;
+fn main() {
+    const field = 2
+    let bytes = field.to_le_bytes(4);
 }
 ```
 
@@ -48,9 +48,9 @@ fn to_radix(_x : Field, _radix: u32, _result_len: u32) -> [u8]
 example:
 
 ```rust
-fn main(field : pub Field) {
-    let t = field.to_radix(256, 4);
-    constrain t == t;
+fn main() {
+    const field = 2
+    let radix = field.to_radix(256, 4);
 }
 ```
 
@@ -65,9 +65,9 @@ fn pow_32(self, exponent: Field) -> Field
 example:
 
 ```rust
-// field = 2
-fn main(field : pub Field) {
-    let t = field.pow_32(4);
-    constrain t == 16;
+fn main() {
+    const field = 2
+    let pow = field.pow_32(4);
+    constrain pow == 16;
 }
 ```

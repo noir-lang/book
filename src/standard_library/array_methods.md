@@ -22,7 +22,7 @@ fn main() {
 
 ## sort
 
-Returns a new sorted array with a built-in function. Original array remains untouched.
+Returns a new sorted array. Original array remains untouched. Notice that this function will only work for arrays of fields or integers, not for any arbitrary type. This is because the sorting logic it uses internally is optimized specifically for these values. If you need a sort function to sort any type, you should use the below function `sort_via`.
 
 ```rust
 fn sort<T, N>(_array: [T; N]) -> Self
@@ -40,7 +40,7 @@ fn main() {
 
 ## sort_via
 
-Sorts the array with a custom sorting function
+Sorts the array with a custom comparison function
 
 ```rust
 fn sort_via<T, N>(mut a: [T; N], ordering: fn(T, T) -> bool) -> Self
@@ -52,7 +52,7 @@ example
 fn main() {
     let arr = [42, 32]
     let sorted_ascending = arr.sort_via(|a, b| a < b);
-    constrain t == [32, 42]; // verifies
+    constrain sorted_ascending == [32, 42]; // verifies
 
     let sorted_descending = arr.sort_via(|a, b| a > b);
     constrain t == [32, 42]; // does not verify
@@ -63,7 +63,11 @@ fn main() {
 
 Applies a function to each element of the array, returning the final accumulated value. The first parameter is the initial value.
 
-One should know ihis is a left fold, meaning that the function is always applied to the leftiest element. So for a given call the expected result would be equivalent to:
+```rust
+fn fold<U>(mut accumulator: U, f: fn(U, T) -> U) -> U
+```
+
+This is a left fold, so the given function will be applied to the accumulator and first element of the array, then the second, and so on. For a given call the expected result would be equivalent to:
 
 ```rust
 let a1 = [1];
@@ -74,10 +78,6 @@ let f = |a, b| a - b;
 a1.fold(10, f)  //=> f(10, 1)
 a2.fold(10, f)  //=> f(f(10, 1), 2)
 a3.fold(10, f)  //=> f(f(f(10, 1), 2), 3)
-```
-
-```rust
-fn fold<U>(mut accumulator: U, f: fn(U, T) -> U) -> U
 ```
 
 example:
@@ -124,7 +124,7 @@ example:
 fn main() {
     let arr = [2,2,2,2,2]
     let all = arr.all(|a| a == 2);
-    constrain all == true;
+    constrain all;
 }
 ```
 
@@ -142,7 +142,7 @@ example:
 fn main() {
     let arr = [2,2,2,2,5]
     let any = arr.any(|a| a == 5);
-    constrain any == true;
+    constrain any;
 }
 
 ```
