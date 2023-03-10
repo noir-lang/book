@@ -49,7 +49,7 @@ Generate a Solidity verifier smart contract for the program.
 
 ## `nargo compile <circuit_name>`
 
-Compile the program and its secret execution trace into a JSON file containing the ACIR representation, and the ABI of the circuit.
+Compile the program and its secret execution trace into a JSON build artifact file containing the ACIR representation, and the ABI of the circuit. This build artifact can then be used to generate and verify proofs.
 
 _Arguments_
 
