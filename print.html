@@ -366,18 +366,13 @@ SUBCOMMANDS:
 </ul>
 <h2 id="nargo-codegen-verifier"><a class="header" href="#nargo-codegen-verifier"><code>nargo codegen-verifier</code></a></h2>
 <p>Generate a Solidity verifier smart contract for the program.</p>
-<h2 id="nargo-compile-flags-circuit_name"><a class="header" href="#nargo-compile-flags-circuit_name"><code>nargo compile [FLAGS] &lt;circuit_name&gt;</code></a></h2>
-<p>Compile the program and its secret execution trace into <a href="getting_started/nargo/../../acir.html">ACIR</a> format.</p>
+<h2 id="nargo-compile-circuit_name"><a class="header" href="#nargo-compile-circuit_name"><code>nargo compile &lt;circuit_name&gt;</code></a></h2>
+<p>Compile the program and its secret execution trace into a JSON build artifact file containing the ACIR representation, and the ABI of the circuit. This build artifact can then be used to generate and verify proofs.</p>
 <p><em>Arguments</em></p>
 <ul>
-<li><code>&lt;circuit_name&gt;</code> - The name of the ACIR file</li>
-<li><code>[FLAGS]</code> - Add <code>--witness</code> to compile the witness file as well</li>
+<li><code>&lt;circuit_name&gt;</code> - The name of the circuit file</li>
 </ul>
-<p><em>Usage</em></p>
-<p>Running the command would create a new folder <code>build</code> with the compiled <code>&lt;circuit_name&gt;.acir</code> file in your project directory.</p>
-<p>To also compile a witness file, fill in the values in <code>Prover.toml</code> generated from <code>nargo check</code> and run the command with the <code>--witness</code> flag. A <code>&lt;circuit_name&gt;.tr</code> file would be compiled in the <code>build</code> folder.</p>
 <blockquote>
-<p><strong>Info:</strong> The <code>.acir</code> file is the ACIR of your Noir program, and the <code>.tr</code> file is the witness file. The witness file can be considered as program inputs parsed for your program's ACIR.</p>
 <p>The files compiled can be passed into a TypeScript project for proving and verification. See the <a href="getting_started/nargo/../typescript.html#proving-and-verifying-externally-compiled-files">TypeScript</a> section to learn more.</p>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hello-world"><a class="header" href="#hello-world">Hello, World</a></h1>
