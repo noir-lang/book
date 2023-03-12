@@ -22,10 +22,10 @@ fn main() {
 
 ## sort
 
-Returns a new sorted array. Original array remains untouched. Notice that this function will only work for arrays of fields or integers, not for any arbitrary type. This is because the sorting logic it uses internally is optimized specifically for these values. If you need a sort function to sort any type, you should use the below function `sort_via`.
+Returns a new sorted array. The original array remains untouched. Notice that this function will only work for arrays of fields or integers, not for any arbitrary type. This is because the sorting logic it uses internally is optimized specifically for these values. If you need a sort function to sort any type, you should use the function `sort_via` described below.
 
 ```rust
-fn sort<T, N>(_array: [T; N]) -> Self
+fn sort<T, N>(_array: [T; N])
 ```
 
 example
@@ -43,7 +43,7 @@ fn main() {
 Sorts the array with a custom comparison function
 
 ```rust
-fn sort_via<T, N>(mut a: [T; N], ordering: fn(T, T) -> bool) -> Self
+fn sort_via<T, N>(mut a: [T; N], ordering: fn(T, T) -> bool)
 ```
 
 example
@@ -55,7 +55,7 @@ fn main() {
     constrain sorted_ascending == [32, 42]; // verifies
 
     let sorted_descending = arr.sort_via(|a, b| a > b);
-    constrain t == [32, 42]; // does not verify
+    constrain sorted_descending == [32, 42]; // does not verify
 }
 ```
 

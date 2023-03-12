@@ -49,7 +49,7 @@ example:
 
 ```rust
 fn main() {
-    const field = 2
+    let field = 2
     let radix = field.to_le_radix(256, 4);
 }
 ```
