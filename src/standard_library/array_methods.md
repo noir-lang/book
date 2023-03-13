@@ -25,7 +25,7 @@ fn main() {
 Returns a new sorted array. The original array remains untouched. Notice that this function will only work for arrays of fields or integers, not for any arbitrary type. This is because the sorting logic it uses internally is optimized specifically for these values. If you need a sort function to sort any type, you should use the function `sort_via` described below.
 
 ```rust
-fn sort<T, N>(_array: [T; N])
+fn sort<T, N>(_array: [T; N]) -> [T; N]
 ```
 
 example
@@ -43,7 +43,7 @@ fn main() {
 Sorts the array with a custom comparison function
 
 ```rust
-fn sort_via<T, N>(mut a: [T; N], ordering: fn(T, T) -> bool)
+fn sort_via<T, N>(mut a: [T; N], ordering: fn(T, T) -> bool) -> [T; N]
 ```
 
 example

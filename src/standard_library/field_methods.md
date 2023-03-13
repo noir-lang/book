@@ -15,7 +15,7 @@ example:
 
 ``` rust
 fn main() {
-    const field = 2
+    let field = 2
     let bits = field.to_le_bits(32);
 }
 ```
@@ -32,7 +32,7 @@ example:
 
 ```rust
 fn main() {
-    const field = 2
+    let field = 2
     let bytes = field.to_le_bytes(4);
 }
 ```
@@ -66,7 +66,7 @@ example:
 
 ```rust
 fn main() {
-    const field = 2
+    let field = 2
     let radix = field.to_be_radix(256, 4);
 }
 ```
@@ -83,7 +83,7 @@ example:
 
 ```rust
 fn main() {
-    const field = 2
+    let field = 2
     let pow = field.pow_32(4);
     constrain pow == 16;
 }
