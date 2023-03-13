@@ -510,7 +510,7 @@ y = &quot;2&quot;
 <div style="break-before: page; page-break-before: always;"></div><h2 id="solidity-verifier"><a class="header" href="#solidity-verifier">Solidity Verifier</a></h2>
 <p>For certain applications, it may be desirable to run the verifier as a smart contract instead of on a local machine.</p>
 <p>Compile a Solidity verifier contract for your Noir program by running:</p>
-<pre><code class="language-sh">nargo contract
+<pre><code class="language-sh">nargo codegen-verifier
 </code></pre>
 <p>A new <code>contract</code> folder would then be generated in your project directory, containing the Solidity file <code>plonk_vk.sol</code>. It can be deployed on any EVM blockchain acting as a verifier smart contract.</p>
 <blockquote>
