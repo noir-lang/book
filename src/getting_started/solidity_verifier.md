@@ -5,7 +5,7 @@ For certain applications, it may be desirable to run the verifier as a smart con
 Compile a Solidity verifier contract for your Noir program by running:
 
 ```sh
-nargo contract
+nargo codegen-verifier
 ```
 
 A new `contract` folder would then be generated in your project directory, containing the Solidity file `plonk_vk.sol`. It can be deployed on any EVM blockchain acting as a verifier smart contract.
