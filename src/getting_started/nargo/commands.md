@@ -23,15 +23,13 @@ Generate the `Prover.toml` and `Verifier.toml` files for specifying prover and v
 
 ## `nargo compile <circuit_name>`
 
-Compile the program into [ACIR](../../acir.md) format.
+Compile the program and its secret execution trace into a JSON build artifact file containing the ACIR representation, and the ABI of the circuit. This build artifact can then be used to generate and verify proofs.
 
 _Arguments_
 
-- `<circuit_name>` - The name of the ACIR file
+- `<circuit_name>` - The name of the circuit file
 
-_Usage_
-
-Running the command would create a new folder `build` with the compiled `<circuit_name>.acir` file in your project directory.
+> The files compiled can be passed into a TypeScript project for proving and verification. See the [TypeScript](../typescript.md#proving-and-verifying-externally-compiled-files) section to learn more.
 
 ## `nargo execute [witness_name]`
 
@@ -68,6 +66,6 @@ _Arguments_
 
 - `<proof>` - The proof to verify
 
-## `nargo contract`
+## `nargo codegen-verifier`
 
 Generate a Solidity verifier smart contract for the program.

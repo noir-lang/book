@@ -112,15 +112,7 @@ Verify your proof of name `p` by running:
 $ nargo verify p
 ```
 
-If the verification is successful, you should be prompted with a `true` verification status in the terminal:
-
-```sh
-$ nargo verify p                                                                                                                                                         ~/noir-test/Hello ...
-verifier deserialise : ...ns ~0seconds
-creating verifier : ...ns ~0seconds
-verifying proof : ...ns ~0seconds
-Proof verified : true
-```
+The verification will complete in silence if it is successful. If it fails, it will log the corresponding error instead.
 
 Congratulations, you have now created and verified a proof for your very first Noir program!
 
