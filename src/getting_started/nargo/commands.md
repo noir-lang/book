@@ -29,8 +29,6 @@ _Arguments_
 
 - `<circuit_name>` - The name of the circuit file
 
-> The files compiled can be passed into a TypeScript project for proving and verification. See the [TypeScript](../typescript.md#proving-and-verifying-externally-compiled-files) section to learn more.
-
 ## `nargo execute [witness_name]`
 
 Runs the Noir program and prints its return value.
