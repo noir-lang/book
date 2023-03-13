@@ -31,7 +31,7 @@ And import the applicable functions into your TypeScript file by adding:
 
 ```ts
 // 1_mul.ts
-import { compile, acir_from_bytes } from '@noir-lang/noir_wasm';
+import { compile, acir_read_bytes } from '@noir-lang/noir_wasm';
 import { setup_generic_prover_and_verifier, create_proof, verify_proof, create_proof_with_witness } from '@noir-lang/barretenberg/dest/client_proofs';
 import { packed_witness_to_witness, serialise_public_inputs, compute_witnesses } from '@noir-lang/aztec_backend';
 ```
@@ -186,7 +186,7 @@ To benefit from the best of both worlds, a Noir program can be compiled with `na
 
 // Parse acir
 let acirByteArray = path_to_uint8array(path.resolve(__dirname, '../circuits/build/p.acir'));
-let acir = acir_from_bytes(acirByteArray);
+let acir = acir_read_bytes(acirByteArray);
 
 // Parse witness
 let witnessByteArray = path_to_uint8array(path.resolve(__dirname, '../circuits/build/p.tr'));
