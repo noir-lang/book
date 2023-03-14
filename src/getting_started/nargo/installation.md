@@ -80,26 +80,21 @@ For a successful installation, you should see something similar to the following
 
 ```
 $ nargo --help
-nargo 0.1
-Kevaundray Wedderburn <kevtheappdev@gmail.com>
 Noir's package manager
 
-USAGE:
-   nargo [SUBCOMMAND]
+Usage: nargo <COMMAND>
 
-FLAGS:
-   -h, --help       Prints help information
-   -V, --version    Prints version information
-
-SUBCOMMANDS:
-   build       Builds the constraint system
-   compile     Compile the program and its secret execution trace into ACIR format
-   contract    Creates the smart contract code for circuit
-   gates       Counts the occurences of different gates in circuit
-   help        Prints this message or the help of the given subcommand(s)
-   new         Create a new binary project
-   prove       Create proof for this program
-   verify      Given a proof and a program, verify whether the proof is valid
+Commands:
+  check             Checks the constraint system for errors
+  codegen-verifier  Generates a Solidity verifier smart contract for the program
+  compile           Compile the program and its secret execution trace into ACIR format
+  new               Create a new binary project
+  execute           Executes a circuit to calculate its return value
+  prove             Create proof for this program. The proof is returned as a hex encoded string
+  verify            Given a proof and a program, verify whether the proof is valid
+  test              Run the tests for this program
+  gates             Counts the occurrences of different gates in circuit
+  help              Print this message or the help of the given subcommand(s)
 ```
 
 ## Option 2: Compile from Source
@@ -170,26 +165,21 @@ The [barretenberg] proving backend is written in C++, hence compiling it from so
 
    ```
    $ nargo --help
-   nargo 0.1
-   Kevaundray Wedderburn <kevtheappdev@gmail.com>
    Noir's package manager
 
-   USAGE:
-      nargo [SUBCOMMAND]
+   Usage: nargo <COMMAND>
 
-   FLAGS:
-      -h, --help       Prints help information
-      -V, --version    Prints version information
-
-   SUBCOMMANDS:
-      build       Builds the constraint system
-      compile     Compile the program and its secret execution trace into ACIR format
-      contract    Creates the smart contract code for circuit
-      gates       Counts the occurences of different gates in circuit
-      help        Prints this message or the help of the given subcommand(s)
-      new         Create a new binary project
-      prove       Create proof for this program
-      verify      Given a proof and a program, verify whether the proof is valid
+   Commands:
+     check             Checks the constraint system for errors
+     codegen-verifier  Generates a Solidity verifier smart contract for the program
+     compile           Compile the program and its secret execution trace into ACIR format
+     new               Create a new binary project
+     execute           Executes a circuit to calculate its return value
+     prove             Create proof for this program. The proof is returned as a hex encoded string
+     verify            Given a proof and a program, verify whether the proof is valid
+     test              Run the tests for this program
+     gates             Counts the occurrences of different gates in circuit
+     help              Print this message or the help of the given subcommand(s)
    ```
 
 [git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
