@@ -162,8 +162,6 @@
 <pre><code class="language-bash">mkdir -p $HOME/.nargo/bin &amp;&amp; \
 curl -o $HOME/.nargo/bin/nargo-aarch64-apple-darwin.tar.gz -L https://github.com/noir-lang/noir/releases/download/nightly/nargo-aarch64-apple-darwin.tar.gz &amp;&amp; \
 tar -xvf $HOME/.nargo/bin/nargo-aarch64-apple-darwin.tar.gz -C $HOME/.nargo/bin/ &amp;&amp; \
-mkdir -p &quot;$HOME/Library/Application Support/noir-lang&quot; &amp;&amp; \
-cp -R $HOME/.nargo/bin/noir-lang/* &quot;$HOME/Library/Application Support/noir-lang/&quot; &amp;&amp; \
 echo '\nexport PATH=$PATH:$HOME/.nargo/bin' &gt;&gt; ~/.zshrc &amp;&amp; \
 source ~/.zshrc
 </code></pre>
@@ -171,8 +169,6 @@ source ~/.zshrc
 <pre><code class="language-bash">mkdir -p $HOME/.nargo/bin &amp;&amp; \
 curl -o $HOME/.nargo/bin/nargo-x86_64-apple-darwin.tar.gz -L https://github.com/noir-lang/noir/releases/download/nightly/nargo-x86_64-apple-darwin.tar.gz &amp;&amp; \
 tar -xvf $HOME/.nargo/bin/nargo-x86_64-apple-darwin.tar.gz -C $HOME/.nargo/bin/ &amp;&amp; \
-mkdir -p &quot;$HOME/Library/Application Support/noir-lang&quot; &amp;&amp; \
-cp -R $HOME/.nargo/bin/noir-lang/* &quot;$HOME/Library/Application Support/noir-lang/&quot; &amp;&amp; \
 echo '\nexport PATH=$PATH:$HOME/.nargo/bin' &gt;&gt; ~/.zshrc &amp;&amp; \
 source ~/.zshrc
 </code></pre>
@@ -181,8 +177,6 @@ source ~/.zshrc
 <pre><code class="language-sh">mkdir -f -p &quot;$env:USERPROFILE\.nargo\bin\&quot;; `
 Invoke-RestMethod -Method Get -Uri https://github.com/noir-lang/noir/releases/download/nightly/nargo-x86_64-pc-windows-msvc.zip -Outfile &quot;$env:USERPROFILE\.nargo\bin\nargo-x86_64-pc-windows-msvc.zip&quot;; `
 Expand-Archive -Path &quot;$env:USERPROFILE\.nargo\bin\nargo-x86_64-pc-windows-msvc.zip&quot; -DestinationPath &quot;$env:USERPROFILE\.nargo\bin\&quot;; `
-mkdir -f -p &quot;$env:APPDATA\noir-lang&quot;; `
-cp -R &quot;$env:USERPROFILE\.nargo\bin\noir-lang\*&quot; &quot;$env:APPDATA\noir-lang\&quot;; `
 $Reg = &quot;Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment&quot;; `
 $OldPath = (Get-ItemProperty -Path &quot;$Reg&quot; -Name PATH).Path; `
 $NewPath = $OldPath + ’;’ + &quot;$env:USERPROFILE\.nargo\bin\&quot;; `
@@ -194,8 +188,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable(&quot;Path&quot;,&quot;
 <pre><code class="language-bash">mkdir -p $HOME/.nargo/bin &amp;&amp; \
 curl -o $HOME/.nargo/bin/nargo-x86_64-unknown-linux-gnu.tar.gz -L https://github.com/noir-lang/noir/releases/download/nightly/nargo-x86_64-unknown-linux-gnu.tar.gz &amp;&amp; \
 tar -xvf $HOME/.nargo/bin/nargo-x86_64-unknown-linux-gnu.tar.gz -C $HOME/.nargo/bin/ &amp;&amp; \
-mkdir -p $HOME/.config/noir-lang
-cp -r $HOME/.nargo/bin/noir-lang/* &quot;$HOME/.config/noir-lang/&quot;
 echo '\nexport PATH=$PATH:$HOME/.nargo/bin' &gt;&gt; ~/.bashrc &amp;&amp; \
 source ~/.bashrc
 </code></pre>
