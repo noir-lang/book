@@ -21,8 +21,6 @@ Paste and run the following in the terminal to extract and install the binary:
 mkdir -p $HOME/.nargo/bin && \
 curl -o $HOME/.nargo/bin/nargo-aarch64-apple-darwin.tar.gz -L https://github.com/noir-lang/noir/releases/download/nightly/nargo-aarch64-apple-darwin.tar.gz && \
 tar -xvf $HOME/.nargo/bin/nargo-aarch64-apple-darwin.tar.gz -C $HOME/.nargo/bin/ && \
-mkdir -p "$HOME/Library/Application Support/noir-lang" && \
-cp -R $HOME/.nargo/bin/noir-lang/* "$HOME/Library/Application Support/noir-lang/" && \
 echo '\nexport PATH=$PATH:$HOME/.nargo/bin' >> ~/.zshrc && \
 source ~/.zshrc
 ```
@@ -33,8 +31,6 @@ source ~/.zshrc
 mkdir -p $HOME/.nargo/bin && \
 curl -o $HOME/.nargo/bin/nargo-x86_64-apple-darwin.tar.gz -L https://github.com/noir-lang/noir/releases/download/nightly/nargo-x86_64-apple-darwin.tar.gz && \
 tar -xvf $HOME/.nargo/bin/nargo-x86_64-apple-darwin.tar.gz -C $HOME/.nargo/bin/ && \
-mkdir -p "$HOME/Library/Application Support/noir-lang" && \
-cp -R $HOME/.nargo/bin/noir-lang/* "$HOME/Library/Application Support/noir-lang/" && \
 echo '\nexport PATH=$PATH:$HOME/.nargo/bin' >> ~/.zshrc && \
 source ~/.zshrc
 ```
@@ -47,8 +43,6 @@ Open PowerShell as Administrator and run:
 mkdir -f -p "$env:USERPROFILE\.nargo\bin\"; `
 Invoke-RestMethod -Method Get -Uri https://github.com/noir-lang/noir/releases/download/nightly/nargo-x86_64-pc-windows-msvc.zip -Outfile "$env:USERPROFILE\.nargo\bin\nargo-x86_64-pc-windows-msvc.zip"; `
 Expand-Archive -Path "$env:USERPROFILE\.nargo\bin\nargo-x86_64-pc-windows-msvc.zip" -DestinationPath "$env:USERPROFILE\.nargo\bin\"; `
-mkdir -f -p "$env:APPDATA\noir-lang"; `
-cp -R "$env:USERPROFILE\.nargo\bin\noir-lang\*" "$env:APPDATA\noir-lang\"; `
 $Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"; `
 $OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path; `
 $NewPath = $OldPath + ’;’ + "$env:USERPROFILE\.nargo\bin\"; `
@@ -64,8 +58,6 @@ See [GitHub Releases](https://github.com/noir-lang/noir/releases/tag/nightly) fo
 mkdir -p $HOME/.nargo/bin && \
 curl -o $HOME/.nargo/bin/nargo-x86_64-unknown-linux-gnu.tar.gz -L https://github.com/noir-lang/noir/releases/download/nightly/nargo-x86_64-unknown-linux-gnu.tar.gz && \
 tar -xvf $HOME/.nargo/bin/nargo-x86_64-unknown-linux-gnu.tar.gz -C $HOME/.nargo/bin/ && \
-mkdir -p $HOME/.config/noir-lang
-cp -r $HOME/.nargo/bin/noir-lang/* "$HOME/.config/noir-lang/"
 echo '\nexport PATH=$PATH:$HOME/.nargo/bin' >> ~/.bashrc && \
 source ~/.bashrc
 ```
