@@ -47,9 +47,9 @@ _Arguments_
 
 Generate a Solidity verifier smart contract for the program.
 
-## `nargo preprocess <acir_file>`
+## `nargo preprocess <build_artifact>`
 
-Accepts an ACIR file and generate proving and verification keys from it.
+Generate proving and verification keys from a build artifact file.
 
 ## `nargo compile <circuit_name>`
 
