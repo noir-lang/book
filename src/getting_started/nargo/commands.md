@@ -60,3 +60,13 @@ _Arguments_
 - `<circuit_name>` - The name of the circuit file
 
 > The files compiled can be passed into a TypeScript project for proving and verification. See the [TypeScript](../typescript.md#proving-and-verifying-externally-compiled-files) section to learn more.
+
+## `nargo test <pattern>`
+
+Nargo will automatically compile and run any functions which have the decorator `#[test]` on them if you run `nargo test`.
+
+See an example on the [testing page](../testing.md).
+
+_Arguments_
+
+- `<pattern>` - a pattern to indicate to only run tests with names containing the pattern
