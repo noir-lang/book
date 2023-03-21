@@ -25,6 +25,6 @@ A package _must_ contain either a library or a binary crate, but not both.
 
 ### Differences from Cargo Packages
 
-One notable difference between Cargo and Nargo packages is that while Cargo allows for an unlimited number of binary crates and a single library crate, Nargo currently only allows a package to contain a single crate.
+One notable difference between Rust's Cargo and Noir's Nargo is that while Cargo allows a package to contain an unlimited number of binary crates and a single library crate, Nargo currently only allows a package to contain a single crate.
 
 In future this restriction may be lifted to allow a Nargo package to contain both a binary and library crate or multiple binary crates.
