@@ -25,3 +25,5 @@ Running `nargo test` will test that the `test_add` function can be executed whil
 
 This is much faster compared to testing in Typescript but the only downside is that you can't explicitly test that a certain set of inputs are invalid.
 i.e. you can't say that you want add(2^64-1, 2^64-1) to fail.
+
+`nargo test` accepts an optional pattern argument to only run tests with names containing the given pattern.
