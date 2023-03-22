@@ -67,3 +67,7 @@ _Arguments_
 ## `nargo codegen-verifier`
 
 Generate a Solidity verifier smart contract for the program.
+
+## `nargo preprocess <build_artifact>`
+
+Generate proving and verification keys from a build artifact file.
