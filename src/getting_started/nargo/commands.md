@@ -23,7 +23,7 @@ Generate the `Prover.toml` and `Verifier.toml` files for specifying prover and v
 
 ## `nargo compile <circuit_name>`
 
-Compile the program into a JSON build artifact file containing the ACIR representation, and the ABI of the circuit. This build artifact can then be used to generate and verify proofs.
+Compile the program into a JSON build artifact file containing the ACIR representation and the ABI of the circuit. This build artifact can then be used to generate and verify proofs.
 
 _Arguments_
 
