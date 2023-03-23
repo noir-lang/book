@@ -11,6 +11,7 @@
   - [Solidity Verifier](getting_started/solidity_verifier.md)
   - [TypeScript](getting_started/typescript.md)
   - [Merkle Proof](getting_started/merkle-proof.md)
+  - [Testing](getting_started/testing.md)
 - [Language Concepts](language_concepts.md)
   - [Mutability](language_concepts/mutability.md)
   - [Data Types](language_concepts/data_types.md)

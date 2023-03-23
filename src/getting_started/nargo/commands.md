@@ -71,3 +71,14 @@ Generate a Solidity verifier smart contract for the program.
 ## `nargo preprocess <build_artifact>`
 
 Generate proving and verification keys from a build artifact file.
+
+## `nargo test <pattern>`
+
+Nargo will automatically compile and run any functions which have the decorator `#[test]` on them if you run `nargo test`.
+
+See an example on the [testing page](../testing.md).
+
+_Arguments_
+
+- `<pattern>` - a pattern to indicate to only run tests with names containing the pattern
+
