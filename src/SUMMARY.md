@@ -19,6 +19,7 @@
   - [Control Flow](language_concepts/control_flow.md)
   - [Operations](language_concepts/ops.md)
   - [Constrain Statement](language_concepts/constrain.md)
+  - [Generics](language_concepts/generics.md)
   - [Standard Library (std)](standard_library.md)
     - [Logging](standard_library/logging.md)
     - [Fields](standard_library/field_methods.md)
