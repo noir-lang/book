@@ -72,16 +72,6 @@ Generate a Solidity verifier smart contract for the program.
 
 Generate proving and verification keys from a build artifact file.
 
-## `nargo compile <circuit_name>`
-
-Compile the program and its secret execution trace into a JSON build artifact file containing the ACIR representation, and the ABI of the circuit. This build artifact can then be used to generate and verify proofs.
-
-_Arguments_
-
-- `<circuit_name>` - The name of the circuit file
-
-> The files compiled can be passed into a TypeScript project for proving and verification. See the [TypeScript](../typescript.md#proving-and-verifying-externally-compiled-files) section to learn more.
-
 ## `nargo test <pattern>`
 
 Nargo will automatically compile and run any functions which have the decorator `#[test]` on them if you run `nargo test`.
