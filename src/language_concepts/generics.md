@@ -10,9 +10,9 @@ fn id<T>(x: T) -> T  {
 }
 ```
 
-## Arbitrary length arrays
+## In Structs
 
-This concept is more useful for more specific types, like number generics. These can be used to define a function that iterates over an array of arbitrary length.
+Generics are useful for specifying types in structs. For example, we can specify that a field in a struct will be of a certain generic type. In this case `value` is of type `T`.
 
 ```rust noplaypen
 struct RepeatedValue<T> {
@@ -46,11 +46,31 @@ fn main() {
 
 The `print` function will print `Hello!` an arbitrary number of times, twice in this case.
 
-## Function Generics
+If we want to be generic over array lengths (which are type-level integers), we can use numeric generics. Using these looks just like using regular generics, but these generics can resolve to integers at compile-time, rather than resolving to types. Here's an example of a struct that is generic over the size of the array it contains internally:
 
-It can also be useful to create generic functions that will work over all types, `T`.
+```rust noplaypen
+struct BigInt<N> {
+    limbs: [u32; N],
+}
 
-For example, how can we write a generic equality function for arrays of any type, `T`?
+impl<N> BigInt<N> {
+    // `N` is in scope of all methods in the impl
+    fn first(first: BigInt<N>, second: BigInt<N>) -> Self {
+        constrain first.limbs != second.limbs;
+        first
+
+    fn second(first: BigInt<N>, second: Self) -> Self {
+        constrain first.limbs != second.limbs;
+        second
+    }
+}
+```
+
+## Calling functions on generic parameters
+
+Unlike Rust, Noir does not have traits, so how can one translate the equivalent of a trait bound in Rust into Noir? That is, how can we write a function that is generic over some type `T`, while also requiring there is a function like `eq: fn(T, T) -> bool` that works on the type?
+
+The answer is that we can translate this by passing in the function manually. Here's an example of implementing array equality in Noir:
 
 ```rust noplaypen
 fn array_eq<T, N>(array1: [T; N], array2: [T; N], elem_eq: fn(T, T) -> bool) -> bool {
