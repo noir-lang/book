@@ -9,7 +9,7 @@ Nargo will automatically compile and run any functions which have the decorator 
 For example if you have a program like:
 
 ```rust,noplaypen
-fn add(x: u64, y: 64) -> u64 {
+fn add(x: u64, y: u64) -> u64 {
     x + y
 }
 
